@@ -1,0 +1,857 @@
+<title>Mapeamento pelo SEI</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Série "Automação de processos regulatórios" — estilo comum das páginas de aula.
+   Conceito: caderno técnico de autos — coluna de leitura larga, índice lateral fixo no desktop,
+   número de processo e datas em fonte mono; cobalto para o que é do método, âmbar para espera/hipótese. */
+:root {
+  --bg: #f4f6f8;        /* papel frio */
+  --surface: #ffffff;
+  --ink: #14202b;       /* texto */
+  --muted: #566573;     /* legenda, rótulo */
+  --line: #d7dde3;      /* fio, borda */
+  --accent: #1d4fc4;    /* cobalto: método, links */
+  --accent-soft: #e6edfb;
+  --amber: #a8660a;     /* espera, hipótese */
+  --amber-soft: #fbf1e1;
+  --ok: #1d7a46; --ok-soft: #e3f3ea;
+  --warn: #9a6700; --warn-soft: #fbf3dc;
+  --bad: #b3261e; --bad-soft: #fbe7e5;
+  --f-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --f-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --s-1: .8125rem; --s0: 1rem; --s1: 1.1875rem; --s2: 1.5rem; --s3: 2.125rem; --s4: 3rem;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #0f151b; --surface: #161e26; --ink: #e5eaef; --muted: #9aa8b5; --line: #2a3541;
+  --accent: #7fa3ff; --accent-soft: #1b2a4a; --amber: #e3a54a; --amber-soft: #33270f;
+  --ok: #5fcf8f; --ok-soft: #12301f; --warn: #e6c060; --warn-soft: #332a10; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #0f151b; --surface: #161e26; --ink: #e5eaef; --muted: #9aa8b5; --line: #2a3541;
+  --accent: #7fa3ff; --accent-soft: #1b2a4a; --amber: #e3a54a; --amber-soft: #33270f;
+  --ok: #5fcf8f; --ok-soft: #12301f; --warn: #e6c060; --warn-soft: #332a10; --bad: #ff8a80; --bad-soft: #3a1714;
+  color-scheme: dark; }
+
+body { background: var(--bg); color: var(--ink); font: 400 var(--s0)/1.65 var(--f-body); }
+a { color: var(--accent); text-underline-offset: .18em; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px));
+        padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 4rem; }
+.serie { font: 600 var(--s-1)/1.3 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted);
+         display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding-block: 1.5rem .75rem; border-bottom: 1px solid var(--line); }
+.serie b { color: var(--accent); font-weight: 700; }
+header.abertura { display: grid; gap: 1rem; padding-block: 2.5rem 2rem; max-width: 62rem; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 600; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 5vw, var(--s4)); letter-spacing: -.01em; }
+h2 { font-size: var(--s3); }
+h3 { font-size: var(--s2); }
+.tese { font-size: var(--s1); color: var(--muted); max-width: 46rem; margin: 0; }
+.mono, code { font-family: var(--f-mono); font-size: .9em; }
+.num { font-variant-numeric: tabular-nums; }
+
+.grade { display: grid; grid-template-columns: 15rem minmax(0, 1fr); gap: 3rem; align-items: start; }
+nav.indice { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 1rem); font-size: var(--s-1); }
+nav.indice ol { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; counter-reset: i; }
+nav.indice li { counter-increment: i; display: grid; grid-template-columns: 1.6rem 1fr; }
+nav.indice li::before { content: counter(i, decimal-leading-zero); font-family: var(--f-mono); color: var(--muted); }
+nav.indice a { color: var(--ink); text-decoration: none; }
+nav.indice a:hover { color: var(--accent); }
+main { min-width: 0; display: grid; gap: 3.5rem; }
+section { display: grid; gap: 1.1rem; scroll-margin-top: 1rem; }
+section > p, section > ul, section > ol { max-width: 68ch; margin: 0; }
+.rotulo { font: 600 var(--s-1)/1.2 var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+
+.cifras { display: grid; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); gap: 1px; background: var(--line);
+          border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.cifras div { background: var(--surface); padding: 1rem 1.1rem; display: grid; gap: .25rem; align-content: start; }
+.cifras strong { font: 600 var(--s3)/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.cifras span { color: var(--muted); font-size: var(--s-1); line-height: 1.4; }
+
+.tabela { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .9375rem; }
+th, td { text-align: left; padding: .6rem .8rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: var(--s-1); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); font-weight: 600; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.nota { border-left: 3px solid var(--amber); background: var(--amber-soft); padding: .8rem 1rem; border-radius: 0 6px 6px 0; max-width: 72ch; }
+.nota strong { color: var(--amber); }
+.chip { display: inline-block; font: 600 .75rem/1 var(--f-body); letter-spacing: .04em; padding: .3rem .5rem; border-radius: 999px; white-space: nowrap; }
+.chip.ok { color: var(--ok); background: var(--ok-soft); } .chip.aviso { color: var(--warn); background: var(--warn-soft); }
+.chip.erro { color: var(--bad); background: var(--bad-soft); } .chip.neutro { color: var(--accent); background: var(--accent-soft); }
+
+figure { margin: 0; display: grid; gap: .6rem; }
+figure .quadro { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1rem; }
+figcaption { font-size: var(--s-1); color: var(--muted); max-width: 72ch; }
+pre.mermaid { margin: 0; background: transparent; font-family: var(--f-body); }
+blockquote { margin: 0; padding: .7rem 1rem; border-left: 3px solid var(--line); font-family: var(--f-display); font-size: var(--s1); color: var(--ink); max-width: 68ch; }
+blockquote cite { display: block; font: 400 var(--s-1)/1.4 var(--f-body); color: var(--muted); margin-top: .35rem; font-style: normal; }
+details { border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: .7rem 1rem; }
+details summary { cursor: pointer; font-weight: 600; }
+.duas { display: grid; grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1rem; }
+.duas > * { min-width: 0; }
+footer.rodape { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid var(--line); color: var(--muted); font-size: var(--s-1); display: grid; gap: .4rem; }
+
+@media (max-width: 900px) {
+  .grade { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  nav.indice { position: static; border: 1px solid var(--line); border-radius: 6px; padding: .8rem 1rem; background: var(--surface); }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+/* acréscimos da aula 1 */
+.grafico { display: block; width: 100%; min-width: 560px; height: auto; }
+.grafico text { font-family: var(--f-body); }
+.legenda { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; font-size: var(--s-1); color: var(--muted); margin: 0; padding: 0; list-style: none; }
+.legenda li { display: flex; gap: .4rem; align-items: center; }
+.legenda .marca { font-family: var(--f-mono); color: var(--accent); }
+section h3 { margin-top: .6rem; }
+details > :not(summary) { margin-top: .8rem; }
+details .tabela { border: 0; }
+.lista-termos { display: grid; gap: .55rem; margin: 0; max-width: 72ch; }
+.lista-termos dt { font-weight: 700; }
+.lista-termos dd { margin: 0 0 .2rem 0; color: var(--ink); }
+.caixa { border: 1px solid var(--line); border-radius: 6px; background: var(--surface); padding: .9rem 1rem; display: grid; gap: .5rem; align-content: start; }
+.caixa h3 { font-size: var(--s1); margin: 0; }
+.caixa ul { margin: 0; padding-left: 1.1rem; display: grid; gap: .35rem; }
+.mermaid-largo pre.mermaid { min-width: 520px; }
+</style>
+
+<div class="wrap">
+  <div class="serie"><span>Automação de processos regulatórios</span><b>Aula 1</b><span>Mapeamento pelo SEI</span><span>AGENERSA</span></div>
+
+  <header class="abertura">
+    <span class="rotulo">Do registro ao mapa</span>
+    <h1>Mapear processos regulatórios a partir do SEI</h1>
+    <p class="tese">O processo já está escrito nos autos. Cada processo SEI registra quem juntou cada documento, quando o processo entrou e saiu de cada unidade e o que cada peça diz. Nesta aula, reconstruímos os processos da AGENERSA a partir desse registro, medimos tempo e espera com código, avaliamos, redesenhamos e escolhemos o que automatizar. A entrevista vem no fim, para validar e calibrar.</p>
+  </header>
+
+  <div class="grade">
+    <nav class="indice" aria-label="Índice">
+      <ol>
+        <li><a href="#tese">Abertura</a></li>
+        <li><a href="#por-que-sei">Por que o SEI</a></li>
+        <li><a href="#metodo">O método</a></li>
+        <li><a href="#carteira">Carteira e classificação</a></li>
+        <li><a href="#as-is">AS-IS do piloto</a></li>
+        <li><a href="#avaliacao">Avaliação AS-IS</a></li>
+        <li><a href="#benchmarking">Benchmarking</a></li>
+        <li><a href="#to-be">Propostas de melhoria</a></li>
+        <li><a href="#priorizacao">Priorização da automação</a></li>
+        <li><a href="#limites">Limites e replicação</a></li>
+      </ol>
+    </nav>
+
+    <main>
+
+      <!-- 1 -->
+      <section id="tese">
+        <span class="rotulo">Etapa 1 · Abertura</span>
+        <h2>O processo já está escrito nos autos</h2>
+        <p>O mapeamento tradicional pergunta ao servidor como o processo funciona. Aqui a ordem se inverte. Primeiro reconstruímos o processo real a partir do que o SEI registrou. Depois medimos tempo, espera, esforço, retrabalho e conformidade legal com código que qualquer pessoa pode rodar de novo. Só então levamos o resultado aos servidores. A entrevista deixa de ser descrição do zero e passa a ser conferência.</p>
+        <p>O caso é real. A AGENERSA é a agência reguladora de energia e saneamento do Rio de Janeiro; os processos da base tratam de gás canalizado e de saneamento. A base são os processos acompanhados por um gabinete do Conselho-Diretor, lidos até 16/06/2026.</p>
+        <div class="cifras" aria-label="Números-chave da carteira e do piloto">
+          <div><strong class="num">251</strong><span>processos SEI na base: 172 nativos do SEI e 79 físicos migrados</span></div>
+          <div><strong class="num">19.095</strong><span>andamentos lidos e 12.986 documentos atribuídos à unidade que os juntou</span></div>
+          <div><strong class="num">117</strong><span>processos na coorte da fase 2, com ficha de trabalho de 3.183 peças</span></div>
+          <div><strong class="num">3,4%</strong><span>eficiência do ciclo mediana no piloto, mesmo com o esforço estimado no teto</span></div>
+          <div><strong class="num">137,5 du</strong><span>de espera entre atividades por caso de reajuste tarifário (mediana), contra 26,5 du de execução</span></div>
+          <div><strong class="num">56,9%</strong><span>de redução simulada do lead time mediano do reajuste, cenário esperado, com as três fases de melhoria</span></div>
+        </div>
+        <h3>O que você leva desta aula</h3>
+        <ul>
+          <li>Ler a trilha do SEI como dado: estadia, posse, documentos e espera de terceiros.</li>
+          <li>Separar espera de trabalho e achar o gargalo real, que nem sempre é a unidade que fica mais tempo com o processo.</li>
+          <li>Usar IA com especificação escrita antes, saída em formato fixo e conferência por código ou às cegas.</li>
+          <li>Passar de dois casos para o procedimento de um tipo de processo (a coorte).</li>
+          <li>Avaliar o processo com lentes de melhoria e propor um TO-BE simulado, com controles e metas.</li>
+          <li>Priorizar o que automatizar com critérios medidos e um modelo de custo e retorno.</li>
+        </ul>
+        <p class="nota"><strong>Convenções.</strong> du = dias úteis. Horas de trabalho e custo são <strong>hipótese até a calibração com servidores</strong>, em toda a página. Os números vêm das saídas do pipeline do projeto; nenhum foi digitado à mão.</p>
+      </section>
+
+      <!-- 2 -->
+      <section id="por-que-sei">
+        <span class="rotulo">Etapa 2 · Fonte</span>
+        <h2>Por que mapear pelo SEI e não por entrevista</h2>
+        <p>A entrevista descreve o processo do ponto de vista de quem executa uma parte dele. A trilha do SEI registra todas as passagens de todos os casos, com data. Ela permite medir o que a entrevista só consegue estimar: quanto tempo o processo ficou parado, com quem, e quantas vezes voltou à mesma unidade.</p>
+        <div class="duas">
+          <div class="caixa">
+            <h3>O que a trilha mostra</h3>
+            <dl class="lista-termos">
+              <dt>Estadia</dt>
+              <dd>Cada passagem do processo por uma unidade, da remessa até a conclusão ou a nova remessa. Serve para sequência, contagem de passagens e retornos.</dd>
+              <dt>Posse</dt>
+              <dd>Com quem estava o processo em cada instante: a unidade que o abriu por último entre as que o têm aberto. Quando todas concluíram, a posse é <b>sem unidade</b>: processo parado, sem dono. A posse divide o lead time sem sobreposição.</dd>
+              <dt>Documentos</dt>
+              <dd>Cada peça juntada, atribuída à unidade que a juntou. O texto da peça diz o que ela fez e quanto trabalho contém.</dd>
+              <dt>Espera de terceiros</dt>
+              <dd>Do ofício ou da notificação até a resposta juntada, quando a peça externa traz data real.</dd>
+            </dl>
+          </div>
+          <div class="caixa">
+            <h3>O que ela não mostra</h3>
+            <ul>
+              <li>O trabalho que não deixa peça: telefonema, reunião sem ata, planilha paralela.</li>
+              <li>As horas reais de trabalho. O método estima horas pelo conteúdo da peça, em faixa (piso e teto), até a calibração.</li>
+              <li>O conteúdo de peças restritas. O caso do acidente com monóxido de carbono no Leblon tinha 49 documentos, todos restritos, e saiu do piloto.</li>
+              <li>Quem preparou a peça. A unidade autora é certa; a pessoa, não.</li>
+              <li>O tempo "indeterminado": do ofício até a peça externa sem data real. Ele não se separa de processo parado.</li>
+            </ul>
+          </div>
+        </div>
+        <dl class="lista-termos">
+          <dt>Lead time</dt>
+          <dd>Tempo total do processo, do primeiro ao último andamento, em dias úteis.</dd>
+          <dt>Espera dominante</dt>
+          <dd>Período de 20 du ou mais em que o trabalho estimado fica abaixo de 5% da capacidade.</dd>
+          <dt>Eficiência do ciclo</dt>
+          <dd>Tempo de trabalho dividido pelo lead time. Quanto menor, mais o processo espera.</dd>
+        </dl>
+        <h3>Os primeiros achados da trilha (fase 0)</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Achado</th><th>Medida</th></tr></thead>
+            <tbody>
+              <tr><td>O tempo é espera</td><td>Nos 85 processos nativos e encerrados, lead time mediano de 561 du (825 dias corridos); em média, 87% do tempo de posse em espera dominante; eficiência do ciclo mediana inferior a 1%</td></tr>
+              <tr><td>Onde o processo espera</td><td>A posse se divide, em média, entre gabinetes (41%), Secretaria Executiva (20%), câmaras técnicas (19%) e Procuradoria (14%)</td></tr>
+              <tr><td>Iteração é a regra</td><td>Mediana de 4 retornos a unidades já visitadas por processo; 76% dos processos nativos têm ao menos um pingue-pongue (A → B → A)</td></tr>
+              <tr><td>Passagens sem trabalho</td><td>34% das estadias em unidades da agência não juntam nenhum documento</td></tr>
+              <tr><td>Aguardando terceiros</td><td>Mediana de 90 du por processo, cerca de 14% do lead time</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Um exemplo de leitura. Na fiscalização SEI-220007/005630/2023, da CEG, a câmara técnica abriu o processo e juntou o relatório e o termo de notificação em 4 du. O processo ficou 382 du na Procuradoria até o parecer, 31 na Secretaria até ir ao gabinete e 77 no gabinete até voto, relatório e deliberação. Lead time de 523 du para cerca de 39 horas de trabalho estimado.</p>
+        <p class="nota"><strong>Armadilha.</strong> Estadia não mede espera. O SEI deixa o processo aberto em várias unidades ao mesmo tempo, e a estadia se estende depois do marco que interessa. Uma versão anterior do método leu a permanência no gabinete do relator como espera e produziu o gargalo falso "fila de relatoria". Nos casos verificados, a deliberação saiu poucos dias depois da chegada ao gabinete. Espera e gargalo se medem pela posse e pela linha do tempo das atividades.</p>
+      </section>
+
+      <!-- 3 -->
+      <section id="metodo">
+        <span class="rotulo">Etapa 3 · Método</span>
+        <h2>O método passo a passo, da trilha à avaliação e à automação</h2>
+        <p>Toda etapa é de um de três tipos. Saber o tipo diz como executá-la e como confiar nela.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Tipo</th><th>Quem faz</th><th>Exemplos</th><th>Como se confia</th></tr></thead>
+            <tbody>
+              <tr><td>Determinística</td><td>Script</td><td>Trilha e posse, linha do tempo, tabela de fatos, conformidade, simulação do TO-BE, BPMN</td><td>Testes sintéticos de cada regra e testes de propriedades das saídas</td></tr>
+              <tr><td>Julgamento por agente com especificação</td><td>Modelo de linguagem ou agente, seguindo uma especificação escrita antes</td><td>Ficha de trabalho por peça, classificação, modelo BPMN, avaliação, normas, benchmarking, melhorias</td><td>Saída em formato fixo; número e citação conferidos por código; amostra auditada às cegas</td></tr>
+              <tr><td>Verificação</td><td>Portão (script que não gera nada e barra a sequência) ou auditor independente</td><td>Validador da avaliação, conferência de normas, validador do TO-BE, auditoria às cegas</td><td>Critério de aceite fixado antes; se falha, o pipeline para</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <blockquote>O agente escreve nomes, fluxo, decisões, descrições e propostas; o código escreve os números.<cite>Regra geral do método (Visão geral da metodologia)</cite></blockquote>
+        <figure>
+          <div class="quadro mermaid-largo">
+<pre class="mermaid">
+flowchart TD
+  A[("SEI: andamentos, documentos e texto das peças")] --> B["Trilha: estadias, posse e espera de terceiros"]
+  B --> C[/"Classificação no catálogo P01 a P36"/]
+  C --> C2{{"Reclassificação às cegas"}}
+  C2 --> D["Seleção do piloto: caso típico e caso crítico"]
+  D --> E[/"Ficha de trabalho por peça"/]
+  E --> E2{{"Ancoragem literal no texto da peça"}}
+  E2 --> F[/"Modelo BPMN canônico e vínculos"/]
+  F --> G[/"Classificador de atividade na coorte"/]
+  G --> G2{{"Auditoria às cegas: 85% ou mais"}}
+  G2 --> H["Procedimento e tabela de fatos"]
+  H --> I[/"Avaliação AS-IS"/]
+  I --> I2{{"Validador de ancoragem e carimbo"}}
+  H --> J[/"Normas e requisitos"/]
+  J --> J2{{"Trecho literal conferido"}}
+  J2 --> J3["Conformidade medida na coorte"]
+  K[/"Benchmarking"/] --> K2{{"Verificação independente"}}
+  I2 --> L[/"Melhorias TO-BE em três fases"/]
+  J3 --> L
+  K2 --> L
+  L --> L2{{"Validador do TO-BE"}}
+  L2 --> M["Simulação: 3 fases e 3 cenários"]
+  M --> N[/"Controles, indicadores e metas"/]
+  N --> N2{{"Validador dos controles"}}
+  N2 --> O["Priorização da automação"]
+</pre>
+          </div>
+          <figcaption>Fluxo do método. Retângulo: script determinístico. Paralelogramo: julgamento por agente ou modelo de linguagem com especificação. Hexágono: portão ou verificação. O cilindro é a fonte.</figcaption>
+        </figure>
+        <details>
+          <summary>O que cada etapa produz</summary>
+          <div class="tabela">
+            <table>
+              <thead><tr><th>Etapa</th><th>Produz</th></tr></thead>
+              <tbody>
+                <tr><td>Trilha</td><td>Estadias, documentos atribuídos, posse, janelas de terceiros (uma linha por ofício) e indicadores por processo</td></tr>
+                <tr><td>Classificação</td><td>Cada processo SEI ligado a um processo organizacional do catálogo, com confiança alta, média ou baixa</td></tr>
+                <tr><td>Seleção do piloto</td><td>Um caso típico (lead time mais próximo da mediana do grupo) e um crítico (mais espera dominante, retornos e espera de terceiros) por processo</td></tr>
+                <tr><td>Ficha de trabalho</td><td>Por peça: tarefa, natureza do trabalho, insumos, ferramentas, cálculos, testes, competências, complexidade, horas (piso e teto) e sinais de perda</td></tr>
+                <tr><td>Modelo BPMN</td><td>Raias, tarefas com gatilho e saída, decisões e laços, no máximo 25 elementos, nada fora das evidências</td></tr>
+                <tr><td>Coorte e procedimento</td><td>Para cada atividade: % dos casos, casos com laço, execução, espera antes e horas (mediana, quartis, n); caminhos e transições</td></tr>
+                <tr><td>Tabela de fatos</td><td>Única fonte de números das avaliações. No reajuste tarifário são 975 fatos</td></tr>
+                <tr><td>Avaliação AS-IS</td><td>Síntese, métricas, gargalo, variabilidade, desperdícios, valor e potencial de IA por atividade, oportunidades</td></tr>
+                <tr><td>Normas e conformidade</td><td>Normas com trecho literal, requisitos com teste computável e % de conformidade na coorte</td></tr>
+                <tr><td>Benchmarking</td><td>Casos de referência com fonte verificável e trecho literal</td></tr>
+                <tr><td>TO-BE e simulação</td><td>Melhorias por fase, simuladas caso a caso em três cenários, contra a linha de base congelada</td></tr>
+                <tr><td>Controles e metas</td><td>Indicadores com linha de base e meta de origem conhecida, controles de qualidade da IA, testes de auditoria contínua</td></tr>
+                <tr><td>Priorização</td><td>Matriz de critérios, custo e retorno em três cenários, capacidades de IA transversais</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <h3>Portões de qualidade e auditoria às cegas</h3>
+        <p>Portão é um script que não gera nada. Ele confere uma saída e, se falha, para a sequência. Auditoria às cegas é outro agente refazendo a mesma tarefa sobre o mesmo insumo, sem ver a resposta. Os critérios de aceite são fixados antes de medir: alucinação até 2% e nenhuma em número que sustente conclusão; imprecisão até 10%; concordância de 85% ou mais em rótulos.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Saída de IA</th><th>Verificação</th><th>Resultado no caso</th></tr></thead>
+            <tbody>
+              <tr><td>Classificação dos processos no catálogo</td><td>Reclassificação às cegas de uma amostra</td><td>63 processos: concordância de 92,1%, kappa 0,91</td></tr>
+              <tr><td>Ficha de trabalho por peça</td><td>Trecho literal de cada item conferido no texto da peça</td><td>3.183 fichas com 0,3% de números sem âncora</td></tr>
+              <tr><td>Classificador de atividade</td><td>Auditoria às cegas fora do piloto</td><td>216 peças: 88% no total e 92% nas 150 substantivas; um código com 64% virou "estudo de caso"</td></tr>
+              <tr><td>Avaliação AS-IS</td><td>Validador de ancoragem, carimbo e leitura independente</td><td>Validador com 0 problema; na 3ª rodada de leitura, 371 afirmações com 1,3% contraditas e nenhuma sem lastro</td></tr>
+              <tr><td>Normas</td><td>Trecho literal conferido contra o texto integral</td><td>96 normas com trecho verificado nos três processos do TO-BE</td></tr>
+              <tr><td>Benchmarking</td><td>Verificação por outro agente</td><td>64 casos: 51 sem ressalva, 13 corrigidos, 0 excluídos</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="nota"><strong>O carimbo.</strong> Depois de validada, a avaliação guarda a impressão digital da tabela de fatos que usou. Se qualquer fato muda depois, o pipeline para e aponta a avaliação a rever. A regra é revisar o que o validador aponta antes de carimbar de novo. O validador confere números; sentido errado só a leitura independente pega.</p>
+      </section>
+
+      <!-- 4 -->
+      <section id="carteira">
+        <span class="rotulo">Etapa 4 · Fase 0</span>
+        <h2>Carteira e classificação</h2>
+        <p>Os 251 processos foram classificados pelo objeto de mérito no catálogo de processos organizacionais da agência, de P01 a P36. A confiança foi alta em 138, média em 104 e baixa em 9. Dos 251, 209 passam pelo rito decisório do Conselho-Diretor (P15). A classificação é feita por agente e conferida às cegas.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Processo organizacional</th><th class="n">Processos SEI</th><th class="n">Lead time mediano (du, nativos)</th><th class="n">Espera dominante</th></tr></thead>
+            <tbody>
+              <tr><td>P06 Fiscalização técnica de campo</td><td class="n">32</td><td class="n">388</td><td class="n">90%</td></tr>
+              <tr><td>P01 Reajuste tarifário anual</td><td class="n">29</td><td class="n">398</td><td class="n">85%</td></tr>
+              <tr><td>P21 Apuração de ocorrência de usuário</td><td class="n">24</td><td class="n">493</td><td class="n">87%</td></tr>
+              <tr><td>P04 Homologação de planos de investimento e obras</td><td class="n">23</td><td class="n">1.049</td><td class="n">95%</td></tr>
+              <tr><td>P35 Interrupções e crises de abastecimento</td><td class="n">20</td><td class="n">931</td><td class="n">90%</td></tr>
+              <tr><td>P08 Monitoramento de metas contratuais e IDG</td><td class="n">18</td><td class="n">513</td><td class="n">95%</td></tr>
+              <tr><td>P19 Mercado livre de gás</td><td class="n">16</td><td class="n">685</td><td class="n">95%</td></tr>
+              <tr><td>P22 Resposta a órgãos de controle e MP</td><td class="n">12</td><td class="n">304</td><td class="n">84%</td></tr>
+              <tr><td>Demais 11 processos do catálogo</td><td class="n">49</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>Sem correspondência no catálogo (lacuna)</td><td class="n">28</td><td class="n">1.026</td><td class="n">94%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A carteira real revelou lacunas no catálogo: acompanhamento ambiental e de mananciais das concessões (21 processos), gestão de bens reversíveis, vinculados e comodatos (4) e acompanhamento da aquisição de gás pelas distribuidoras (3). O primeiro virou o código N01. Também apareceram fronteiras a discutir, como fiscalização, sanção e ocorrência de usuário, que quase sempre terminam numa deliberação que pode sancionar.</p>
+        <h3>Como o piloto foi escolhido</h3>
+        <ul>
+          <li>Elegível: nativo do SEI, encerrado, de 10 a 150 documentos, ao menos 3 unidades ativas, ao menos uma peça de análise, nenhum documento sem estadia, classificação de confiança alta ou média. Foram 56 elegíveis.</li>
+          <li>Por processo organizacional, um caso <b>típico</b> (lead time mais próximo da mediana do grupo) e, onde havia ao menos 4 elegíveis, um caso <b>crítico</b> (mais espera dominante, retornos e espera de terceiros).</li>
+          <li>Com o texto das peças em mãos, passou a ser exigido texto em ao menos 60% das peças substantivas. Dois casos saíram por falta de texto. O piloto final tem 12 processos em 8 processos organizacionais.</li>
+        </ul>
+        <p>No reajuste tarifário (P01), o típico é o SEI-480002/001914/2024 (IRC e ITS 2024, 327 du, 63 documentos) e o crítico é o SEI-220007/004053/2022 (reajuste para vigorar em janeiro de 2023, 698 du, 66 documentos).</p>
+        <p>O piloto de conteúdo leu 669 documentos, dos quais 155 externos (contam só como juntada). Os 326 documentos produzidos pela agência receberam ficha de trabalho. O esforço saiu em faixa: 588 h no piso e 1.421 h no teto para todo o piloto, com correlação de 0,91 entre as duas estimativas. Mesmo no teto, a eficiência do ciclo mediana foi de 3,4% e 80% do tempo de posse foi espera dominante.</p>
+        <h3>Do caso ao procedimento (fase 2)</h3>
+        <p>Dois casos mostram um fluxo. Para dizer que esse fluxo é o procedimento do tipo, o método monta uma <b>coorte</b>: todos os processos do mesmo código, com cada peça ligada a uma atividade do modelo por um classificador auditado às cegas. A coorte tem 117 processos em 12 códigos (92 com trilha nativa do SEI, 9 migrados com trilha parcial e 16 só com as peças). Quatro cópias de processo físico migrado foram retiradas.</p>
+        <details>
+          <summary>Situação de cada código na coorte</summary>
+          <div class="tabela">
+            <table>
+              <thead><tr><th>Código</th><th>Situação</th><th class="n">Casos</th><th class="n">Lead time dos nativos encerrados (mediana, du)</th><th class="n">Concordância na auditoria</th></tr></thead>
+              <tbody>
+                <tr><td>N01 Acompanhamento ambiental</td><td><span class="chip ok">procedimento</span></td><td class="n">11</td><td class="n">362,5</td><td class="n">93%</td></tr>
+                <tr><td>P01 Reajuste tarifário anual</td><td><span class="chip ok">procedimento</span></td><td class="n">18</td><td class="n">327</td><td class="n">100%</td></tr>
+                <tr><td>P04 Planos de investimento</td><td><span class="chip ok">procedimento</span></td><td class="n">19</td><td class="n">1.028,5</td><td class="n">100%</td></tr>
+                <tr><td>P06 Fiscalização técnica de campo</td><td><span class="chip ok">procedimento</span></td><td class="n">12</td><td class="n">317</td><td class="n">100%</td></tr>
+                <tr><td>P07 Processo sancionador</td><td><span class="chip aviso">estudo de caso</span></td><td class="n">3</td><td class="n">—</td><td class="n">64%</td></tr>
+                <tr><td>P08 Metas contratuais e IDG</td><td><span class="chip ok">procedimento</span></td><td class="n">6</td><td class="n">641</td><td class="n">93%</td></tr>
+                <tr><td>P18 Prorrogação e relicitação</td><td><span class="chip ok">procedimento</span></td><td class="n">10</td><td class="n">—</td><td class="n">100%</td></tr>
+                <tr><td>P19 Mercado livre de gás</td><td><span class="chip ok">procedimento</span></td><td class="n">11</td><td class="n">516</td><td class="n">86%</td></tr>
+                <tr><td>P21 Ocorrência de usuário</td><td><span class="chip ok">procedimento</span></td><td class="n">11</td><td class="n">380</td><td class="n">100%</td></tr>
+                <tr><td>P22 Órgãos de controle e MP</td><td><span class="chip ok">procedimento</span></td><td class="n">8</td><td class="n">284,5</td><td class="n">86%</td></tr>
+                <tr><td>P35 Crises de abastecimento</td><td><span class="chip ok">procedimento</span></td><td class="n">7</td><td class="n">930,5</td><td class="n">93%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Procedimento: 5 casos ou mais e concordância de 85% ou mais na auditoria às cegas das peças substantivas. Indicativo: abaixo desse critério, números com ressalva. Estudo de caso: menos de 5 casos.</p>
+        </details>
+      </section>
+
+      <!-- 5 -->
+      <section id="as-is">
+        <span class="rotulo">Etapa 5 · AS-IS</span>
+        <h2>AS-IS do piloto: o reajuste tarifário anual (P01)</h2>
+        <p>AS-IS é o processo como ele é hoje. O modelo do P01 consolida o caso típico e o crítico, revisado com as peças dos 18 processos da coorte. Tem 5 raias, 16 tarefas e 4 pontos de decisão. O diagrama abaixo é uma versão simplificada: cada tarefa traz a raia (a unidade que a executa) e a fração dos 18 casos da coorte em que aparece. As raias são Secretaria Executiva (SCEXEC), Câmara de Política Econômica e Tarifária (CAPET), Procuradoria (PROC), relator e Conselho-Diretor, e os externos (concessionária, Poder Concedente e verificador independente).</p>
+        <figure>
+          <div class="quadro mermaid-largo">
+<pre class="mermaid">
+flowchart TD
+  s1(["Pleito protocolado"])
+  t1["SCEXEC · Acusar recebimento e sortear relator · 100%"]
+  t2["CAPET · Calcular reajuste pela fórmula paramétrica · 100%"]
+  t3["PROC · Analisar legalidade do reajuste · 100%"]
+  g1{"Relator · Instrução suficiente?"}
+  t4["Relator · Diligenciar partes e verificador · 50%"]
+  t5["Relator · Reiterar ofício de diligência · 33%"]
+  t14["SCEXEC · Diligenciar Poder Concedente e concessionária · 61%"]
+  e1(["Externos · Manifestação recebida"])
+  t6["Relator · Conduzir conciliação · 22%"]
+  t16["Relator · Conceder acesso aos autos · 50%"]
+  t7["Relator · Notificar partes para razões finais · 100%"]
+  t15["SCEXEC · Decisão do Conselho em reunião interna · 44%"]
+  t8["Relator e Conselho · Relatar, votar e deliberar · 94%"]
+  t9["SCEXEC · Publicar deliberação e notificar · 94%"]
+  t10["CAPET · Verificar tarifas nas faturas · 67%"]
+  t11["PROC · Opinar sobre o arquivamento · 6%"]
+  t12["SCEXEC · Certificar ausência de recurso · 17%"]
+  t13["SCEXEC · Encerrar e arquivar · 44%"]
+  f1(["Processo encerrado"])
+  s1 --> t1 --> t2 --> t3 --> g1
+  g1 -->|"Sim"| t7
+  g1 -->|"Falta informação"| t4
+  g1 -->|"Pela Secretaria"| t14
+  g1 -->|"Partes divergem"| t6
+  g1 -->|"Pedido de acesso"| t16
+  t4 --> e1
+  t4 -.->|"Prazo vencido"| t5
+  t5 -.-> e1
+  t14 --> e1
+  e1 --> t2
+  t6 --> t3
+  t16 --> g1
+  t7 -->|"Prazo decorrido"| t8
+  t7 -.->|"Vigência antes da sessão"| t15
+  t15 --> t8
+  t8 --> t9
+  t9 --> t12
+  t9 -.->|"Conferir faturas"| t10
+  t10 --> t11
+  t11 --> t13
+  t12 --> t13
+  t13 --> f1
+</pre>
+          </div>
+          <figcaption>Fluxo AS-IS simplificado do reajuste tarifário anual, a partir do modelo canônico do P01. Percentuais: casos da coorte (18) em que a atividade aparece. Setas tracejadas: caminhos de exceção. A pergunta "verificar aplicação das novas tarifas?" é inferida: as peças não trazem o critério que leva a CAPET a conferir as faturas.</figcaption>
+        </figure>
+        <h3>Os dois casos-piloto</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Caso</th><th class="n">Lead time (du)</th><th class="n">Documentos</th><th class="n">Trabalho (h, piso–teto)</th><th class="n">Eficiência do ciclo</th><th class="n">Espera dominante</th></tr></thead>
+            <tbody>
+              <tr><td>SEI-480002/001914/2024 (típico)</td><td class="n">327</td><td class="n">63</td><td class="n">54,4–112,9</td><td class="n">2,8–5,8%</td><td class="n">54%</td></tr>
+              <tr><td>SEI-220007/004053/2022 (crítico)</td><td class="n">698</td><td class="n">66</td><td class="n">57,4–117,9</td><td class="n">1,4–2,8%</td><td class="n">82%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>O que a coorte de 18 casos mostra</h3>
+        <div class="cifras" aria-label="Métricas da coorte do reajuste tarifário">
+          <div><strong class="num">327 du</strong><span>lead time mediano dos 11 processos nativos encerrados (quartis de 127,5 a 407 du; máximo de 874 du)</span></div>
+          <div><strong class="num">137,5 du</strong><span>espera somada entre atividades por caso (mediana), contra 26,5 du de execução</span></div>
+          <div><strong class="num">24,9–64 h</strong><span>trabalho estimado por caso (mediana, piso e teto), hipótese até a calibração</span></div>
+          <div><strong class="num">17 em 18</strong><span>caminhos distintos; o mais frequente reúne só 2 casos</span></div>
+        </div>
+        <p>Na carteira de 29 processos, o lead time mediano é de 397,5 du nos 26 nativos do SEI. Cada caso tem mediana de 5,5 ofícios, 4,5 retornos a unidade já visitada e 5 unidades ativas. A resposta de terceiros com data real tem mediana de 15,5 du por caso.</p>
+        <h3>Posse por unidade</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Unidade</th><th class="n">Típico (du)</th><th class="n">Crítico (du)</th><th class="n">Coorte: mediana por caso em que aparece (du)</th><th class="n">Casos</th></tr></thead>
+            <tbody>
+              <tr><td>Gabinete do relator (CONS-02)</td><td class="n">143</td><td class="n">324</td><td class="n">74,5</td><td class="n">18</td></tr>
+              <tr><td>Secretaria Executiva (SCEXEC)</td><td class="n">62</td><td class="n">99</td><td class="n">21</td><td class="n">18</td></tr>
+              <tr><td>CAPET</td><td class="n">44</td><td class="n">26</td><td class="n">18,5</td><td class="n">18</td></tr>
+              <tr><td>Procuradoria (PROC)</td><td class="n">15</td><td class="n">97</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>Sem unidade (processo parado, sem dono)</td><td class="n">37</td><td class="n">149</td><td class="n">41</td><td class="n">10</td></tr>
+              <tr><td>Unidade de apoio sem atividade no modelo (ASSCONTR)</td><td class="n">12</td><td class="n">—</td><td class="n">233</td><td class="n">6</td></tr>
+              <tr><td>Gabinete de outro relator (CONS-05)</td><td class="n">10</td><td class="n">—</td><td class="n">61</td><td class="n">5</td></tr>
+              <tr><td>Demais unidades</td><td class="n">4</td><td class="n">3</td><td class="n">—</td><td class="n">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A posse soma o lead time do caso: 327 du no típico e 698 du no crítico. A tabela de fatos não traz a mediana de posse da Procuradoria na coorte.</p>
+        <h3>Gargalo</h3>
+        <p>Gargalo é o ponto que limita o tempo do processo. No P01, ele não é uma fila de atividade. A espera antes de cada atividade é curta na mediana: 3 du antes do cálculo da CAPET (35 ocorrências) e do parecer da PROC (29 ocorrências), 5 du antes da deliberação (25 ocorrências). O tempo longo está em <b>posse sem trabalho e sem dono</b>: no gabinete do relator, nos períodos sem nenhuma unidade com o processo aberto e, sobretudo, depois da deliberação, quando falta um marco e um responsável que levem o processo ao encerramento.</p>
+        <p>Antes da conferência das faturas, a espera tem mediana de 5,5 du, terceiro quartil de 128,5 du e máximo de 290 du. Antes da certidão de ausência de recurso, mediana de 51 du nas 4 ocorrências. No caso crítico, depois da deliberação, o processo esperou 290 du até a conferência das faturas, 102 du até o despacho de arquivamento e 175 du até o termo de encerramento.</p>
+        <p>As peças também registram perda. No típico, o reajuste de 2024 reitera à FIPE a manifestação sobre o ITS e fica 32 du no gabinete nisso. Na coorte, o refazimento aparece no cálculo da CAPET em 5 casos e no parecer jurídico em 4.</p>
+        <h3>O que vale para P06 e P21</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Medida (mediana por caso nativo)</th><th class="n">P01 Reajuste</th><th class="n">P06 Fiscalização</th><th class="n">P21 Ocorrência de usuário</th></tr></thead>
+            <tbody>
+              <tr><td>Casos na coorte</td><td class="n">18</td><td class="n">12</td><td class="n">11</td></tr>
+              <tr><td>Caminhos distintos</td><td class="n">17</td><td class="n">9</td><td class="n">11</td></tr>
+              <tr><td>Lead time (du)</td><td class="n">337,5</td><td class="n">351</td><td class="n">469</td></tr>
+              <tr><td>Espera entre atividades (du)</td><td class="n">137,5</td><td class="n">313,5</td><td class="n">397</td></tr>
+              <tr><td>Execução (du)</td><td class="n">26,5</td><td class="n">8</td><td class="n">45</td></tr>
+              <tr><td>Trabalho (h, piso–teto)</td><td class="n">24,9–64</td><td class="n">22,3–54,1</td><td class="n">26,1–56,2</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>O padrão se repete. Na fiscalização (P06), a maior espera é antes da relatoria (mediana de 58,5 du nas 10 ocorrências) e antes do parecer jurídico (36,5 du nas 16 ocorrências); o processo fica sem nenhuma unidade com ele aberto em 10 dos 12 casos. Na ocorrência de usuário (P21), o tempo se concentra na fase decisória: espera antes do parecer jurídico com mediana de 51 du nas 13 ocorrências, a maior posse mediana é a do gabinete do conselheiro (111 du), seguida da Procuradoria (79 du), e um laço de recurso ou embargos aparece em 5 casos (45%).</p>
+        <p class="nota"><strong>Hipótese.</strong> As horas de trabalho saem do conteúdo das peças (laudas autorais, complexidade, leitura de insumos). São estimativa em faixa até um estudo de tempo curto com os servidores, com cerca de 20 peças-tipo. Os tempos em dias úteis vêm da trilha e não dependem dessa estimativa.</p>
+      </section>
+
+      <!-- 6 -->
+      <section id="avaliacao">
+        <span class="rotulo">Etapa 6 · Diagnóstico</span>
+        <h2>Avaliação AS-IS: o que cada lente encontrou</h2>
+        <p>A avaliação é texto escrito por agente. Os números dentro dela vêm só da tabela de fatos, e o validador confere cada um. Cada lente responde a uma pergunta diferente.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Lente</th><th>Pergunta</th><th>O que encontrou no P01</th></tr></thead>
+            <tbody>
+              <tr><td><b>Lean</b> (eliminar desperdício)</td><td>Que desperdícios aparecem e com que gravidade?</td><td>Estoque (alta): processo parado sem dono em 10 dos 18 casos. Espera, defeitos e retrabalho, transporte, movimentação e superprocessamento (média). Talento não aproveitado (baixa): técnicos da CAPET coletam séries de índices e conferem faturas.</td></tr>
+              <tr><td><b>VSM</b> (mapeamento do fluxo de valor: lead time, trabalho e espera ao longo do fluxo)</td><td>Quanto do lead time é trabalho?</td><td>Eficiência do ciclo de 2,8–5,8% no típico e 1,4–2,8% no crítico. Por caso, mediana de 137,5 du de espera entre atividades contra 26,5 du de execução, 5,5 ofícios e 4,5 retornos.</td></tr>
+              <tr><td><b>TOC</b> (Teoria das Restrições: achar o ponto que limita o sistema)</td><td>Onde o processo espera mais, e por quê?</td><td>Posse sem trabalho e sem dono: gabinete do relator (74,5 du por caso), processo sem unidade (até 225 du) e a fase depois da deliberação.</td></tr>
+              <tr><td><b>Seis Sigma</b> (variação e suas causas)</td><td>Quanto os casos variam?</td><td>17 caminhos em 18 casos. Lead time entre quartis de 142 a 400,2 du, máximo de 874 du. O trabalho varia menos (21,9 a 55,8 h no piso). A dispersão está nas atividades eventuais e na cauda depois da deliberação.</td></tr>
+              <tr><td><b>Análise de valor</b></td><td>Cada atividade agrega valor, é necessária sem valor (rito legal e controle) ou não agrega?</td><td>5 agregam valor (cálculo, parecer jurídico, conciliação, deliberação, conferência das faturas), 9 são necessárias sem valor e 2 não agregam (reiterar ofício; opinar sobre arquivamento de processo já deliberado).</td></tr>
+              <tr><td><b>ECRS</b> (eliminar, combinar, reordenar, simplificar)</td><td>Que mudança de fluxo resolve sem tecnologia?</td><td>Eliminar a passagem pela PROC no arquivamento sem recurso. Combinar as duas portas de diligência numa rodada única. Reordenar: acionar o verificador independente na distribuição, em paralelo à CAPET, e tirar a conferência das faturas do processo de reajuste. Simplificar: modelo único de notificação com acesso aos autos de ofício; planilha de cálculo única e versionada por contrato.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Onde a IA ajuda</h3>
+        <p>A avaliação também classifica o potencial de IA de cada atividade. No P01, 6 atividades têm potencial alto, 7 médio e 3 baixo. A regra é fixa: a IA não decide. Decisão colegiada, juízo jurídico final e assinatura ficam com servidores. O rito legal, como as razões finais e a publicação, é necessário: a melhoria é fazê-lo mais rápido.</p>
+        <ol>
+          <li><b>Marco de encerramento depois da deliberação:</b> alerta de processo sem dono, certidão automática e encerramento por checklist. Impacto alto, esforço baixo. Reduz espera.</li>
+          <li><b>Diligência em rodada única,</b> com acesso aos autos de ofício e controle de prazos. Impacto alto, esforço baixo.</li>
+          <li><b>Conferência de faturas fora do processo de reajuste,</b> com critério e extração automática. Impacto alto, esforço médio.</li>
+          <li><b>Cálculo paramétrico automatizado</b> com conferência independente do pleito. Impacto alto, esforço médio.</li>
+          <li><b>Calendário de reajuste pela data-base,</b> com interstício de 12 meses verificado na entrada e alerta de vigência. Impacto médio, esforço baixo.</li>
+          <li><b>Minutas assistidas</b> de parecer jurídico, relatório, voto e deliberação. Impacto médio, esforço médio.</li>
+        </ol>
+        <p>No conjunto dos 13 processos avaliados, são 160 atividades: 56 com alto potencial de IA e 88 com potencial médio; 44 agregam valor, 103 são necessárias sem valor e 13 não agregam valor.</p>
+        <p class="nota"><strong>Validação humana.</strong> O gargalo declarado e as perguntas de validação vão à unidade dona do processo antes do TO-BE. Um exemplo de pergunta no P01: qual critério leva a CAPET a conferir as faturas, já que as peças não o registram.</p>
+      </section>
+
+      <!-- 7 -->
+      <section id="benchmarking">
+        <span class="rotulo">Etapa 7 · Referências</span>
+        <h2>Benchmarking: o que outras agências e práticas mostraram</h2>
+        <p>Benchmarking é buscar práticas aplicadas por outros órgãos, com resultado medido, que sirvam de lastro e de parâmetro de ganho às melhorias. Melhoria sem caso de referência entra só como hipótese explícita.</p>
+        <div class="cifras" aria-label="Números do benchmarking">
+          <div><strong class="num">64</strong><span>casos: 47 científicos e 17 oficiais</span></div>
+          <div><strong class="num">51 + 13</strong><span>sem ressalva e corrigidos na verificação independente; 0 excluídos</span></div>
+          <div><strong class="num">44</strong><span>DOIs distintos conferidos no Crossref, todos existentes e compatíveis</span></div>
+          <div><strong class="num">4</strong><span>famílias: tarifa (14), fiscalização (15), usuário (16) e transversal (19)</span></div>
+        </div>
+        <h3>Como cada referência foi verificada</h3>
+        <ol>
+          <li>Duas camadas, nunca misturadas. Científica: artigo revisado por pares, tese ou dissertação, com DOI ou handle. Oficial: documento de regulador ou organismo, com URL oficial que abre.</li>
+          <li>Inclusão: prática concreta, aplicada por órgão identificado, com resultado medido ou avaliado. Opinião sem caso, marketing de fornecedor e notícia ficam fora.</li>
+          <li>O agente de busca registra um trecho literal curto da fonte que sustenta o resultado e a URL de onde o leu. Nunca DOI, autor, ano ou número de memória.</li>
+          <li>Um segundo agente, que não buscou, confere: DOI, metadados, trecho achado na fonte (comparação sem acento, pontuação e espaço), resultado e parâmetro de ganho que não dizem mais do que a fonte. Os 64 trechos foram achados; 1 não era literal (palavras suprimidas).</li>
+        </ol>
+        <p class="nota"><strong>Exemplo de correção.</strong> Um caso afirmava que prazo legal de decisão "reduz a dispersão do tempo de decisão". O estudo da FDA mostra outra coisa: os prazos concentram as decisões perto do vencimento, e os medicamentos aprovados nos dois meses antes do prazo tiveram mais retiradas por segurança (razão de chances 5,5). O caso ficou, com o parâmetro reescrito como alerta. Daí vem a regra de pôr indicador de qualidade ao lado de indicador de prazo.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Caso</th><th>Prática e contexto</th><th>Resultado reportado</th><th>Uso na AGENERSA</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">B-tarifa-08</td><td>Modelo financeiro publicado e iteração anual mecânica com data fixa (Ofgem, Reino Unido)</td><td>Ajuste anual publicado até 30 de novembro de cada ano</td><td>Instrução do reajuste em rodada única, com calendário</td></tr>
+              <tr><td class="mono">B-tarifa-09</td><td>Recepção padronizada de dados com validação automática na entrega (FFIEC e FDIC, Estados Unidos)</td><td>Dados limpos na chegada passaram de 66% para 95%</td><td>Pleito em leiaute padronizado com validação na entrega</td></tr>
+              <tr><td class="mono">B-transversal-01</td><td>Fila única por idade do processo no gabinete do julgador (Corte de Apelação do Trabalho de Roma)</td><td>Duração média dos processos 12% menor que no grupo de controle</td><td>Fila por antiguidade na Procuradoria e pauta regular</td></tr>
+              <tr><td class="mono">B-transversal-03</td><td>Lean office com mapeamento, quadros de equipe e reuniões diárias (LIPOR, Portugal)</td><td>Fechamento contábil mensal de 8 para 4,5 dias</td><td>Dono e marco para as etapas depois da publicação</td></tr>
+              <tr><td class="mono">B-fiscalizacao-15</td><td>Deliberação em bloco e votação virtual assíncrona da diretoria (ANEEL)</td><td>Tempo médio de deliberação de 110 para 80 dias (27%) desde 2022</td><td>Fila de prontos para julgamento e pauta regular na fiscalização (P06)</td></tr>
+              <tr><td class="mono">B-transversal-10</td><td>Teste pré-registrado de ferramentas jurídicas de IA com recuperação de documentos (Universidade Stanford)</td><td>As ferramentas ainda alucinaram entre 17% e 33% das respostas</td><td>Piso para a meta de citação inválida nas minutas assistidas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Um parâmetro de ganho vindo de outro setor funciona como teto. Quando o caso é de tribunal, saúde ou ferramenta de uso geral, o cenário esperado fica abaixo e a transferência é explicada. Lacuna também é informação: o que se procurou e não se achou com evidência aponta melhoria que terá de ser hipótese.</p>
+      </section>
+
+      <!-- 8 -->
+      <section id="to-be">
+        <span class="rotulo">Etapa 8 · TO-BE</span>
+        <h2>Propostas de melhoria: o processo como deve ser</h2>
+        <p>TO-BE é o processo proposto. As melhorias vêm em três fases cumulativas: a fase 2 inclui a 1, a fase 3 inclui as duas.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Fase</th><th>Conteúdo</th><th>Exemplos no P01</th></tr></thead>
+            <tbody>
+              <tr><td>1. Ajuste do fluxo</td><td>Organização e regras de trabalho, sem tecnologia nova: ECRS, paralelizar, prazo-padrão, dono do processo, pauta contínua</td><td>Conferência das faturas com dono e marco de início depois da publicação; prazo interno da Procuradoria com fila por antiguidade</td></tr>
+              <tr><td>2. Automação de regras e dados</td><td>Sem IA: painel de prazos e alertas, cálculo por regra, documento por modelo, testes de conformidade contínuos</td><td>Motor de cálculo da fórmula paramétrica por contrato; pleito em leiaute padronizado com validação automática</td></tr>
+              <tr><td>3. Automação com IA</td><td>Extração de dados de peças, pré-análise e minuta com citação verificada, sempre com revisão humana</td><td>Extração dos dados do pleito e minuta do parecer técnico da CAPET; minuta do relatório, do voto e da deliberação</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cada melhoria cita três coisas: um <b>fato</b> do AS-IS que mostra o problema, os <b>requisitos legais</b> que limitam a mudança e os <b>casos de benchmarking</b> que a sustentam. Sem benchmarking, a melhoria é marcada como hipótese. No P01 são 18 melhorias (8 na fase 1, 6 na fase 2, 4 na fase 3), das quais 10 marcadas como hipótese. No P06 são 16, com 9 hipóteses; no P21, 18, com 12.</p>
+        <h3>Requisito legal medido</h3>
+        <p>Antes de propor, o método mede quanto o processo cumpre a lei. Cada norma entra com trecho literal conferido; cada requisito vira um teste sobre a linha do tempo dos casos. No P01 são 31 normas e 20 requisitos, 13 deles medidos na coorte.</p>
+        <details>
+          <summary>Conformidade do P01 na coorte (13 requisitos medidos)</summary>
+          <div class="tabela">
+            <table>
+              <thead><tr><th>Requisito</th><th>Exigência</th><th class="n">Conforme</th></tr></thead>
+              <tbody>
+                <tr><td class="mono">R-P01-01</td><td>Parecer jurídico da Procuradoria juntado antes da deliberação</td><td class="n">100%</td></tr>
+                <tr><td class="mono">R-P01-02</td><td>Cálculo da CAPET pela fórmula paramétrica juntado antes da deliberação</td><td class="n">100%</td></tr>
+                <tr><td class="mono">R-P01-03</td><td>Partes instadas a apresentar razões finais antes da deliberação</td><td class="n">82,4%</td></tr>
+                <tr><td class="mono">R-P01-04</td><td>Ofício de razões finais concede o prazo de 10 dias</td><td class="n">22,2%</td></tr>
+                <tr><td class="mono">R-P01-05</td><td>A agência se pronuncia sobre o pedido em até 30 dias do recebimento</td><td class="n">17,6%</td></tr>
+                <tr><td class="mono">R-P01-06</td><td>Deliberação em até 40 dias do ofício de razões finais</td><td class="n">71,4%</td></tr>
+                <tr><td class="mono">R-P01-07</td><td>Procuradoria emite o parecer em até 15 dias do parecer de cálculo</td><td class="n">58,8%</td></tr>
+                <tr><td class="mono">R-P01-08</td><td>Toda deliberação é publicada e comunicada à concessionária</td><td class="n">100%</td></tr>
+                <tr><td class="mono">R-P01-15</td><td>A CAPET verifica a aplicação das tarifas homologadas nas faturas</td><td class="n">70,6%</td></tr>
+                <tr><td class="mono">R-P01-16</td><td>A conferência das faturas começa em até 90 dias da publicação</td><td class="n">50%</td></tr>
+                <tr><td class="mono">R-P01-17</td><td>O processo só é encerrado depois de certificada a ausência de recurso</td><td class="n">25%</td></tr>
+                <tr><td class="mono">R-P01-18</td><td>O processo só é encerrado depois da conferência das tarifas</td><td class="n">87,5%</td></tr>
+                <tr><td class="mono">R-P01-20</td><td>Entre o ofício de razões finais e o ato seguinte decorre ao menos o prazo concedido</td><td class="n">64,3%</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <h3>Um exemplo de melhoria, do fato ao parâmetro</h3>
+        <p><b>M-P01-01, fase 1: conferência das faturas com dono e marco de início depois da publicação.</b> A CAPET passa a ser a dona do processo da publicação até a conferência. Fato: antes da conferência, a espera tem terceiro quartil de 128,5 du e máximo de 290 du. Requisitos: R-P01-15, R-P01-16 e R-P01-09 (as novas tarifas só vigoram 30 dias depois de públicas). Benchmarking: B-transversal-03. O efeito é um teto para essa espera: 62 du no conservador (o limite de 90 dias corridos do R-P01-16), 21 du no esperado (cerca de 30 dias corridos, a vigência da tarifa) e 5,5 du no otimista (a mediana observada).</p>
+        <p>Duas proteções estão no código. O prazo legal mínimo não pode ser cortado: prazo de defesa ou de razões finais não é desperdício. E o tempo de resposta de terceiros é intocável, porque a agência não o controla.</p>
+        <h3>Resultado simulado</h3>
+        <p>A simulação refaz a linha do tempo de cada caso real da coorte com cada efeito aplicado e mede pela mesma regra do AS-IS. Há três cenários: conservador, esperado e otimista. A tabela mostra o lead time mediano por caso nativo, em du, e entre parênteses a redução contra a linha de base.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Processo</th><th>Fase</th><th class="n">Conservador</th><th class="n">Esperado</th><th class="n">Otimista</th><th class="n">Redução de horas (esperado)</th></tr></thead>
+            <tbody>
+              <tr><td rowspan="4">P01 Reajuste (18 casos)</td><td>Linha de base</td><td class="n" colspan="3">337,5</td><td class="n">—</td></tr>
+              <tr><td>1</td><td class="n">213,6 (36,7%)</td><td class="n">155,8 (53,8%)</td><td class="n">120,3 (64,4%)</td><td class="n">5,9%</td></tr>
+              <tr><td>1 + 2</td><td class="n">194,1 (42,5%)</td><td class="n">149,3 (55,8%)</td><td class="n">111,3 (67,0%)</td><td class="n">14,6%</td></tr>
+              <tr><td>1 + 2 + 3</td><td class="n">191,7 (43,2%)</td><td class="n">145,5 (56,9%)</td><td class="n">106,0 (68,6%)</td><td class="n">24,9%</td></tr>
+              <tr><td rowspan="4">P06 Fiscalização (12 casos)</td><td>Linha de base</td><td class="n" colspan="3">351</td><td class="n">—</td></tr>
+              <tr><td>1</td><td class="n">210,2 (40,1%)</td><td class="n">152,5 (56,6%)</td><td class="n">115,0 (67,2%)</td><td class="n">6,3%</td></tr>
+              <tr><td>1 + 2</td><td class="n">153,3 (56,3%)</td><td class="n">115,5 (67,1%)</td><td class="n">94,4 (73,1%)</td><td class="n">13,1%</td></tr>
+              <tr><td>1 + 2 + 3</td><td class="n">153,3 (56,3%)</td><td class="n">115,5 (67,1%)</td><td class="n">94,4 (73,1%)</td><td class="n">27,5%</td></tr>
+              <tr><td rowspan="4">P21 Ocorrência (11 casos)</td><td>Linha de base</td><td class="n" colspan="3">469</td><td class="n">—</td></tr>
+              <tr><td>1</td><td class="n">372,2 (20,6%)</td><td class="n">300,1 (36,0%)</td><td class="n">259,0 (44,8%)</td><td class="n">4,4%</td></tr>
+              <tr><td>1 + 2</td><td class="n">330,1 (29,6%)</td><td class="n">245,2 (47,7%)</td><td class="n">214,4 (54,3%)</td><td class="n">9,4%</td></tr>
+              <tr><td>1 + 2 + 3</td><td class="n">330,1 (29,6%)</td><td class="n">245,2 (47,7%)</td><td class="n">214,4 (54,3%)</td><td class="n">23,0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A leitura confirma o diagnóstico. A fase 1, sem tecnologia nova, dá a maior parte da redução de prazo. A fase 3, com IA, reduz sobretudo horas: no P06 e no P21 ela não muda o lead time mediano e mais que dobra a redução de horas. A sensibilidade mostra de que melhorias o ganho depende: no P01, retirar M-P01-04 (estoque pós-deliberação com dono e fila visível) piora o lead mediano em 37,8 du; retirar M-P01-01, em 33,9 du; retirar M-P01-03 (encerramento por checklist), em 33,1 du. Essas são as que mais precisam de validação com a unidade dona.</p>
+        <details>
+          <summary>Redução de horas e custo anual, nos três cenários</summary>
+          <div class="tabela">
+            <table>
+              <thead><tr><th>Processo</th><th>Fase</th><th class="n">Horas (conservador)</th><th class="n">Horas (esperado)</th><th class="n">Horas (otimista)</th><th class="n">Custo anual esperado (R$)</th></tr></thead>
+              <tbody>
+                <tr><td rowspan="4">P01</td><td>Linha de base</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">104.585</td></tr>
+                <tr><td>1</td><td class="n">3,7%</td><td class="n">5,9%</td><td class="n">8,8%</td><td class="n">98.445</td></tr>
+                <tr><td>1 + 2</td><td class="n">9,1%</td><td class="n">14,6%</td><td class="n">19,3%</td><td class="n">89.309</td></tr>
+                <tr><td>1 + 2 + 3</td><td class="n">15,9%</td><td class="n">24,9%</td><td class="n">32,9%</td><td class="n">78.514</td></tr>
+                <tr><td rowspan="4">P06</td><td>Linha de base</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">8.720</td></tr>
+                <tr><td>1</td><td class="n">3,2%</td><td class="n">6,3%</td><td class="n">10,5%</td><td class="n">8.168</td></tr>
+                <tr><td>1 + 2</td><td class="n">6,1%</td><td class="n">13,1%</td><td class="n">20,4%</td><td class="n">7.579</td></tr>
+                <tr><td>1 + 2 + 3</td><td class="n">12,6%</td><td class="n">27,5%</td><td class="n">41,8%</td><td class="n">6.319</td></tr>
+                <tr><td rowspan="4">P21</td><td>Linha de base</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">62.044</td></tr>
+                <tr><td>1</td><td class="n">2,4%</td><td class="n">4,4%</td><td class="n">6,3%</td><td class="n">59.327</td></tr>
+                <tr><td>1 + 2</td><td class="n">5,8%</td><td class="n">9,4%</td><td class="n">12,8%</td><td class="n">56.191</td></tr>
+                <tr><td>1 + 2 + 3</td><td class="n">12,3%</td><td class="n">23,0%</td><td class="n">33,7%</td><td class="n">47.748</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>Redução das horas médias por caso. O custo anual multiplica as horas pelo volume anual (piso: só processos que chegaram à deliberação, 34,7 por ano no P01, 3,7 no P06 e 26,7 no P21) e pelo custo-hora do vencimento base de 2022, com fator de custo total que é hipótese.</p>
+        </details>
+        <h3>Controles, indicadores e metas</h3>
+        <p>Cada indicador tem linha de base, que é um fato do AS-IS, e meta com origem conhecida: a simulação, uma norma ou um benchmarking. Toda melhoria de fase 3 tem um controle de qualidade da IA. O P01 tem 10 indicadores, 4 controles de qualidade da IA e 7 testes de auditoria contínua; o P06, 9, 5 e 6; o P21, 10, 4 e 7.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Indicador do P01 (9 dos 10)</th><th class="n">Linha de base</th><th>Meta</th><th>Origem da meta</th></tr></thead>
+            <tbody>
+              <tr><td>Lead time do pleito ao encerramento (mediana)</td><td class="n">337,5 du</td><td>155,8 du (fase 1); 149,3 (fase 2); 145,5 (fase 3)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Horas de trabalho por processo</td><td class="n">64 h</td><td>63,4 h (fase 1); 60 (fase 2); 52,3 (fase 3)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Conferência das faturas iniciada em até 90 dias da publicação</td><td class="n">50%</td><td>100% (fase 1)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Parecer jurídico em até 15 dias do último parecer técnico</td><td class="n">58,8%</td><td>76,5% (fase 1)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Deliberação em até 40 dias da última rodada de razões finais</td><td class="n">71,4%</td><td>92,9% (fase 1)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Dias sem nenhuma unidade com o processo aberto</td><td class="n">41 du</td><td>23 du (fase 1); 5 du (fase 2)</td><td><span class="chip ok">benchmarking</span></td></tr>
+              <tr><td>Pareceres de cálculo refeitos ou cancelados</td><td class="n">5 casos</td><td>0 (fase 2)</td><td><span class="chip ok">benchmarking</span></td></tr>
+              <tr><td>Pronunciamento sobre o reajuste em até 30 dias do pleito</td><td class="n">17,6%</td><td>17,6% (fase 3)</td><td><span class="chip neutro">simulação</span></td></tr>
+              <tr><td>Encerramento precedido da certidão de ausência de recurso</td><td class="n">25%</td><td>100% (fase 1)</td><td><span class="chip aviso">norma</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Repare no pronunciamento em 30 dias. A lei estadual e o contrato dos Blocos exigem; a coorte cumpre em 17,6% dos casos; no cenário esperado, a simulação não melhora esse número em nenhuma fase. A meta fica onde a simulação mostra que se chega, e a distância até a norma fica à vista de quem decide.</p>
+        <p>Um controle de qualidade da IA, como exemplo: na extração dos dados do pleito (M-P01-15), cada número extraído é conferido contra a página de origem indicada pela ferramenta, cada citação passa por verificação automática, e 2 pareceres por trimestre são refeitos às cegas por um segundo analista. Meta: nenhum número divergente nem citação inválida em parecer assinado.</p>
+      </section>
+
+      <!-- 9 -->
+      <section id="priorizacao">
+        <span class="rotulo">Etapa 9 · Fase 4</span>
+        <h2>Priorização da automação</h2>
+        <p>A última pergunta é qual tipo de processo serve de piloto para um sistema de IA que o automatize por inteiro, e quanto isso custa e retorna. A resposta é uma matriz calculada por script a partir das saídas que já passaram pelos portões.</p>
+        <h3>Critérios e pesos</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Critério</th><th class="n">Peso</th><th>O que mede</th></tr></thead>
+            <tbody>
+              <tr><td>Volume</td><td class="n">25%</td><td>Processos por ano na agência: piso de deliberações dividido pela fração com deliberação e pela revocação da regra</td></tr>
+              <tr><td>Foco em análise</td><td class="n">15%</td><td>Fração das horas do tipo em peças de análise (jurídica, técnica, econômica, conferência, relatoria)</td></tr>
+              <tr><td>Dados estruturados e não estruturados</td><td class="n">15%</td><td>Peças de análise com dado estruturado (cálculo, base, sistema) e com dado não estruturado (documento da regulada, precedente)</td></tr>
+              <tr><td>Regras claras</td><td class="n">20%</td><td>Peças de análise ancoradas em norma ou contrato e com teste contra um padrão</td></tr>
+              <tr><td>Padronização</td><td class="n">15%</td><td>Texto padronizado ou transcrito e fração dos casos no caminho mais frequente</td></tr>
+              <tr><td>Completude da automação</td><td class="n">10%</td><td>Fração das horas em atividades com potencial de IA alto na avaliação AS-IS</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Cada métrica vira nota de 1 a 5 por uma régua fixada antes de olhar o resultado. A nota composta vai de 0 a 100. Critério sem medida deixa a nota vazia: o script não presume nota.</p>
+        <p><b>Portões do piloto:</b> volume medido com revocação de 75% ou mais, nota de volume 3 ou mais, nota de regras 3 ou mais e ao menos 8 casos na coorte.</p>
+        <h3>Modelo de custo e retorno</h3>
+        <ul>
+          <li><b>Horas liberadas por ano</b> = volume × horas por caso × fração automatizável. A fração vem do potencial de IA de cada atividade e é hipótese.</li>
+          <li><b>Retorno anual</b> = horas liberadas × custo-hora do servidor × fator de custo total do cenário.</li>
+          <li><b>Custo de construção isolado</b> = plataforma, capacidades de IA, configuração por atividade e validação por servidor. O <b>custo incremental</b> supõe plataforma e capacidades já construídas para outro tipo.</li>
+          <li><b>Custo anual</b> = manutenção e leitura pelo modelo de linguagem. <b>Payback</b> = construção dividida por (retorno anual menos custo anual).</li>
+        </ul>
+        <p>Prazo, conformidade e rastreabilidade não estão no retorno. Tempo de terceiros e prazo legal mínimo também não contam como ganho.</p>
+        <figure>
+          <div class="quadro">
+            <svg class="grafico" viewBox="0 0 640 400" role="img" aria-labelledby="graf-titulo graf-desc">
+              <title id="graf-titulo">Retorno líquido anual por custo de construção</title>
+              <desc id="graf-desc">Sete tipos de processo com volume medido. Só o reajuste tarifário (P01) tem retorno líquido anual claramente positivo, cerca de 33,8 mil reais por ano para 161,3 mil reais de construção. P21 fica perto de zero; os outros cinco ficam negativos.</desc>
+              <g style="stroke: var(--line)" stroke-width="1">
+                <line x1="70" y1="30" x2="610" y2="30"/>
+                <line x1="70" y1="112.7" x2="610" y2="112.7"/>
+                <line x1="70" y1="278" x2="610" y2="278"/>
+                <line x1="70" y1="340" x2="610" y2="340"/>
+                <line x1="70" y1="30" x2="70" y2="340"/>
+                <line x1="160" y1="30" x2="160" y2="340"/>
+                <line x1="250" y1="30" x2="250" y2="340"/>
+                <line x1="340" y1="30" x2="340" y2="340"/>
+                <line x1="430" y1="30" x2="430" y2="340"/>
+                <line x1="520" y1="30" x2="520" y2="340"/>
+                <line x1="610" y1="30" x2="610" y2="340"/>
+              </g>
+              <line x1="70" y1="195.3" x2="610" y2="195.3" style="stroke: var(--ink)" stroke-width="1.5"/>
+              <g style="fill: var(--muted)" font-size="12" text-anchor="end">
+                <text x="62" y="34">40</text>
+                <text x="62" y="116.7">20</text>
+                <text x="62" y="199.3">0</text>
+                <text x="62" y="282">−20</text>
+                <text x="62" y="344">−35</text>
+              </g>
+              <g style="fill: var(--muted)" font-size="12" text-anchor="middle">
+                <text x="70" y="360">110</text>
+                <text x="160" y="360">120</text>
+                <text x="250" y="360">130</text>
+                <text x="340" y="360">140</text>
+                <text x="430" y="360">150</text>
+                <text x="520" y="360">160</text>
+                <text x="610" y="360">170</text>
+                <text x="340" y="388">Custo de construção isolado, cenário esperado (R$ mil)</text>
+              </g>
+              <text x="16" y="185" font-size="12" text-anchor="middle" transform="rotate(-90 16 185)" style="fill: var(--muted)">Retorno líquido anual (R$ mil)</text>
+              <text x="76" y="188" font-size="11" style="fill: var(--muted)">retorno líquido = 0</text>
+              <g style="fill: var(--muted)">
+                <circle cx="431.3" cy="187.1" r="6"/>
+                <circle cx="555.7" cy="291.9" r="6"/>
+                <circle cx="226.1" cy="265.4" r="6"/>
+                <circle cx="539.3" cy="316.1" r="6"/>
+                <circle cx="177.5" cy="274.6" r="6"/>
+                <circle cx="506.9" cy="293.9" r="6"/>
+              </g>
+              <circle cx="531.4" cy="55.7" r="7" style="fill: var(--accent)"/>
+              <g font-size="12" style="fill: var(--ink)">
+                <text x="520" y="52" text-anchor="end" font-weight="700" style="fill: var(--accent)">P01 · piloto</text>
+                <text x="439" y="182">P21</text>
+                <text x="564" y="290">P04</text>
+                <text x="234" y="262">P06</text>
+                <text x="548" y="331">P19</text>
+                <text x="169" y="279" text-anchor="end">P08</text>
+                <text x="498" y="298" text-anchor="end">P35</text>
+              </g>
+            </svg>
+          </div>
+          <figcaption>Retorno líquido anual (retorno menos custo anual) e custo de construção isolado, cenário esperado, em escala. Ficam fora os quatro tipos sem volume medido (N01, P07, P18 e P22). Valores monetários são hipótese até a medição no piloto.</figcaption>
+        </figure>
+        <h3>A matriz com todos os códigos</h3>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Código</th><th>Prioridade</th><th class="n">Nota</th><th class="n">Volume/ano</th><th class="n">Retorno/ano (R$)</th><th class="n">Líquido/ano (R$)</th><th class="n">Construção (R$)</th><th class="n">Payback isolado (anos)</th><th class="n">Payback com plataforma (anos)</th></tr></thead>
+            <tbody>
+              <tr><td>P01 Reajuste tarifário</td><td><span class="chip ok">piloto</span></td><td class="n">80,0</td><td class="n">51,1</td><td class="n">66.075</td><td class="n">33.788</td><td class="n">161.270</td><td class="n">4,8</td><td class="n">0,9</td></tr>
+              <tr><td>P21 Ocorrência de usuário</td><td><span class="chip neutro">candidato a piloto</span></td><td class="n">66,0</td><td class="n">39,9</td><td class="n">32.052</td><td class="n">2.003</td><td class="n">150.140</td><td class="n">75,0</td><td class="n">2,3</td></tr>
+              <tr><td>P04 Planos de investimento</td><td><span class="chip aviso">próxima onda</span></td><td class="n">66,0</td><td class="n">8,6</td><td class="n">9.438</td><td class="n">−23.360</td><td class="n">163.970</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P06 Fiscalização</td><td><span class="chip aviso">próxima onda</span></td><td class="n">62,0</td><td class="n">7,6</td><td class="n">8.515</td><td class="n">−16.956</td><td class="n">127.340</td><td class="n">—</td><td class="n">28,1</td></tr>
+              <tr><td>P19 Mercado livre de gás</td><td><span class="chip erro">não priorizar agora</span></td><td class="n">50,0</td><td class="n">2,6</td><td class="n">3.208</td><td class="n">−29.224</td><td class="n">162.140</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P08 Metas contratuais e IDG</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">65,0</td><td class="n">10,0</td><td class="n">5.220</td><td class="n">−19.170</td><td class="n">121.940</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P35 Crises de abastecimento</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">63,0</td><td class="n">11,8</td><td class="n">7.857</td><td class="n">−23.856</td><td class="n">158.540</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>N01 Acompanhamento ambiental</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">150.140</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P07 Processo sancionador</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">160.340</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P18 Prorrogação e relicitação</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">114.500</td><td class="n">—</td><td class="n">—</td></tr>
+              <tr><td>P22 Órgãos de controle e MP</td><td><span class="chip neutro">reavaliar com dados</span></td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">—</td><td class="n">144.140</td><td class="n">—</td><td class="n">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Valores no cenário esperado. Payback vazio: o retorno anual não cobre o custo anual. "Com plataforma" conta só a configuração das atividades, com a plataforma e as capacidades de IA já construídas para outro tipo.</p>
+        <details>
+          <summary>Notas por critério</summary>
+          <div class="tabela">
+            <table>
+              <thead><tr><th>Código</th><th class="n">Volume</th><th class="n">Análise</th><th class="n">Dados</th><th class="n">Regras</th><th class="n">Padronização</th><th class="n">Completude</th></tr></thead>
+              <tbody>
+                <tr><td>P01</td><td class="n">5</td><td class="n">5</td><td class="n">4</td><td class="n">3</td><td class="n">2</td><td class="n">5</td></tr>
+                <tr><td>P21</td><td class="n">4</td><td class="n">5</td><td class="n">3</td><td class="n">3</td><td class="n">2</td><td class="n">2</td></tr>
+                <tr><td>P04</td><td class="n">2</td><td class="n">5</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">5</td></tr>
+                <tr><td>P06</td><td class="n">2</td><td class="n">5</td><td class="n">3</td><td class="n">3</td><td class="n">2</td><td class="n">5</td></tr>
+                <tr><td>P19</td><td class="n">1</td><td class="n">4</td><td class="n">3</td><td class="n">3</td><td class="n">2</td><td class="n">3</td></tr>
+                <tr><td>P08</td><td class="n">3</td><td class="n">5</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">2</td></tr>
+                <tr><td>P35</td><td class="n">3</td><td class="n">5</td><td class="n">3</td><td class="n">3</td><td class="n">2</td><td class="n">3</td></tr>
+                <tr><td>N01</td><td class="n">—</td><td class="n">4</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">5</td></tr>
+                <tr><td>P07</td><td class="n">—</td><td class="n">4</td><td class="n">4</td><td class="n">3</td><td class="n">3</td><td class="n">5</td></tr>
+                <tr><td>P18</td><td class="n">—</td><td class="n">2</td><td class="n">4</td><td class="n">2</td><td class="n">4</td><td class="n">—</td></tr>
+                <tr><td>P22</td><td class="n">—</td><td class="n">3</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">5</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+        <h3>Capacidades transversais</h3>
+        <p>Uma capacidade de IA construída uma vez serve a vários tipos de processo. Vem primeiro a que alcança mais horas por hora de construção, qualquer que seja o piloto.</p>
+        <div class="tabela">
+          <table>
+            <thead><tr><th>Capacidade</th><th class="n">Tipos</th><th class="n">Atividades</th><th class="n">Horas/ano alcançadas</th><th class="n">Horas de construção</th><th class="n">Horas/ano por hora de construção</th></tr></thead>
+            <tbody>
+              <tr><td>Sumarização e linha do tempo</td><td class="n">11</td><td class="n">37</td><td class="n">3.122,4</td><td class="n">40</td><td class="n">78,06</td></tr>
+              <tr><td>Redação assistida de minuta</td><td class="n">11</td><td class="n">83</td><td class="n">4.507,1</td><td class="n">80</td><td class="n">56,34</td></tr>
+              <tr><td>Busca de precedentes e normas</td><td class="n">10</td><td class="n">28</td><td class="n">3.008,8</td><td class="n">60</td><td class="n">50,15</td></tr>
+              <tr><td>Monitoramento de prazos e alertas</td><td class="n">11</td><td class="n">54</td><td class="n">908,9</td><td class="n">24</td><td class="n">37,87</td></tr>
+              <tr><td>Verificação de conformidade</td><td class="n">10</td><td class="n">36</td><td class="n">3.179,3</td><td class="n">100</td><td class="n">31,79</td></tr>
+              <tr><td>Automação de tramitação (RPA no SEI)</td><td class="n">11</td><td class="n">49</td><td class="n">575,0</td><td class="n">40</td><td class="n">14,38</td></tr>
+              <tr><td>Extração de dados de documentos</td><td class="n">11</td><td class="n">34</td><td class="n">1.143,5</td><td class="n">80</td><td class="n">14,29</td></tr>
+              <tr><td>Cálculo e conferência automática</td><td class="n">7</td><td class="n">12</td><td class="n">784,2</td><td class="n">80</td><td class="n">9,80</td></tr>
+              <tr><td>Classificação e triagem</td><td class="n">9</td><td class="n">13</td><td class="n">299,0</td><td class="n">60</td><td class="n">4,98</td></tr>
+              <tr><td>Painel e indicadores</td><td class="n">8</td><td class="n">12</td><td class="n">69,7</td><td class="n">24</td><td class="n">2,90</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Recomendação: P01 é o piloto</h3>
+        <p>O reajuste tarifário anual tem a maior nota composta (80,0) entre os tipos que passam em todos os portões. Volume estimado de 51,1 processos por ano, 13 de 16 atividades com potencial de IA alto ou médio e 10 capacidades de IA. No cenário esperado, libera 1.262,5 horas por ano (R$ 66.075) para uma construção de R$ 161.270: payback de 4,8 anos isolado e de 0,9 ano se a plataforma e as capacidades já existirem. Nos extremos, o payback isolado vai de 0,7 ano (otimista) a nunca (conservador). A medição no piloto decide entre eles.</p>
+        <p>O P21 também passa nos portões (nota 66,0). É a segunda onda natural: isolado, o payback esperado é de 75,0 anos; sobre a plataforma do piloto, de 2,3 anos. O volume por tipo é baixo num órgão regulador, por isso o custo incremental importa tanto quanto o isolado.</p>
+        <p class="nota"><strong>Volume.</strong> O volume da matriz (51,1 por ano no P01) é maior que o piso usado no TO-BE (34,7) porque divide o piso de deliberações pela fração da carteira com deliberação (72%) e pela revocação da regra na coorte. As duas medidas são estimativas e dizem isso.</p>
+      </section>
+
+      <!-- 10 -->
+      <section id="limites">
+        <span class="rotulo">Etapa 10 · Limites</span>
+        <h2>Limites, hipóteses e como replicar em outro órgão</h2>
+        <h3>Limites e hipóteses</h3>
+        <ul>
+          <li><b>Horas e custo</b> são estimativa até o estudo de tempo com as unidades. Nenhuma auditoria por leitura valida horas.</li>
+          <li><b>Trabalho fora do SEI</b> não aparece. Peças restritas não têm ficha; afirmações sobre elas se apoiam em peças que as relatam.</li>
+          <li><b>Base de um gabinete.</b> A carteira é a de um gabinete do Conselho-Diretor. Tipos que quase não chegam ao Conselho, como o atendimento da Ouvidoria (P20), podem ter volume real bem maior e pedem outra fonte.</li>
+          <li><b>Decisões inferidas</b> no modelo, como o critério da conferência das faturas, e as variantes precisam de validação com as unidades.</li>
+          <li><b>Normas:</b> a completude da base normativa e a interpretação jurídica dependem da procuradoria do órgão.</li>
+          <li><b>Melhorias marcadas como hipótese</b> e as de maior peso na sensibilidade vão à unidade dona antes de virar meta.</li>
+          <li><b>Premissas da matriz</b> (fração automatizável, horas de construção, custo-hora de desenvolvimento) são hipótese. O retorno escala linearmente com elas.</li>
+          <li><b>Potencial de IA</b> por atividade é julgamento do agente. O validador confere os números citados; a classificação alto, médio ou baixo não teve verificação independente.</li>
+          <li><b>Coortes pequenas</b> dão medianas instáveis. A coluna de casos diz quanto confiar.</li>
+        </ul>
+        <h3>Como replicar no seu órgão</h3>
+        <p>O repositório do curso, <a href="https://github.com/RaulAraujoSilva/processos-sei-regulacao">processos-sei-regulacao</a> (privado; acesso liberado para a turma), traz o método, o código e o caso da AGENERSA resolvido de ponta a ponta, com todas as saídas. A ideia é abrir a sua IA na raiz do repositório e pedir que ela leia as instruções e siga o roteiro de replicação.</p>
+        <ol>
+          <li><b>Escolha a trilha.</b> No Rio de Janeiro, o coletor e o perfil do SEI-RJ já funcionam: basta o perfil do órgão. Em outro Estado, crie o perfil do SEI, o perfil do órgão, o catálogo de processos e a base normativa.</li>
+          <li><b>Rode os testes do caso de referência</b> antes de tudo. Se passam, o ambiente está certo.</li>
+          <li><b>Siga as etapas do roteiro:</b> preparação, coleta, trilha, classificação e piloto, conteúdo e modelo, coorte, avaliação, conformidade legal, linha de base e benchmarking, TO-BE, controles e metas, priorização e fechamento.</li>
+          <li><b>Respeite as 10 paradas de validação humana.</b> Por exemplo: reconstruir à mão a trilha de um processo com um servidor; levar o BPMN e as perguntas de validação à unidade dona; levar a matriz de requisitos à procuradoria; pedir ao RH o custo-hora com encargos.</li>
+          <li><b>Nunca digite um número num entregável.</b> Cite um fato ou um arquivo de saída. Dados pessoais ficam fora do controle de versão.</li>
+        </ol>
+        <p class="nota"><strong>Regra que separa mapa reconstruído de mapa validado.</strong> Não pule as paradas. O mapa que sai do SEI é a hipótese mais bem documentada que se pode ter antes de falar com as pessoas. A conversa com as unidades confirma nomes, variantes e decisões e calibra as horas.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <p style="margin-top:2rem"><b>Próxima aula:</b> <a href="https://claude.ai/artifact/BKZjoXHz32Gp6LATmSrEfm">especificação do motor de cálculo do reajuste</a>, o piloto escolhido pela priorização.</p>
+  <footer class="rodape">
+    <div><b>Fontes:</b> Método do mapeamento; Visão geral da metodologia e capítulos 01 a 11; Resultados da Fase 0; Resultados do piloto; AS-IS dos processos-piloto; BPMN AS-IS dos processos-piloto; modelo canônico e tabela de fatos do P01; Avaliação AS-IS; Resultados da Fase 2; Benchmarking; melhorias, resultado do TO-BE, controles, conformidade, linha de base e normas de P01, P06 e P21; Volume anual; Priorização da automação, com a matriz de automação e as capacidades transversais; Verificação do que foi produzido ou julgado por IA; Roteiro de replicação.</div>
+    <div>Base: processos SEI acompanhados por um gabinete do Conselho-Diretor da AGENERSA, andamentos até 16/06/2026. Horas de trabalho e custo são hipótese até a calibração com servidores.</div>
+    <div>Automação de processos regulatórios · Aula 1 · 31/10/2026</div>
+  </footer>
+</div>
