@@ -22,10 +22,12 @@ import json
 
 import pandas as pd
 
-from comum import CODIGOS_NOVOS_FASE2, DADOS, SAIDA, TIPOS_FORA_CATALOGO
+from comum import CODIGOS_NOVOS_FASE2, DADOS, PERFIL, SAIDA, TIPOS_FORA_CATALOGO
 from selecionar_piloto import COBERTURA_MIN
 
-MIN_CASOS = 5
+# perfil pode baixar o mínimo (caso de estudo com um processo): o código entra na coorte, mas procedimento.py o marca
+# como estudo_de_caso enquanto tiver menos de 5 casos — nenhuma distribuição vira "procedimento" com n pequeno
+MIN_CASOS = int(getattr(PERFIL, "MIN_CASOS_COORTE", 5))
 # tipos que entram além dos com modelo (perfil): inventário sem modelo e demanda fora do inventário
 # (TIPOS_FORA_CATALOGO; na AGENERSA, N01 = acompanhamento ambiental e de mananciais, LACUNA recorrente)
 NOVOS = CODIGOS_NOVOS_FASE2

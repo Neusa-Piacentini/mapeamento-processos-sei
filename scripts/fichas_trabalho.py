@@ -309,6 +309,7 @@ def main():
                 print(f"{i}/{len(tarefas)}", flush=True)
 
     # vai para o git: tira nome de usuário, endereço, CPF, e-mail e telefone citados nas peças
+    from fichas_atividades import limpar_pessoais  # mesma regra de dados pessoais das fichas de atividade
     resultados = [limpar_pessoais(d) for d in resultados]
     with open(SAIDA / "fichas_trabalho.jsonl", "w", encoding="utf-8") as fj:
         for d in sorted(resultados, key=lambda x: (x["processo"], x["data_inclusao"])):

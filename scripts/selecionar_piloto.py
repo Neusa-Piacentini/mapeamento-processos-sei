@@ -15,7 +15,11 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from comum import DADOS, PECA_CARACTERISTICA, SAIDA
+from comum import DADOS, PECA_CARACTERISTICA, PERFIL, SAIDA
+
+# processos designados pelo órgão/aluno como piloto mesmo fora dos critérios (ex.: em andamento). Registrado no
+# motivo do piloto e nas ressalvas: a trilha de processo aberto mede o ciclo até a data de corte, não o ciclo fechado.
+PILOTO_DESIGNADO = dict(getattr(PERFIL, "PILOTO_DESIGNADO", {}))
 from dados_processos import RANKING  # catálogo do perfil (comum põe CATALOGO no sys.path)
 from oficina_dados import ONDAS
 
@@ -59,6 +63,8 @@ def main():
                              & (df.n_unidades_ativas >= 3) & ((df.n_pareceres + df.n_relatorios) >= 1)
                              & (df.docs_sem_estadia == 0) & (df.processo_principal != "LACUNA")
                              & (df.confianca != "baixa") & (df.cobertura_substantivas >= COBERTURA_MIN))
+    df["designado"] = df.numero.isin(PILOTO_DESIGNADO)
+    df["elegivel_piloto"] = df.elegivel_piloto | df.designado
     df.to_csv(SAIDA / "processos_classificados.csv", index=False, encoding="utf-8-sig")
 
     el = df[df.elegivel_piloto].copy()
@@ -80,6 +86,10 @@ def main():
             g = g[g[flag]]
         g["dist"] = (g.log_lead - g.log_lead.median()).abs()
         tip = g.sort_values(["dist", "riqueza"], ascending=[True, False]).iloc[0]
+        if tip.designado:
+            escolha.append((tip, "designado", f"{PILOTO_DESIGNADO[tip.numero]}; lead time {tip.lead_du:.0f} du até o corte"
+                                              f"{'' if tip.encerrado else ' (processo em andamento)'}"))
+            continue
         escolha.append((tip, "típico", f"lead time {tip.lead_du:.0f} du, mediana do grupo "
                                         f"{np.expm1(g.log_lead.median()):.0f} du ({len(g)} elegíveis de {total[pid]})"))
         resto = g[g.numero != tip.numero]
