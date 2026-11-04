@@ -1,140 +1,92 @@
 {
  "codigo": "P06",
- "sintese": "Na fiscalização técnica de campo, o código é procedimento: 12 processos nativos do SEI na coorte, concordância de 100% na conferência às cegas das peças substantivas e 9 caminhos distintos, dos quais o mais frequente (da vistoria ao registro de cumprimento, sem desvio) reúne 3 casos. O trabalho é pequeno diante do tempo: mediana de 22,3–54,1 h de trabalho por caso nativo (estimativa por peça, hipótese até a calibração com servidores) para lead time com mediana de 351 du por caso nativo, e mediana de 313,5 du de espera entre atividades contra 8 du de execução por caso nativo. A coorte confirma o diagnóstico dos dois casos-piloto: o tempo se perde entre as etapas, sobretudo antes da relatoria (mediana de 58,5 du de espera nas 10 ocorrências dos casos nativos, a maior entre as atividades) e antes do parecer jurídico (mediana de 36,5 du nas 16 ocorrências dos casos nativos), e o processo fica sem nenhuma unidade com ele aberto em 10 dos 12 casos (mediana de 72 du por caso nativo, máximo de 642 du). A coorte mostra o que o piloto não mostrava: o contraditório sobre o parecer técnico, em 42% dos casos, que devolve o processo à análise técnica em metade das saídas, e a distribuição que volta à Procuradoria; e só 8 casos (67%) chegaram à deliberação no período observado. A IA ajuda na redação das peças e no controle de prazos; o ganho de prazo depende de dar dono ao processo entre as etapas: alerta de processo concluído sem ato final, fila de pauta com marco de razões finais decorridas e remessa direta à Procuradoria.",
+ "sintese": "Situação do código: estudo de caso. A coorte tem um único processo, nativo do SEI (SEI-480002/001314/2024, fiscalizações programadas de 2024 nas unidades da Águas do Rio – Bloco 1), com um só caminho e sem auditoria de classificador; a mediana de um caso nativo é o próprio caso, e nada aqui autoriza generalizar para o tipo de processo. O trabalho é pequeno diante do tempo: 297,7–480,3 h de trabalho estimado (hipótese, a calibrar com servidores) para um lead time de 636 du, dos quais 552 du são espera entre atividades e 84 du, execução das atividades. Dois blocos concentram a espera: 306 du sem nenhuma unidade com o processo aberto, que não se separam de processo parado (e incluem prazos dados à concessionária, que não são desperdício), e 203 du com a Procuradoria antes do Parecer 759/2025, assinado em 28/08/2026 (a data no corpo da peça é 25/06/2026), no mesmo dia em que o processo foi sobrestado. A concessionária contestou o alcance da fiscalização, e o processo terminou sobrestado, sem encerramento. A IA ajuda na conferência e na redação das peças e no controle de prazos; reduzir a espera depende de dar dono, marco e prazo-alvo a cada etapa, sobretudo à fila da Procuradoria.",
  "fatos_sintese": [
   "coorte.casos",
   "coorte.trilha.nativa",
-  "coorte.auditoria.concordancia_substantivas",
   "coorte.n_caminhos",
-  "coorte.caminho_mais_frequente.casos",
-  "coorte.caso.horas_piso.mediana",
-  "coorte.caso.horas_teto.mediana",
-  "coorte.caso.lead.mediana",
-  "coorte.caso.espera_entre_atividades.mediana",
-  "coorte.caso.execucao_atividades.mediana",
-  "coorte.t7.espera_antes.mediana",
-  "coorte.t7.espera_antes.n",
-  "coorte.t4.espera_antes.mediana",
-  "coorte.t4.espera_antes.n",
-  "coorte.posse.SEM UNIDADE.n",
-  "coorte.posse.SEM UNIDADE.mediana",
-  "coorte.posse.SEM UNIDADE.max",
-  "coorte.t10.pct_casos",
-  "coorte.transicao.t10.t3.pct",
-  "coorte.transicao.t5.t4",
-  "coorte.t7.casos",
-  "coorte.t7.pct_casos"
- ],
- "leitura_metricas": "Na coorte, o lead time por caso nativo tem mediana de 351 du (quartis de 183,2 a 493 du, máximo de 1.054 du), e de 317 du nos 7 processos nativos já encerrados; por caso nativo, a mediana das esperas somadas entre atividades é de 313,5 du e a das execuções somadas, de 8 du: o tempo do processo é quase todo espera, como nos casos-piloto (lead time de 187 du e 483 du, com 0 du e 8 du de execução somada e eficiência do ciclo de 2,6–5,6% e 1,2–2,6% nas fichas). Por unidade, entre as que aparecem na maioria dos casos, a maior posse mediana por caso nativo é a do tempo sem nenhuma unidade com o processo aberto (72 du, em 10 dos 12 casos, quartis de 31,8 a 82 du e máximo de 642 du), seguida da Secretaria, presente nos 12 casos (50 du), e da Procuradoria e do gabinete do conselheiro (31 du cada), estes dois com cauda longa: terceiro quartil de 72,5 du e máximo de 382 du na Procuradoria, terceiro quartil de 129 du e máximo de 284 du no gabinete. A espera confirmada de resposta da concessionária tem mediana de 11 du por caso nativo (máximo de 122 du), e o tempo indeterminado, não separável de processo parado, mediana de 0 du por caso nativo (máximo de 17 du): a espera é interna. Cada caso nativo tem mediana de 4 ofícios, 1,5 retornos a unidade já visitada e 4 unidades ativas. Na carteira de 32 processos, o lead mediano é de 387,5 du nos 14 processos nativos do SEI e de 1.187 du considerando todos; 56% têm deliberação.",
- "fatos_leitura_metricas": [
-  "coorte.caso.lead.mediana",
-  "coorte.caso.lead.q1",
-  "coorte.caso.lead.q3",
-  "coorte.caso.lead.max",
-  "coorte.lead_nativos_encerrados.mediana",
-  "coorte.lead_nativos_encerrados.n",
-  "coorte.caso.espera_entre_atividades.mediana",
-  "coorte.caso.execucao_atividades.mediana",
-  "tipico.lead",
+  "critico.horas_piso",
+  "critico.horas_teto",
   "critico.lead",
-  "tipico.execucao_total",
+  "critico.espera_total",
   "critico.execucao_total",
-  "coorte.posse.SEM UNIDADE.mediana",
-  "coorte.posse.SEM UNIDADE.n",
-  "coorte.casos",
-  "coorte.posse.SEM UNIDADE.q1",
-  "coorte.posse.SEM UNIDADE.q3",
-  "coorte.posse.SEM UNIDADE.max",
-  "coorte.posse.SCEXEC.n",
-  "coorte.posse.SCEXEC.mediana",
-  "coorte.posse.PROC.mediana",
-  "coorte.posse.PROC.q3",
-  "coorte.posse.PROC.max",
-  "coorte.posse.CONS-02.mediana",
-  "coorte.posse.CONS-02.q3",
-  "coorte.posse.CONS-02.max",
-  "coorte.caso.terceiros.mediana",
-  "coorte.caso.terceiros.max",
-  "coorte.caso.indeterminado.mediana",
-  "coorte.caso.indeterminado.max",
-  "coorte.caso.oficios.mediana",
-  "coorte.caso.retornos.mediana",
-  "coorte.caso.unidades_ativas.mediana",
+  "critico.posse.SEM UNIDADE",
+  "critico.posse.PROC",
+  "critico.t7.1.inicio"
+ ],
+ "leitura_metricas": "O lead time é de 636 du, que é a mediana de um caso nativo (com um caso, é o próprio caso) e também o lead mediano dos processos nativos e de todos os processos da carteira, que tem um processo só. Do lead, 552 du são espera entre atividades e 84 du, execução; as fichas dão eficiência do ciclo de 7,8–12,6% e, pelo critério das fichas (soma das esperas dominantes sobre o lead), espera dominante em 89% do tempo, com 6 passagens e 1 retorno a unidade já visitada. Por posse, 306 du ficaram sem nenhuma unidade com o processo aberto (não separável de processo parado), 203 du com a Procuradoria, 70 du com a CASAN e 57 du com a Secretaria, e a CARES teve o processo por 0 du (passagem de 20/05/2024 sem peça). A espera de resposta da concessionária é de 138 du (do ofício de lote até a resposta juntada como processo anexado, limitada ao prazo dado no ofício mais uma folga), tempo que não é desperdício da agência, e o tempo indeterminado é de 41 du (além do prazo dado, não separável de processo parado).",
+ "fatos_leitura_metricas": [
+  "critico.lead",
+  "coorte.caso.lead.mediana",
   "carteira.processos",
   "carteira.lead_mediano_nativos",
   "carteira.lead_mediano_todos",
-  "carteira.com_deliberacao_pct"
+  "critico.espera_total",
+  "critico.execucao_total",
+  "critico.posse.SEM UNIDADE",
+  "critico.posse.PROC",
+  "critico.posse.CASAN",
+  "critico.posse.SCEXEC",
+  "critico.posse.CARES",
+  "critico.terceiros",
+  "critico.indeterminado",
+  "coorte.caso.retornos.mediana",
+  "coorte.caso.unidades_ativas.mediana",
+  "coorte.caso.oficios.mediana"
  ],
  "gargalo": {
-  "onde": "Entre as etapas, sem dono: antes da relatoria, depois do ofício de razões finais, e antes do parecer jurídico, com o processo sem nenhuma unidade com ele aberto ou na fila da Procuradoria. A coorte confirma o ponto do piloto: falta um marco e um responsável pela etapa seguinte, não capacidade de uma unidade.",
-  "evidencia": "Na coorte, a maior espera antes de uma atividade é a da relatoria, com mediana de 58,5 du nas 10 ocorrências dos casos nativos (quartis de 20,2 a 81,8 du, máximo de 192 du), seguida da espera antes do parecer jurídico, com mediana de 36,5 du nas 16 ocorrências dos casos nativos (terceiro quartil de 75 du, máximo de 384 du). O processo sem nenhuma unidade com ele aberto aparece em 10 dos 12 casos, com mediana de 72 du por caso nativo e máximo de 642 du, num caso em que a espera antes da distribuição chegou a 643 du. Nos casos-piloto, os 82 du (típico) e 81 du (crítico) entre o ofício de razões finais e a juntada da relatoria foram todos sem unidade, e os dois foram julgados na mesma sessão; no crítico, antes do parecer jurídico, foram 203 du sem unidade depois que a Secretaria concluiu o processo sem remetê-lo à Procuradoria, e 106 du com o gabinete antes do ofício de razões finais, peça de 0,8–1,1 h.",
+  "onde": "A fila na Procuradoria antes do Parecer 759/2025: é a maior posse por unidade do caso e a maior espera antes de uma atividade, e vem depois de esperas sem nenhuma unidade com o processo antes do parecer técnico e antes da resposta à contestação, e de uma espera com a Secretaria antes da primeira ciência. Não há como saber, só pela linha do tempo, se foi fila de carga, pendência de diligência ou parecer pronto aguardando assinatura.",
+  "evidencia": "A espera antes da ciência do parecer jurídico é de 205 du, das quais 203 du com a Procuradoria e 2 du com a Secretaria; o Parecer 759/2025 e a ciência saem em 28/08/2026, de modo que a espera aparece antes da ciência (antes do parecer, o fato registra 0 du). A data no corpo do parecer é 25/06/2026, diferente da assinatura, o que sugere intervalo de assinatura ou de juntada a confirmar com a Procuradoria. A segunda maior espera é de 106 du sem nenhuma unidade com o processo aberto, entre a última remessa de relatórios à concessionária, em 30/01/2025, e o Parecer CASAN 250/2025, de 08/07/2025: não se separa processo parado de prazo dado à concessionária. Entre as esperas ligadas a este trecho do fluxo há ainda 55 du com a Secretaria antes da ciência do parecer técnico e 24 du sem unidade antes da resposta à contestação (a lista não inclui as esperas entre vistorias).",
   "atividades": [
-   "t4",
+   "t7",
    "t5",
-   "t6",
-   "t7"
+   "t4",
+   "t6"
   ],
   "fatos_usados": [
-   "coorte.t7.espera_antes.mediana",
-   "coorte.t7.espera_antes.n",
-   "coorte.t7.espera_antes.q1",
-   "coorte.t7.espera_antes.q3",
-   "coorte.t7.espera_antes.max",
-   "coorte.t4.espera_antes.mediana",
-   "coorte.t4.espera_antes.n",
-   "coorte.t4.espera_antes.q3",
-   "coorte.t4.espera_antes.max",
-   "coorte.posse.SEM UNIDADE.n",
-   "coorte.casos",
-   "coorte.posse.SEM UNIDADE.mediana",
-   "coorte.posse.SEM UNIDADE.max",
-   "coorte.t5.espera_antes.max",
-   "tipico.t7.1.espera_antes.SEM UNIDADE",
-   "critico.t7.1.espera_antes.SEM UNIDADE",
+   "critico.t5.2.espera_antes",
+   "critico.t5.2.espera_antes.PROC",
+   "critico.t5.2.espera_antes.SCEXEC",
+   "critico.t7.1.espera_antes",
+   "critico.t7.1.inicio",
+   "critico.t5.2.inicio",
+   "critico.t4.1.espera_antes",
    "critico.t4.1.espera_antes.SEM UNIDADE",
-   "critico.t6.1.espera_antes.CONS-02",
-   "critico.t6.1.horas_piso",
-   "critico.t6.1.horas_teto"
+   "critico.t3.7.inicio",
+   "critico.t4.1.inicio",
+   "critico.t5.1.espera_antes.SCEXEC",
+   "critico.t6.1.espera_antes.SEM UNIDADE",
+   "critico.posse.PROC"
   ]
  },
- "variabilidade": "Na coorte, são 9 caminhos distintos em 12 casos: o mais frequente (vistoria, parecer técnico, parecer jurídico, distribuição, razões finais, deliberação, publicação e registro) reúne 3 casos, e o segundo acrescenta a notificação sobre o parecer. Os laços se concentram na instrução: o parecer técnico se repete em 5 casos (28 ocorrências) e a distribuição em 5 (17 ocorrências), porque 19% das saídas das razões finais voltam ao parecer técnico e 18% das saídas da distribuição voltam à Procuradoria. A dispersão das esperas é grande: antes do parecer técnico, mediana de 9,5 du nas ocorrências dos casos nativos e máximo de 234 du; antes da distribuição, mediana de 15 du nos casos nativos e máximo de 643 du; antes do parecer jurídico, quartis de 12,8 a 75 du. Por caso nativo, o lead time vai de 183,2 a 493 du entre quartis, com máximo de 1.054 du, e os retornos têm mediana de 1,5 por caso nativo, mas chegam a 29 num caso. As horas variam menos (mediana de 22,3 h no piso por caso nativo, quartis de 20,7 a 31,1 h), o que repete o piloto (28,8–62,6 h no típico e 33,8–75,0 h no crítico, para 187 du e 483 du de lead time): o trabalho é parecido e a variação vem da espera entre as etapas e dos laços de instrução, não da complexidade. A espera de terceiros pesa pouco (mediana de 11 du por caso nativo, terceiro quartil de 15,5 du).",
+ "variabilidade": "Com um único caso não há dispersão entre processos (quartis, caminhos e laços da coorte são os do próprio caso); a variação observável é entre as ocorrências das atividades dentro do caso, e isso é limitação, não resultado: nada permite dizer o que seria o processo típico ou o crítico. O caminho é um só (n_caminhos igual a um) e tem laço: a vistoria e o ofício de lote se repetem em ciclos (6 passagens do ofício de lote de volta à vistoria, 86% das saídas do ofício de lote), o agendamento volta à vistoria em metade das saídas, e a ciência se repete duas vezes. Entre as oito ocorrências de vistoria do caso nativo, a espera antes tem mediana de 10,5 du, terceiro quartil de 21,8 du e máximo de 28 du; a execução, no caso nativo, tem mediana de 4,5 du e máximo de 35 du (a primeira rodada de vistorias), e as horas estimadas têm mediana de 30,5 h no piso e máximo de 66 h. Entre as sete remessas de lotes do caso nativo, a espera antes tem mediana de 6 du e máximo de 11 du, e a execução, mediana de 0 du e máximo de 1 du: o ofício é rápido, a variação está no intervalo até ele. Fora das medidas, os relatórios variam em qualidade: vários trazem trechos de outro caso no texto-padrão e divergências entre o corpo e o checklist anexo (por exemplo SEI 74334571 e SEI 79900134).",
  "fatos_variabilidade": [
-  "coorte.n_caminhos",
   "coorte.casos",
-  "coorte.caminho_mais_frequente.casos",
+  "coorte.n_caminhos",
+  "coorte.t2.casos_com_laco",
   "coorte.t3.casos_com_laco",
-  "coorte.t3.espera_antes.n",
+  "coorte.transicao.t3.t2",
+  "coorte.transicao.t3.t2.pct",
+  "coorte.transicao.t2.t1.pct",
   "coorte.t5.casos_com_laco",
-  "coorte.t5.espera_antes.n",
-  "coorte.transicao.t6.t3.pct",
-  "coorte.transicao.t5.t4.pct",
+  "coorte.t2.espera_antes.n",
+  "coorte.t2.espera_antes.mediana",
+  "coorte.t2.espera_antes.q3",
+  "coorte.t2.espera_antes.max",
+  "coorte.t2.execucao.mediana",
+  "coorte.t2.execucao.max",
+  "coorte.t2.horas_piso.mediana",
+  "coorte.t2.horas_piso.max",
+  "coorte.t3.espera_antes.n",
   "coorte.t3.espera_antes.mediana",
   "coorte.t3.espera_antes.max",
-  "coorte.t5.espera_antes.mediana",
-  "coorte.t5.espera_antes.max",
-  "coorte.t4.espera_antes.q1",
-  "coorte.t4.espera_antes.q3",
-  "coorte.caso.lead.q1",
-  "coorte.caso.lead.q3",
-  "coorte.caso.lead.max",
-  "coorte.caso.retornos.mediana",
-  "coorte.caso.retornos.max",
-  "coorte.caso.horas_piso.mediana",
-  "coorte.caso.horas_piso.q1",
-  "coorte.caso.horas_piso.q3",
-  "tipico.horas_piso",
-  "tipico.horas_teto",
-  "critico.horas_piso",
-  "critico.horas_teto",
-  "tipico.lead",
-  "critico.lead",
-  "coorte.caso.terceiros.mediana",
-  "coorte.caso.terceiros.q3"
+  "coorte.t3.execucao.mediana",
+  "coorte.t3.execucao.max"
  ],
  "desperdicios": [
   {
    "tipo": "Espera",
-   "evidencia": "Filas antes das etapas decisórias, que a coorte confirma: antes da relatoria, mediana de 58,5 du nas ocorrências dos casos nativos; antes do parecer jurídico, mediana de 36,5 du nos casos nativos, com a Procuradoria detendo o processo até 382 du num caso; antes da distribuição, mediana de 15 du nos casos nativos. A posse do gabinete tem terceiro quartil de 129 du por caso. No piloto, 32 du e 23 du com a Secretaria no típico, 24 du (típico) e 17 du (crítico) com a Procuradoria antes do parecer e 8 du (típico) e 106 du (crítico) com o gabinete antes do ofício de razões finais.",
+   "evidencia": "Quatro esperas concentram o tempo antes de atividades decisórias: 203 du com a Procuradoria antes da ciência do parecer jurídico, 106 du sem unidade antes do parecer técnico, 55 du com a Secretaria antes da ciência do parecer técnico e 24 du sem unidade antes da resposta à contestação. A parte sem unidade não se separa de processo parado e contém prazo dado à concessionária (30 dias nos ofícios de lote), que não é desperdício; a parte com a Procuradoria e com a Secretaria é fila interna.",
    "atividades": [
     "t4",
     "t5",
@@ -143,627 +95,420 @@
    ],
    "severidade": "alta",
    "fatos_usados": [
-    "coorte.t7.espera_antes.mediana",
-    "coorte.t4.espera_antes.mediana",
-    "coorte.posse.PROC.max",
-    "coorte.t5.espera_antes.mediana",
-    "coorte.posse.CONS-02.q3",
-    "tipico.t4.1.espera_antes.SCEXEC",
-    "tipico.t5.1.espera_antes.SCEXEC",
-    "tipico.t4.1.espera_antes.PROC",
-    "critico.t4.1.espera_antes.PROC",
-    "tipico.t6.1.espera_antes.CONS-02",
-    "critico.t6.1.espera_antes.CONS-02"
+    "critico.t5.2.espera_antes.PROC",
+    "critico.t4.1.espera_antes.SEM UNIDADE",
+    "critico.t5.1.espera_antes.SCEXEC",
+    "critico.t6.1.espera_antes.SEM UNIDADE"
    ]
   },
   {
    "tipo": "Estoque",
-   "evidencia": "Processo sem nenhuma unidade com ele aberto e sem ato final em 10 dos 12 casos da coorte: mediana de 72 du por caso nativo, máximo de 642 du num caso parado antes da distribuição. Só 8 casos (67%) chegaram à deliberação; em 3 a última atividade observada é a distribuição ao relator. No piloto, 82 du (típico) e 284 du (crítico) sem unidade, a maior posse dos dois casos. Na carteira, o lead mediano é de 387,5 du nos processos nativos do SEI e só 56% dos 32 processos têm deliberação, enquanto o volume de fiscalizações passou de 222 (2023) para 662 (2025).",
+   "evidencia": "Foram 306 du sem nenhuma unidade com o processo aberto, quase metade do lead time de 636 du, e o processo terminou sobrestado, sem ato final. Parte desse tempo é o intervalo programado entre vistorias do ciclo anual (planejamento, não desperdício) e parte é o prazo dado à concessionária; o registro não separa essas partes de processo parado. Os blocos mais longos sem dono são os 28 du antes de uma vistoria e os 27 du antes de outra, no ciclo, e os 106 du antes do parecer técnico.",
    "atividades": [
+    "t2",
     "t4",
-    "t5",
-    "t7"
+    "t6"
    ],
    "severidade": "alta",
    "fatos_usados": [
-    "coorte.posse.SEM UNIDADE.n",
-    "coorte.casos",
-    "coorte.posse.SEM UNIDADE.mediana",
-    "coorte.posse.SEM UNIDADE.max",
-    "coorte.t7.casos",
-    "coorte.t7.pct_casos",
-    "coorte.transicao.t5.fim",
-    "tipico.posse.SEM UNIDADE",
     "critico.posse.SEM UNIDADE",
-    "carteira.lead_mediano_nativos",
-    "carteira.com_deliberacao_pct",
-    "carteira.processos"
+    "critico.lead",
+    "critico.t2.7.espera_antes.SEM UNIDADE",
+    "critico.t2.8.espera_antes.SEM UNIDADE",
+    "critico.t4.1.espera_antes.SEM UNIDADE"
    ]
   },
   {
    "tipo": "Defeitos/retrabalho",
-   "evidencia": "Laços de instrução que o piloto não mostrava: o parecer técnico se repete em 5 casos, metade das saídas da notificação sobre o parecer volta à análise técnica, 19% das saídas das razões finais voltam ao parecer técnico e 18% das saídas da distribuição voltam à Procuradoria. Há sinal de pedido de complementação na vistoria em 5 casos e no parecer jurídico em 4. No piloto, a mesma pendência do CBMERJ já havia sido notificada (TN 003/2024 e TN 002/2025) antes do TN 018/2025 no típico, e a estação do crítico foi notificada de novo depois (TN 019/2024): o ciclo de notificação não ataca a causa.",
+   "evidencia": "Os relatórios de fiscalização têm defeitos de conteúdo que exigem conferência e podem exigir correção: trechos de outro caso no texto-padrão (município de Pomerode, a CEDAE, Bloco 04) e divergências entre o corpo e o checklist anexo nas peças SEI 74334571, SEI 79900134, SEI 80656240, SEI 79901118, SEI 74882333, SEI 72975320, SEI 86826664, SEI 86827856, SEI 82895573, SEI 79575319 e SEI 79573103; a peça SEI 89901514 indica outro número de processo (SEI-480002/001547/2024); e a peça SEI 68285969, juntada como Deliberação, é a compilação do Diário Oficial com a Deliberação 4.216/2021. A ficha registra sinal de pedido de complementação, de prazo concedido e de reiteração na vistoria e o impacto sobre o prazo é a medir.",
    "atividades": [
     "t1",
-    "t3",
-    "t4",
-    "t5",
-    "t10"
+    "t2"
    ],
    "severidade": "média",
    "fatos_usados": [
-    "coorte.t3.casos_com_laco",
-    "coorte.transicao.t10.t3.pct",
-    "coorte.transicao.t6.t3.pct",
-    "coorte.transicao.t5.t4.pct",
-    "coorte.t1.perda.pedido_complementacao",
-    "coorte.t4.perda.pedido_complementacao"
-   ]
-  },
-  {
-   "tipo": "Movimentação",
-   "evidencia": "A requisição de documentos aparece em 4 casos (33%), com laço em 2 e sinal de pedido de complementação em 4 e de diligência externa em 3; a execução chega a 52 du numa ocorrência, entre o primeiro e o último ofício. No crítico do piloto, a documentação foi pedida aos poucos: Licença de Operação em 3 dias, depois o projeto em 3 dias, depois consulta ao INEA sobre a abrangência da licença, em 7 du de execução; as respostas chegaram por peticionamento em processos relacionados e geraram só 12 du de espera de terceiros, sem tempo indeterminado.",
-   "atividades": [
-    "t2",
-    "t3"
-   ],
-   "severidade": "média",
-   "fatos_usados": [
-    "coorte.t2.casos",
-    "coorte.t2.pct_casos",
-    "coorte.t2.casos_com_laco",
     "coorte.t2.perda.pedido_complementacao",
-    "coorte.t2.perda.diligencia_externa",
-    "coorte.t2.execucao.max",
-    "critico.t2.1.execucao",
-    "critico.terceiros",
-    "critico.indeterminado"
+    "coorte.t2.perda.prazo_concedido",
+    "coorte.t2.perda.reiteracao"
    ]
   },
   {
    "tipo": "Transporte",
-   "evidencia": "Passagens pela Secretaria só para encaminhar: a distribuição, presente nos 12 casos, é despacho com mediana de 0,1–0,4 h por ocorrência nos casos nativos, precedido de mediana de 15 du de espera nos casos nativos. Cada caso nativo passa por mediana de 4 unidades ativas, até 12 num caso. No piloto, 8 passagens no típico e 16 no crítico, com remessa à câmara técnica só para ciência da deliberação antes do registro de providências.",
+   "evidencia": "O processo teve 6 passagens entre unidades, e a Secretaria ficou 57 du com ele, inclusive 55 du antes de dar ciência do parecer técnico, em despacho de 0,6–0,8 h por ocorrência nos casos nativos. Houve ainda uma passagem pela CARES, em 20/05/2024, sem peça, com 0 du de posse: passagem sem trabalho visível.",
    "atividades": [
-    "t5",
-    "t9"
+    "t5"
    ],
    "severidade": "média",
    "fatos_usados": [
-    "coorte.t5.casos",
+    "critico.posse.SCEXEC",
+    "critico.t5.1.espera_antes.SCEXEC",
+    "critico.posse.CARES",
     "coorte.t5.horas_piso.mediana",
-    "coorte.t5.horas_teto.mediana",
-    "coorte.t5.espera_antes.mediana",
-    "coorte.caso.unidades_ativas.mediana",
-    "coorte.caso.unidades_ativas.max"
+    "coorte.t5.horas_teto.mediana"
    ]
   },
   {
-   "tipo": "Superprodução",
-   "evidencia": "A relatoria (relatório, voto e deliberação: mediana de 7–18,4 h por ocorrência nos casos nativos; no piloto, 16–20 laudas, 8,0–18,7 h no típico e 9,0–19,8 h no crítico) retoma o histórico inteiro (fiscalização, notificações, defesa, pareceres). Os ofícios ao CBMERJ anexam de novo deliberação, relatório e voto, e os dois casos-piloto geraram o mesmo par de ofícios no mesmo dia.",
+   "tipo": "Movimentação",
+   "evidencia": "As respostas da concessionária entram como processos anexados, sem peça própria na árvore: para saber quando e o que a concessionária respondeu a cada lote, é preciso abrir esses processos. A espera de resposta da concessionária só é medida pela data de juntada desses processos (138 du no caso), e 41 du ficam indeterminados, não separáveis de processo parado.",
    "atividades": [
-    "t7",
-    "t8"
+    "t3",
+    "t4",
+    "t6"
+   ],
+   "severidade": "média",
+   "fatos_usados": [
+    "coorte.caso.oficios.mediana",
+    "critico.indeterminado",
+    "critico.terceiros"
+   ]
+  },
+  {
+   "tipo": "Superprocessamento",
+   "evidencia": "Cada relatório de fiscalização traz corpo e checklist anexo, e as divergências entre os dois (peças citadas no desperdício de defeitos) sugerem preenchimento em duplicidade, hipótese a confirmar. O total de 272 laudas de relatórios em 8 ocorrências de vistoria tem mediana de 30,5–49,2 h por ocorrência nos casos nativos, e a ciência do parecer, por ocorrência, mobiliza peça de 4 laudas no total. A fração do esforço que é duplicidade é a medir.",
+   "atividades": [
+    "t2"
    ],
    "severidade": "baixa",
    "fatos_usados": [
-    "coorte.t7.horas_piso.mediana",
-    "coorte.t7.horas_teto.mediana",
-    "tipico.t7.1.horas_piso",
-    "tipico.t7.1.horas_teto",
-    "critico.t7.1.horas_piso",
-    "critico.t7.1.horas_teto"
+    "coorte.t2.horas_piso.mediana",
+    "coorte.t2.horas_teto.mediana",
+    "coorte.t2.espera_antes.n"
    ]
   },
   {
    "tipo": "Talento não aproveitado",
-   "evidencia": "A Secretária Executiva assina os ofícios de cumprimento padronizados (2,0–3,5 h por caso no piloto) e gerentes da câmara técnica redigem ofícios de requisição (3,5 h no crítico) que um modelo de documento resolveria.",
+   "evidencia": "Os ofícios de lote, de redação padronizada, ficam com gerente: mediana de 0,8–1,1 h por ocorrência nos casos nativos, em 7 ocorrências, assinados por gerentes (7 assinaturas na ficha). Um modelo de ofício liberaria o gerente para a análise técnica, hipótese a confirmar.",
    "atividades": [
-    "t2",
-    "t8"
+    "t3"
    ],
    "severidade": "baixa",
    "fatos_usados": [
-    "critico.t2.1.horas_piso",
-    "critico.t2.1.horas_teto"
+    "coorte.t3.horas_piso.mediana",
+    "coorte.t3.horas_teto.mediana",
+    "coorte.t3.espera_antes.n"
    ]
   }
  ],
  "atividades": {
   "t1": {
-   "valor": "agrega valor",
-   "justificativa_valor": "A vistoria e o termo de notificação são o núcleo da fiscalização: constatam a não conformidade e abrem o contraditório.",
-   "potencial_ia": "alto",
-   "tipos_ia": [
-    "redação assistida de minuta",
-    "verificação de conformidade",
-    "extração de dados de documentos",
-    "busca de precedentes e normas"
-   ],
-   "aplicacao_ia": "A partir do checklist preenchido em campo e das fotos legendadas, a IA monta a minuta do relatório de fiscalização e do Termo de Notificação no modelo da agência, cita os dispositivos (Decreto 46.925/2020, NBR 12962, NBR 16291, NR 26), confere a vigência de licenças e certificados informados e busca notificações anteriores sobre a mesma instalação (reincidência).",
-   "ganho_esperado": "Trabalho: parte da mediana de 7,4–12,1 h por ocorrência nos casos nativos (no piloto, 8,8–16,5 h no típico e 8,0–16,3 h no crítico, com 9–12 laudas). A vistoria aparece em 11 casos (92%) e abre o processo, com espera antes de mediana de 0 du nos casos nativos: não reduz espera. Há sinal de pedido de complementação em 5 casos, o que reforça pedir toda a documentação já no termo. O efeito na carteira depende de quantas das 662 fiscalizações de 2025 geram relatório e termo (a medir).",
-   "controle_humano": "A vistoria, a constatação técnica, o juízo sobre a gravidade e a assinatura do termo pelo gerente continuam com o fiscal e a gerência.",
-   "melhoria_lean": "Padronizar o checklist e o modelo de relatório por tipo de instalação (os manuais estão em criação) e já pedir no termo de notificação toda a documentação de suporte (licença, projeto, certificados), evitando requisições posteriores.",
-   "fatos_usados": [
-    "coorte.t1.horas_piso.mediana",
-    "coorte.t1.horas_teto.mediana",
-    "tipico.t1.1.horas_piso",
-    "tipico.t1.1.horas_teto",
-    "critico.t1.1.horas_piso",
-    "critico.t1.1.horas_teto",
-    "coorte.t1.casos",
-    "coorte.t1.pct_casos",
-    "coorte.t1.espera_antes.mediana",
-    "coorte.t1.perda.pedido_complementacao"
-   ]
-  },
-  "t2": {
    "valor": "necessária sem valor",
-   "justificativa_valor": "Completa uma instrução que a primeira notificação poderia ter pedido de uma vez; é necessária para decidir, mas a sequência de pedidos é efeito de pedido fragmentado.",
-   "potencial_ia": "médio",
+   "justificativa_valor": "O agendamento é logística de acesso às unidades e comunicação ao regulado, sem análise técnica.",
+   "potencial_ia": "baixo",
    "tipos_ia": [
-    "verificação de conformidade",
     "redação assistida de minuta",
     "monitoramento de prazos e alertas"
    ],
-   "aplicacao_ia": "Ao ler a resposta da concessionária, a IA confronta o escopo do documento apresentado com os dados da instalação (no crítico, a licença unificada não cobria a pressão acima de 4,2 bar), lista de uma vez tudo o que falta e gera um ofício único de requisição, com alerta de vencimento do prazo.",
-   "ganho_esperado": "Trabalho pequeno: mediana de 1,4–2,8 h por ocorrência nos casos nativos (3,5 h no crítico). A requisição aparece em 4 casos (33%), com laço em 2, espera antes de mediana de 11,5 du nos casos nativos (máximo de 42 du) e execução de até 52 du numa ocorrência. No crítico, os pedidos em série ocuparam 7 du de execução e vieram depois de 23 du com a CAENE; um pedido único reduz parte disso (a medir). A espera de terceiros tem mediana de 11 du por caso nativo, e o tempo indeterminado, mediana de 0 du por caso nativo.",
-   "controle_humano": "A decisão sobre o enquadramento técnico da licença e a consulta ao órgão ambiental continuam com a gerência da câmara técnica.",
-   "melhoria_lean": "Combinar os pedidos à concessionária e aos órgãos num só ato, disparados em paralelo, e vincular cada resposta ao processo principal no dia em que chega.",
+   "aplicacao_ia": "Gerar o ofício de agendamento a partir do calendário do ciclo anual e da lista de unidades do município ou região, e alertar quando uma unidade programada não tem agendamento.",
+   "ganho_esperado": "Trabalho pequeno: mediana de 2–2,3 h por ocorrência nos casos nativos, em duas ocorrências (a ficha dá 4–4,5 h somadas). No caso nativo, a espera antes tem mediana de 8,5 du e máximo de 12 du, sem unidade com o processo aberto; o ofício de agendamento não aparece para todas as vistorias. O ganho é de padronização, não de espera (a medir).",
+   "controle_humano": "A decisão do roteiro e das datas de vistoria e a assinatura do ofício.",
+   "melhoria_lean": "Calendário único do ciclo anual com os ofícios de agendamento programados de uma vez, em vez de ofício a cada município.",
+   "fatos_usados": [
+    "coorte.t1.horas_piso.mediana",
+    "coorte.t1.horas_teto.mediana",
+    "coorte.t1.espera_antes.mediana",
+    "coorte.t1.espera_antes.max",
+    "critico.t1.1.espera_antes.SEM UNIDADE"
+   ]
+  },
+  "t2": {
+   "valor": "agrega valor",
+   "justificativa_valor": "A vistoria constata as condições da unidade e fundamenta as recomendações, que são o núcleo da fiscalização.",
+   "potencial_ia": "médio",
+   "tipos_ia": [
+    "verificação de conformidade",
+    "extração de dados de documentos",
+    "redação assistida de minuta"
+   ],
+   "aplicacao_ia": "Conferir cada relatório antes da assinatura: comparar o corpo com o checklist anexo, apontar nome de município, concessionária, bloco ou número de processo que não pertence ao caso (texto-padrão de outro caso), e montar a minuta do relatório a partir do checklist e das fotos.",
+   "ganho_esperado": "Trabalho: mediana de 30,5–49,2 h por ocorrência nos casos nativos, em 8 ocorrências (272 laudas na ficha; máximo de 66–124,4 h na primeira rodada, que durou 35 du de execução). A IA reduz parte da redação e o retrabalho de correção; não reduz a vistoria em campo nem a espera antes de mediana de 10,5 du nos casos nativos (a medir).",
+   "controle_humano": "A vistoria em campo, a constatação das não conformidades, o juízo sobre a gravidade e a assinatura do relatório.",
+   "melhoria_lean": "Um único modelo de relatório por tipo de unidade, com campos obrigatórios e sem texto-padrão herdado de outro caso, e checklist como fonte única, sem repetir no corpo.",
    "fatos_usados": [
     "coorte.t2.horas_piso.mediana",
     "coorte.t2.horas_teto.mediana",
-    "critico.t2.1.horas_piso",
-    "coorte.t2.casos",
-    "coorte.t2.pct_casos",
-    "coorte.t2.casos_com_laco",
-    "coorte.t2.espera_antes.mediana",
-    "coorte.t2.espera_antes.max",
-    "coorte.t2.execucao.max",
+    "coorte.t2.horas_piso.max",
+    "coorte.t2.horas_teto.max",
     "critico.t2.1.execucao",
-    "critico.t2.1.espera_antes.CAENE",
-    "coorte.caso.terceiros.mediana",
-    "coorte.caso.indeterminado.mediana"
+    "coorte.t2.espera_antes.mediana",
+    "coorte.t2.espera_antes.n"
    ]
   },
   "t3": {
-   "valor": "agrega valor",
-   "justificativa_valor": "O parecer técnico decide se a defesa afasta a não conformidade e sustenta tecnicamente a sanção.",
-   "potencial_ia": "alto",
-   "tipos_ia": [
-    "sumarização e linha do tempo",
-    "verificação de conformidade",
-    "redação assistida de minuta"
-   ],
-   "aplicacao_ia": "A IA lê a defesa ou a nova manifestação, contrapõe ponto a ponto às constatações do relatório, do termo e do parecer anterior, aponta o que foi e o que não foi comprovado (Laudo de Exigências, Certificado de Aprovação do CBMERJ, licença ambiental) e entrega a minuta do parecer com o histórico de notificações sobre a mesma pendência.",
-   "ganho_esperado": "Trabalho: parte da mediana de 3,0–7,9 h por ocorrência nos casos nativos (no piloto, 4,0–8,6 h no típico e 2,0–8,4 h no crítico, com 2–6 laudas). O parecer técnico aparece em 11 casos e se repete em 5 (28 ocorrências), a cada nova manifestação da concessionária: a análise focada no que foi contestado reduz o trabalho das rodadas seguintes. A espera antes tem mediana de 9,5 du nos casos nativos, mas chega a 234 du; no piloto, 10 du e 11 du.",
-   "controle_humano": "A conclusão técnica pelo descumprimento ou não e a assinatura do parecer.",
-   "melhoria_lean": "Remeter o processo direto à Procuradoria logo após o parecer, sem fila na Secretaria, e consolidar numa só análise as manifestações que chegam em sequência.",
-   "fatos_usados": [
-    "coorte.t3.horas_piso.mediana",
-    "coorte.t3.horas_teto.mediana",
-    "tipico.t3.1.horas_piso",
-    "tipico.t3.1.horas_teto",
-    "critico.t3.1.horas_piso",
-    "critico.t3.1.horas_teto",
-    "coorte.t3.casos",
-    "coorte.t3.casos_com_laco",
-    "coorte.t3.espera_antes.n",
-    "coorte.t3.espera_antes.mediana",
-    "coorte.t3.espera_antes.max",
-    "tipico.t3.1.espera_antes",
-    "critico.t3.1.espera_antes"
-   ]
-  },
-  "t10": {
    "valor": "necessária sem valor",
-   "justificativa_valor": "Dá à concessionária o contraditório sobre o parecer técnico ou jurídico antes da decisão; é exigência do rito, não análise.",
+   "justificativa_valor": "O envio do lote dá à concessionária o prazo para manifestação, que é o rito do contraditório; o ofício é padronizado.",
    "potencial_ia": "médio",
    "tipos_ia": [
     "redação assistida de minuta",
     "automação de tramitação (RPA no SEI)",
     "monitoramento de prazos e alertas"
    ],
-   "aplicacao_ia": "Gerar o ofício com o parecer anexo e o prazo de manifestação assim que o parecer é assinado, enviá-lo e controlar o prazo, avisando a câmara técnica quando a manifestação chega ou quando o prazo vence; ao chegar a manifestação, montar o quadro do que ela contesta no parecer, para orientar a nova análise técnica.",
-   "ganho_esperado": "Trabalho pequeno: mediana de 0,7–1,4 h por ocorrência nos casos nativos, nas 6 ocorrências de 5 casos (42%). A espera antes do ofício é curta (mediana de 1 du nos casos nativos, máximo de 4 du). O efeito está depois: metade das saídas volta ao parecer técnico (3 passagens), e é essa nova rodada de análise que alonga a instrução; o controle do prazo dado e a análise focada no que foi contestado reduzem parte dela (a medir).",
-   "controle_humano": "A decisão de abrir contraditório sobre o parecer e a assinatura do ofício pela Secretaria Executiva.",
-   "melhoria_lean": "Fixar em norma interna quando o parecer vai a contraditório e, quando o parecer técnico e o jurídico já estiverem prontos, comunicá-los num só ofício, evitando duas rodadas de manifestação.",
+   "aplicacao_ia": "Gerar o ofício com os relatórios do lote anexos e o prazo, registrar a data de envio, controlar o vencimento do prazo e vincular a resposta, quando chegar como processo anexado, ao processo principal com aviso à câmara técnica.",
+   "ganho_esperado": "Trabalho pequeno: mediana de 0,8–1,1 h por ocorrência nos casos nativos, em 7 ocorrências. A espera antes tem mediana de 6 du e máximo de 11 du nos casos nativos, e a execução, mediana de 0 du. O ganho está no controle do prazo e da resposta, que hoje não aparece com data própria (a medir).",
+   "controle_humano": "A decisão de fechar o lote e a assinatura do ofício pelo gerente.",
+   "melhoria_lean": "Fixar rotina de envio do lote (por exemplo, assim que o último relatório do lote é assinado) e vincular a resposta no dia em que chega.",
    "fatos_usados": [
-    "coorte.t10.horas_piso.mediana",
-    "coorte.t10.horas_teto.mediana",
-    "coorte.t10.espera_antes.n",
-    "coorte.t10.casos",
-    "coorte.t10.pct_casos",
-    "coorte.t10.espera_antes.mediana",
-    "coorte.t10.espera_antes.max",
-    "coorte.transicao.t10.t3",
-    "coorte.transicao.t10.t3.pct"
-   ]
-  },
-  "t11": {
-   "valor": "necessária sem valor",
-   "justificativa_valor": "Responder ao pedido de prorrogação é dever do rito; a dilação em si adia a instrução sem acrescentar análise.",
-   "potencial_ia": "baixo",
-   "tipos_ia": [
-    "monitoramento de prazos e alertas",
-    "redação assistida de minuta"
-   ],
-   "aplicacao_ia": "Identificar na entrada o pedido de dilação, conferir se foi apresentado dentro do prazo original e se já houve prorrogação, gerar a minuta do ofício de deferimento ou indeferimento com a nova data e recalcular o prazo no controle.",
-   "ganho_esperado": "Pequeno e localizado: a decisão aparece em 2 casos (17%), em 5 ocorrências, com mediana de 0,8–1,4 h por ocorrência nos casos nativos e espera antes de mediana de 2 du nos casos nativos (máximo de 21 du). Os 2 casos têm sinal de prazo concedido e de espera por outra unidade, e 60% das saídas voltam ao parecer técnico. O ganho é de controle do novo prazo, não de trabalho (a medir).",
-   "controle_humano": "O deferimento ou o indeferimento da dilação e a assinatura do ofício.",
-   "melhoria_lean": "Critério escrito para dilação (prazo máximo e número de prorrogações por fase) e resposta padronizada no mesmo dia do pedido.",
-   "fatos_usados": [
-    "coorte.t11.casos",
-    "coorte.t11.pct_casos",
-    "coorte.t11.espera_antes.n",
-    "coorte.t11.horas_piso.mediana",
-    "coorte.t11.horas_teto.mediana",
-    "coorte.t11.espera_antes.mediana",
-    "coorte.t11.espera_antes.max",
-    "coorte.t11.perda.prazo_concedido",
-    "coorte.t11.perda.aguardando_outra_unidade",
-    "coorte.transicao.t11.t3.pct"
+    "coorte.t3.horas_piso.mediana",
+    "coorte.t3.horas_teto.mediana",
+    "coorte.t3.espera_antes.n",
+    "coorte.t3.espera_antes.mediana",
+    "coorte.t3.espera_antes.max",
+    "coorte.t3.execucao.mediana"
    ]
   },
   "t4": {
-   "valor": "necessária sem valor",
-   "justificativa_valor": "É controle de legalidade do processo sancionatório (contraditório, regularidade dos atos), presente em 92% dos casos da coorte e exigido antes da decisão, mas não muda o fato apurado.",
+   "valor": "agrega valor",
+   "justificativa_valor": "O parecer técnico avalia o grau de atendimento das recomendações e é a base da posição da agência sobre o ciclo.",
    "potencial_ia": "alto",
    "tipos_ia": [
     "sumarização e linha do tempo",
     "verificação de conformidade",
-    "busca de precedentes e normas",
     "redação assistida de minuta"
    ],
-   "aplicacao_ia": "A IA monta a linha do tempo dos atos (vistoria, termo, prazos, defesa, pareceres), verifica num checklist se o contraditório e os prazos da IN CODIR 001/2007 foram observados, reúne as notificações sobre a mesma pendência (no típico, TN 003/2024 e TN 002/2025, anteriores; no crítico, TN 019/2024, posterior) e entrega a minuta do parecer pronta na chegada à Procuradoria.",
-   "ganho_esperado": "Trabalho: parte da mediana de 4,0–11,3 h por ocorrência nos casos nativos (no piloto, 4,0–10,6 h no típico e 4,0–16,2 h no crítico, com 13–16 laudas). Espera: mediana de 36,5 du antes do parecer nas 16 ocorrências dos casos nativos, com terceiro quartil de 75 du e máximo de 384 du, e posse da Procuradoria com mediana de 31 du por caso nativo e máximo de 382 du. A minuta pronta na chegada reduz essa espera se a fila for de carga; no piloto, os 32 du com a Secretaria (típico) e os 203 du sem unidade com o processo aberto (crítico) antes do parecer dependem de gestão, não de IA.",
-   "controle_humano": "O juízo jurídico sobre o cabimento da penalidade, as atenuantes e a assinatura do procurador.",
-   "melhoria_lean": "Remessa direta da câmara técnica à Procuradoria, sem concluir o processo na Secretaria, com prazo interno para o parecer e fila visível por idade; parecer padronizado para infrações documentais recorrentes.",
+   "aplicacao_ia": "Consolidar as respostas e os planos de ação da concessionária (que chegam como processos anexados) contra cada recomendação dos relatórios, em quadro de atendido, parcial e não atendido, com a linha do tempo dos lotes, e entregar a minuta do parecer.",
+   "ganho_esperado": "Trabalho: 11,4–16,1 h por ocorrência nas estimativas da ficha, em uma ocorrência (12 laudas); nesta peça o piso supera o teto, sinal de estimativa a calibrar. A espera antes é de 106 du sem unidade, que a IA não reduz: depende de dono e de prazo para iniciar a análise.",
+   "controle_humano": "A conclusão técnica sobre o cumprimento das recomendações e a assinatura do parecer.",
+   "melhoria_lean": "Prazo interno para iniciar o parecer técnico depois do prazo dado à concessionária, com marco de início.",
    "fatos_usados": [
-    "coorte.t4.pct_casos",
     "coorte.t4.horas_piso.mediana",
     "coorte.t4.horas_teto.mediana",
-    "tipico.t4.1.horas_piso",
-    "tipico.t4.1.horas_teto",
-    "critico.t4.1.horas_piso",
-    "critico.t4.1.horas_teto",
     "coorte.t4.espera_antes.mediana",
-    "coorte.t4.espera_antes.n",
-    "coorte.t4.espera_antes.q3",
-    "coorte.t4.espera_antes.max",
-    "coorte.posse.PROC.mediana",
-    "coorte.posse.PROC.max",
-    "tipico.t4.1.espera_antes.SCEXEC",
     "critico.t4.1.espera_antes.SEM UNIDADE"
    ]
   },
   "t5": {
    "valor": "necessária sem valor",
-   "justificativa_valor": "O sorteio é exigência regimental de impessoalidade; o despacho de encaminhamento não agrega ao mérito.",
+   "justificativa_valor": "Dar ciência do parecer à concessionária é exigência do contraditório; o despacho em si não acrescenta análise.",
    "potencial_ia": "médio",
    "tipos_ia": [
     "automação de tramitação (RPA no SEI)",
     "monitoramento de prazos e alertas"
    ],
-   "aplicacao_ia": "Assim que o parecer jurídico é assinado, um robô registra o processo na fila de sorteio da próxima reunião interna e, com a ata, remete os autos ao gabinete sorteado sem despacho manual; processo parado antes da distribuição gera alerta.",
-   "ganho_esperado": "Trabalho desprezível: mediana de 0,1–0,4 h por ocorrência nos casos nativos. O ganho é de espera: antes da distribuição, mediana de 15 du nas 17 ocorrências dos casos nativos, com terceiro quartil de 31 du e máximo de 643 du num caso parado sem unidade; no piloto, 23 du (típico) e 5 du (crítico) com a Secretaria. A distribuição se repete em 5 casos, e 18% das saídas voltam à Procuradoria.",
-   "controle_humano": "O sorteio em si, feito pelo Conselho-Diretor.",
-   "melhoria_lean": "Fazer sorteios em ciclo curto e fixo (semanal) ou por sistema, eliminar a passagem física pela Secretaria e só distribuir com a instrução técnica e jurídica completa.",
+   "aplicacao_ia": "Disparar a ciência assim que o parecer é assinado, com o parecer anexo e acesso externo, e gerar alerta quando o parecer está pronto e a ciência não saiu ou o processo está parado em uma unidade.",
+   "ganho_esperado": "Trabalho desprezível: mediana de 0,6–0,8 h por ocorrência nos casos nativos, em 2 ocorrências. O ganho é de espera: 55 du com a Secretaria antes da primeira ciência e 205 du antes da segunda, das quais 2 du com a Secretaria e 203 du com a Procuradoria, que o alerta de fila ajuda a tornar visível.",
+   "controle_humano": "A decisão de dar ciência e a assinatura do ofício pela Secretaria.",
+   "melhoria_lean": "Ciência no dia da assinatura do parecer, sem passagem da Secretaria só para encaminhar.",
    "fatos_usados": [
     "coorte.t5.horas_piso.mediana",
     "coorte.t5.horas_teto.mediana",
-    "coorte.t5.espera_antes.mediana",
     "coorte.t5.espera_antes.n",
-    "coorte.t5.espera_antes.q3",
-    "coorte.t5.espera_antes.max",
-    "tipico.t5.1.espera_antes.SCEXEC",
     "critico.t5.1.espera_antes.SCEXEC",
-    "coorte.t5.casos_com_laco",
-    "coorte.transicao.t5.t4.pct"
+    "critico.t5.2.espera_antes",
+    "critico.t5.2.espera_antes.SCEXEC",
+    "critico.t5.2.espera_antes.PROC"
    ]
   },
   "t6": {
    "valor": "necessária sem valor",
-   "justificativa_valor": "As razões finais são etapa do devido processo e não podem ser suprimidas; o ofício é padronizado.",
+   "justificativa_valor": "A resposta à contestação garante o contraditório e reitera o parecer; não altera o mérito já apurado.",
    "potencial_ia": "médio",
-   "tipos_ia": [
-    "redação assistida de minuta",
-    "automação de tramitação (RPA no SEI)",
-    "monitoramento de prazos e alertas"
-   ],
-   "aplicacao_ia": "O ofício de razões finais é gerado quando o processo chega ao gabinete, enviado por e-mail, e o prazo de 10 dias passa a ser controlado com alerta de decurso.",
-   "ganho_esperado": "Trabalho com mediana de 0,8–1,1 h por ocorrência nos casos nativos. O ofício aparece em 9 casos (75%), e o ganho é na espera com o gabinete antes dele: mediana de 8 du nos casos nativos, terceiro quartil de 28,2 du e máximo de 106 du, que é o do crítico do piloto (no típico, 8 du). Depois das razões finais, 19% das saídas voltam ao parecer técnico, em vez de seguir para a relatoria.",
-   "controle_humano": "A decisão do relator de abrir o prazo de razões finais.",
-   "melhoria_lean": "Reordenar: abrir o prazo de razões finais na própria distribuição, com prazo interno para o gabinete conferir a instrução.",
-   "fatos_usados": [
-    "coorte.t6.horas_piso.mediana",
-    "coorte.t6.horas_teto.mediana",
-    "coorte.t6.casos",
-    "coorte.t6.pct_casos",
-    "coorte.t6.espera_antes.mediana",
-    "coorte.t6.espera_antes.q3",
-    "coorte.t6.espera_antes.max",
-    "critico.t6.1.espera_antes.CONS-02",
-    "tipico.t6.1.espera_antes.CONS-02",
-    "coorte.transicao.t6.t3.pct"
-   ]
-  },
-  "t7": {
-   "valor": "agrega valor",
-   "justificativa_valor": "É a decisão regulatória do Conselho-Diretor sobre a infração e as determinações à concessionária.",
-   "potencial_ia": "alto",
    "tipos_ia": [
     "sumarização e linha do tempo",
     "redação assistida de minuta",
     "busca de precedentes e normas"
    ],
-   "aplicacao_ia": "A IA redige a parte de relatório (histórico processual, que retoma fiscalização, notificações, defesa e pareceres), reúne decisões anteriores do Conselho sobre a mesma pendência e prepara a minuta de deliberação com as determinações e prazos.",
-   "ganho_esperado": "Trabalho: parte da mediana de 7–18,4 h por ocorrência nos casos nativos (no piloto, 8,0–18,7 h no típico e 9,0–19,8 h no crítico, com 16–20 laudas), sobretudo o relatório descritivo. Não reduz a maior espera do processo: antes da relatoria, mediana de 58,5 du nas 10 ocorrências dos casos nativos (quartis de 20,2 a 81,8 du, máximo de 192 du); no piloto, os 82 du (típico) e 81 du (crítico) foram sem unidade com o processo aberto, entre o ofício de razões finais e a juntada da relatoria, e dependem de pauta e de um responsável pela fila.",
-   "controle_humano": "O voto, a dosimetria, a decisão colegiada em sessão e a assinatura.",
-   "melhoria_lean": "Marco de razões finais decorridas que põe o processo numa fila de prontos para julgamento, com o gabinete responsável e prazo-alvo de pauta.",
+   "aplicacao_ia": "Resumir a manifestação da concessionária (processo anexado) e o alcance da contestação, localizar o marco legal e contratual já citado no parecer técnico e propor a minuta do despacho.",
+   "ganho_esperado": "Trabalho pequeno: 2–3 h na ocorrência única (7 laudas). A espera antes é de 26 du, sendo 2 du com a CASAN e 24 du sem unidade; a IA não reduz esses dias sem alerta de chegada da manifestação (a medir).",
+   "controle_humano": "A decisão de reiterar ou rever o parecer técnico e a assinatura do despacho.",
+   "melhoria_lean": "Alerta de chegada da manifestação com prazo-alvo para o despacho.",
+   "fatos_usados": [
+    "coorte.t6.horas_piso.mediana",
+    "coorte.t6.horas_teto.mediana",
+    "critico.t6.1.espera_antes",
+    "critico.t6.1.espera_antes.CASAN",
+    "critico.t6.1.espera_antes.SEM UNIDADE"
+   ]
+  },
+  "t7": {
+   "valor": "agrega valor",
+   "justificativa_valor": "O parecer jurídico decide a regularidade e o alcance da fiscalização diante da contestação da concessionária.",
+   "potencial_ia": "médio",
+   "tipos_ia": [
+    "sumarização e linha do tempo",
+    "busca de precedentes e normas",
+    "redação assistida de minuta"
+   ],
+   "aplicacao_ia": "Montar a linha do tempo dos atos do ciclo (ofícios, respostas, parecer técnico, contestação), reunir os dispositivos legais e contratuais citados e propor a minuta do parecer e do histórico, pronta na chegada à Procuradoria.",
+   "ganho_esperado": "Trabalho: 6–16,3 h por ocorrência nas estimativas da ficha, em uma ocorrência (20 laudas). A IA reduz redação e leitura do histórico, mas a espera é a questão: 203 du com a Procuradoria antes da ciência do parecer, sem execução própria no registro (0 du), que minuta pronta só reduz se a fila for de carga, e não de pendência ou assinatura.",
+   "controle_humano": "O juízo jurídico sobre a regularidade e o alcance da fiscalização e a assinatura do procurador.",
+   "melhoria_lean": "Fila visível por idade com prazo interno para o parecer e registro da data de assinatura.",
    "fatos_usados": [
     "coorte.t7.horas_piso.mediana",
     "coorte.t7.horas_teto.mediana",
-    "tipico.t7.1.horas_piso",
-    "tipico.t7.1.horas_teto",
-    "critico.t7.1.horas_piso",
-    "critico.t7.1.horas_teto",
-    "coorte.t7.espera_antes.mediana",
-    "coorte.t7.espera_antes.n",
-    "coorte.t7.espera_antes.q1",
-    "coorte.t7.espera_antes.q3",
-    "coorte.t7.espera_antes.max",
-    "tipico.t7.1.espera_antes.SEM UNIDADE",
-    "critico.t7.1.espera_antes.SEM UNIDADE"
-   ]
-  },
-  "t8": {
-   "valor": "necessária sem valor",
-   "justificativa_valor": "Publicação e comunicação da decisão são obrigatórias, mas não alteram a decisão.",
-   "potencial_ia": "alto",
-   "tipos_ia": [
-    "extração de dados de documentos",
-    "redação assistida de minuta",
-    "automação de tramitação (RPA no SEI)"
-   ],
-   "aplicacao_ia": "A IA extrai da deliberação as determinações, destinatários e prazos (no piloto, 15 dias para oficiar o CBMERJ e comprovação a cada 30 dias) e gera os ofícios e e-mails com os anexos certos para assinatura.",
-   "ganho_esperado": "Trabalho: parte da mediana de 1,1–1,8 h por ocorrência nos casos nativos (no piloto, 2,0–3,5 h por caso, 8 laudas, mesmo par de ofícios nos dois casos). A espera já é baixa: mediana de 6 du antes da publicação nos casos nativos, máximo de 10 du. Há sinal de prazo concedido e de diligência externa em 3 casos cada: são as determinações com prazo que pedem acompanhamento.",
-   "controle_humano": "Conferência e assinatura dos ofícios pela Secretaria Executiva.",
-   "melhoria_lean": "Modelos fixos de ofício de cumprimento por tipo de determinação.",
-   "fatos_usados": [
-    "coorte.t8.horas_piso.mediana",
-    "coorte.t8.horas_teto.mediana",
-    "coorte.t8.espera_antes.mediana",
-    "coorte.t8.espera_antes.max",
-    "coorte.t8.perda.prazo_concedido",
-    "coorte.t8.perda.diligencia_externa",
-    "tipico.t8.1.espera_antes",
-    "tipico.t8.2.espera_antes"
-   ]
-  },
-  "t9": {
-   "valor": "necessária sem valor",
-   "justificativa_valor": "O registro das providências é controle de cumprimento; a remessa dos autos à câmara só para ciência não agrega.",
-   "potencial_ia": "médio",
-   "tipos_ia": [
-    "monitoramento de prazos e alertas",
-    "painel e indicadores",
-    "automação de tramitação (RPA no SEI)"
-   ],
-   "aplicacao_ia": "Registrar automaticamente as providências expedidas e acompanhar as comprovações periódicas da concessionária e as respostas dos órgãos oficiados, com alerta de atraso e painel de pendências por instalação.",
-   "ganho_esperado": "Trabalho: parte da mediana de 0,5–1,7 h por ocorrência nos casos nativos (no piloto, 0,8–2,3 h por caso). O registro aparece em 9 casos (75%) e se repete em 3, porque as comprovações voltam ao processo: 21% das saídas do registro voltam à publicação e aos ofícios. Espera antes com mediana de 0,5 du nos casos nativos, mas até 83 du; evita que a comprovação recorrente dependa de controle manual (volume a medir).",
-   "controle_humano": "A avaliação de que a concessionária cumpriu e a eventual nova providência sancionatória.",
-   "melhoria_lean": "Dar ciência à câmara técnica sem tramitar os autos (ciência por bloco ou notificação no SEI).",
-   "fatos_usados": [
-    "coorte.t9.horas_piso.mediana",
-    "coorte.t9.horas_teto.mediana",
-    "tipico.t9.1.horas_piso",
-    "tipico.t9.2.horas_teto",
-    "coorte.t9.casos",
-    "coorte.t9.pct_casos",
-    "coorte.t9.casos_com_laco",
-    "coorte.transicao.t9.t8.pct",
-    "coorte.t9.espera_antes.mediana",
-    "coorte.t9.espera_antes.max"
+    "coorte.t7.execucao.mediana",
+    "critico.t5.2.espera_antes.PROC",
+    "critico.t7.1.espera_antes"
    ]
   }
  },
  "oportunidades": [
   {
-   "titulo": "Alerta de processo concluído em todas as unidades sem ato final",
+   "titulo": "Fila de pareceres da Procuradoria com marco de entrada, prazo-alvo e alerta de idade",
    "categoria": "IA + Lean",
-   "descricao": "Painel alimentado pelo andamento do SEI que lista os processos de fiscalização que nenhuma unidade tem aberto e que ainda não têm deliberação nem termo de encerramento, e os que estão com uma unidade há mais de um limite sem ato, com alerta ao responsável pela etapa seguinte (parecer técnico concluído sem remessa, parecer jurídico sem distribuição, gabinete sem ofício de razões finais).",
+   "descricao": "Registrar a data de remessa e a de assinatura de cada parecer, mostrar a fila por idade e alertar o chefe da unidade quando um processo passa do prazo-alvo, separando pendência de diligência de fila de carga.",
+   "atividades": [
+    "t7",
+    "t5"
+   ],
+   "ganho_esperado": "Ataca a espera, não o trabalho: 203 du com a Procuradoria antes da ciência do parecer jurídico, a maior posse por unidade do caso, com data no corpo do parecer (25/06/2026) diferente da assinatura (28/08/2026). Com um caso, não se estima redução; a medir.",
+   "impacto": "alto",
+   "esforco": "baixo",
+   "prerequisitos": "Registro da data de entrada e de assinatura no andamento do SEI; prazo-alvo definido pela Procuradoria.",
+   "riscos": "O alerta virar relatório sem ação; pareceres complexos que precisam de mais tempo apontados como atraso.",
+   "fatos_usados": [
+    "critico.t5.2.espera_antes.PROC",
+    "critico.posse.PROC"
+   ]
+  },
+  {
+   "titulo": "Dono e marco para o processo entre as etapas, com alerta de processo sem unidade e sem ato final",
+   "categoria": "IA + Lean",
+   "descricao": "Painel alimentado pelo andamento do SEI que lista os processos de fiscalização que nenhuma unidade tem aberto e ainda sem ato final, com alerta ao responsável pela etapa seguinte; o painel distingue prazo dado à concessionária (esperado) de processo parado.",
    "atividades": [
     "t4",
     "t5",
     "t6"
    ],
-   "ganho_esperado": "Ataca a espera, não o trabalho: o processo sem nenhuma unidade com ele aberto aparece em 10 dos 12 casos, com mediana de 72 du por caso nativo e máximo de 642 du, num caso parado antes da distribuição (espera de 643 du). No crítico do piloto, os 203 du sem unidade antes do parecer jurídico, que um painel só de processos abertos não pegaria, e os 106 du com o gabinete antes do ofício de razões finais. A redução depende da resposta da gestão ao alerta (a medir).",
+   "ganho_esperado": "Ataca a espera: 306 du sem nenhuma unidade com o processo aberto, dos quais 106 du antes do parecer técnico e 24 du antes da resposta à contestação. Parte do total é prazo dado à concessionária e intervalo programado do ciclo, que o painel deve excluir; a redução depende da resposta da gestão ao alerta (a medir).",
    "impacto": "alto",
    "esforco": "baixo",
-   "prerequisitos": "Extração periódica do andamento dos processos no SEI, inclusive de quem o tem aberto (já feita para este mapeamento); limites de prazo interno por etapa e responsável pela etapa seguinte aprovados pela Diretoria.",
-   "riscos": "Virar só um relatório, sem ninguém responsável por agir sobre o alerta; processos legitimamente sobrestados apontados como parados (prever marcação de sobrestamento).",
+   "prerequisitos": "Extração periódica do andamento no SEI; marcação de prazos dados à concessionária e de sobrestamento; responsável por etapa definido pela gestão.",
+   "riscos": "Alerta ignorado; prazos legítimos da concessionária tratados como atraso.",
    "fatos_usados": [
-    "coorte.posse.SEM UNIDADE.n",
-    "coorte.casos",
-    "coorte.posse.SEM UNIDADE.mediana",
-    "coorte.posse.SEM UNIDADE.max",
-    "coorte.t5.espera_antes.max",
+    "critico.posse.SEM UNIDADE",
     "critico.t4.1.espera_antes.SEM UNIDADE",
-    "critico.t6.1.espera_antes.CONS-02"
+    "critico.t6.1.espera_antes.SEM UNIDADE"
    ]
   },
   {
-   "titulo": "Fila de pauta com marco de razões finais decorridas",
+   "titulo": "Registro e vínculo da resposta da concessionária no processo principal no dia em que chega",
    "categoria": "Lean",
-   "descricao": "Quando vence o prazo de razões finais, o processo entra numa fila de prontos para julgamento visível ao Conselho, com o gabinete como responsável e prazo-alvo de pauta, em vez de ficar sem nenhuma unidade com ele aberto até a sessão; um alerta de decurso do prazo marca a entrada na fila.",
+   "descricao": "Vincular a resposta, hoje processo anexado sem peça própria, ao processo principal com data de recebimento, controlar o prazo do ofício de lote e avisar a câmara técnica; torna mensurável a espera de terceiros.",
    "atividades": [
+    "t3",
+    "t4"
+   ],
+   "ganho_esperado": "Não reduz trabalho de forma relevante (mediana de 0,8–1,1 h por ocorrência do ofício, nos casos nativos), mas elimina a ambiguidade: hoje a resposta só é datada pela juntada do processo anexado (138 du de espera da concessionária e 41 du indeterminados, não separáveis de processo parado); com o registro no dia da chegada, a espera de resposta passa a ter data real.",
+   "impacto": "médio",
+   "esforco": "baixo",
+   "prerequisitos": "Norma interna sobre juntada e vínculo das respostas; rotina de conferência no recebimento.",
+   "riscos": "Atraso na juntada passar a ser o novo ponto de espera.",
+   "fatos_usados": [
+    "critico.terceiros",
+    "critico.indeterminado",
+    "coorte.t3.horas_piso.mediana",
+    "coorte.t3.horas_teto.mediana"
+   ]
+  },
+  {
+   "titulo": "Ciência do parecer no dia da assinatura, sem passagem da Secretaria só para encaminhar",
+   "categoria": "Lean",
+   "descricao": "Quando o parecer é assinado, a ciência à concessionária sai por modelo e com RPA no SEI, sem remessa prévia à Secretaria; a câmara técnica comunica a Secretaria só para registro.",
+   "atividades": [
+    "t5",
+    "t6"
+   ],
+   "ganho_esperado": "Espera: 55 du com a Secretaria antes da primeira ciência e 2 du antes da segunda; o trabalho economizado é pequeno (mediana de 0,6–0,8 h por ocorrência nos casos nativos). Parte da espera pode ser controle de admissibilidade da Secretaria: confirmar.",
+   "impacto": "médio",
+   "esforco": "baixo",
+   "prerequisitos": "Modelo de ofício de ciência; autorização para a câmara técnica ou a Procuradoria enviarem a ciência.",
+   "riscos": "Perda de algum controle que a Secretaria faça nessa passagem.",
+   "fatos_usados": [
+    "critico.t5.1.espera_antes.SCEXEC",
+    "critico.t5.2.espera_antes.SCEXEC",
+    "coorte.t5.horas_piso.mediana",
+    "coorte.t5.horas_teto.mediana"
+   ]
+  },
+  {
+   "titulo": "Conferência automática do relatório de fiscalização antes da assinatura",
+   "categoria": "IA",
+   "descricao": "Comparar o corpo do relatório com o checklist anexo e acusar nome de município, concessionária, bloco ou número de processo que não pertença ao caso, valores divergentes e datas incoerentes, antes da assinatura e da remessa em lote.",
+   "atividades": [
+    "t2",
+    "t3"
+   ],
+   "ganho_esperado": "Trabalho e retrabalho: o relatório tem mediana de 30,5–49,2 h por ocorrência nos casos nativos, em 8 ocorrências, e os defeitos de texto-padrão e divergência corpo-checklist (peças citadas nos desperdícios) obrigam a conferência posterior. A fração de relatórios com defeito é a medir; não reduz espera.",
+   "impacto": "médio",
+   "esforco": "médio",
+   "prerequisitos": "Relatórios em texto pesquisável (há peça sem texto extraível); modelo único de relatório e de checklist; lista de termos proibidos por caso.",
+   "riscos": "Falso alarme; confiar na conferência e reduzir a revisão humana.",
+   "fatos_usados": [
+    "coorte.t2.horas_piso.mediana",
+    "coorte.t2.horas_teto.mediana",
+    "coorte.t2.espera_antes.n"
+   ]
+  },
+  {
+   "titulo": "Quadro de atendimento das recomendações e minutas de parecer técnico e jurídico a partir dos autos",
+   "categoria": "IA",
+   "descricao": "Consolidar as respostas da concessionária por recomendação, montar a linha do tempo dos lotes e a minuta do parecer técnico, do despacho de resposta à contestação e do parecer jurídico, prontas na chegada à unidade.",
+   "atividades": [
+    "t4",
     "t6",
     "t7"
    ],
-   "ganho_esperado": "Ataca a maior espera da coorte: antes da relatoria, mediana de 58,5 du nas 10 ocorrências dos casos nativos, com terceiro quartil de 81,8 du. No piloto, os 82 du (típico) e 81 du (crítico) sem unidade com o processo aberto entre o ofício de razões finais e a juntada da relatoria. Parte desse tempo é o prazo de razões finais, que é rito; o restante depende da pauta (redução a medir).",
-   "impacto": "alto",
-   "esforco": "baixo",
-   "prerequisitos": "Regra interna sobre quem mantém o processo após as razões finais e prazo-alvo de pauta; registro do decurso do prazo no SEI.",
-   "riscos": "A pauta depende do Conselho-Diretor; a fila só reduz espera se houver prazo-alvo acompanhado.",
+   "ganho_esperado": "Trabalho: 11,4–16,1 h do parecer técnico, 2–3 h da resposta à contestação e 6–16,3 h do parecer jurídico, em uma ocorrência de cada. Reduz espera só se a fila for de carga de trabalho: os 106 du antes do parecer técnico e os 203 du com a Procuradoria não são separáveis de prazo ou pendência (a medir).",
+   "impacto": "médio",
+   "esforco": "médio",
+   "prerequisitos": "Acesso ao texto integral dos autos e das respostas anexadas; modelos validados pela câmara técnica e pela Procuradoria.",
+   "riscos": "Minuta aceita sem revisão; erro de enquadramento; revisão do procurador e do técnico obrigatória.",
    "fatos_usados": [
-    "coorte.t7.espera_antes.mediana",
-    "coorte.t7.espera_antes.n",
-    "coorte.t7.espera_antes.q3",
-    "tipico.t7.1.espera_antes.SEM UNIDADE",
-    "critico.t7.1.espera_antes.SEM UNIDADE"
-   ]
-  },
-  {
-   "titulo": "Fluxo direto câmara técnica → Procuradoria → gabinete, com sorteio em ciclo curto",
-   "categoria": "Lean",
-   "descricao": "Eliminar as passagens da Secretaria só para encaminhar: a câmara técnica remete o processo direto à Procuradoria, com prazo interno para o parecer jurídico; o sorteio ocorre em ciclo fixo curto (ou por sistema) e o processo chega ao gabinete com o ofício de razões finais já gerado (RPA no SEI).",
-   "atividades": [
-    "t4",
-    "t5",
-    "t6"
-   ],
-   "ganho_esperado": "Espera: antes do parecer jurídico, mediana de 36,5 du nas ocorrências dos casos nativos; antes da distribuição, mediana de 15 du nos casos nativos; a Secretaria tem a posse nos 12 casos, com mediana de 50 du por caso nativo. No piloto, 32 du e 23 du com a Secretaria no típico. O trabalho economizado é pequeno (despacho com mediana de 0,1–0,4 h e ofício de razões finais com mediana de 0,8–1,1 h por ocorrência nos casos nativos).",
-   "impacto": "alto",
-   "esforco": "baixo",
-   "prerequisitos": "Ajuste de rotina interna ou portaria sobre tramitação e periodicidade do sorteio; modelo de ofício de razões finais.",
-   "riscos": "Perda de algum controle de admissibilidade que a Secretaria faça nessas passagens (confirmar se ela confere algo).",
-   "fatos_usados": [
-    "coorte.t4.espera_antes.mediana",
-    "coorte.t5.espera_antes.mediana",
-    "coorte.posse.SCEXEC.n",
-    "coorte.posse.SCEXEC.mediana",
-    "tipico.t4.1.espera_antes.SCEXEC",
-    "tipico.t5.1.espera_antes.SCEXEC",
-    "coorte.t5.horas_piso.mediana",
-    "coorte.t5.horas_teto.mediana",
+    "coorte.t4.horas_piso.mediana",
+    "coorte.t4.horas_teto.mediana",
     "coorte.t6.horas_piso.mediana",
-    "coorte.t6.horas_teto.mediana"
+    "coorte.t6.horas_teto.mediana",
+    "coorte.t7.horas_piso.mediana",
+    "coorte.t7.horas_teto.mediana",
+    "critico.t4.1.espera_antes.SEM UNIDADE",
+    "critico.t5.2.espera_antes.PROC"
    ]
   },
   {
-   "titulo": "Relatório de fiscalização e termo de notificação assistidos, com checagem de reincidência",
-   "categoria": "IA",
-   "descricao": "Aplicativo de campo com checklist padronizado e fotos; a IA gera a minuta do relatório e do Termo de Notificação, cita a base normativa, confere licenças e certificados e mostra as notificações anteriores da mesma instalação, para escalonar a resposta quando a pendência se repete.",
+   "titulo": "Calendário do ciclo anual com ofícios de agendamento e de lote por modelo",
+   "categoria": "Lean",
+   "descricao": "Calendário único do ciclo, com ofícios de agendamento e de lote gerados por modelo e alertas de unidade sem agendamento ou lote sem envio.",
    "atividades": [
     "t1",
     "t3"
    ],
-   "ganho_esperado": "Trabalho: parte da mediana de 7,4–12,1 h por ocorrência da vistoria e de 3,0–7,9 h do parecer técnico, nos casos nativos. A escala é relevante pelo volume (662 fiscalizações em 2025), mas a fração que gera relatório e termo está a medir. Não reduz espera.",
-   "impacto": "alto",
-   "esforco": "médio",
-   "prerequisitos": "Checklist e modelos padronizados (manuais em criação); base histórica de termos de notificação por instalação; validação dos modelos com a CAENE e a CASAN.",
-   "riscos": "Relatório padronizado demais esconder achado atípico; dependência de foto e checklist bem preenchidos em campo.",
+   "ganho_esperado": "Trabalho pequeno (mediana de 2–2,3 h por ocorrência do agendamento e de 0,8–1,1 h do ofício de lote, nos casos nativos): ganho de padronização e de controle, não de espera relevante (a medir).",
+   "impacto": "baixo",
+   "esforco": "baixo",
+   "prerequisitos": "Lista de unidades por município ou região e modelos de ofício.",
+   "riscos": "Calendário rígido demais para vistorias motivadas por demanda.",
    "fatos_usados": [
     "coorte.t1.horas_piso.mediana",
     "coorte.t1.horas_teto.mediana",
     "coorte.t3.horas_piso.mediana",
     "coorte.t3.horas_teto.mediana"
    ]
-  },
-  {
-   "titulo": "Instrução técnica concentrada: requisição única, contraditório com prazo controlado e reanálise focada",
-   "categoria": "IA + Lean",
-   "descricao": "Ao receber a defesa, a IA lista de uma vez tudo o que falta e gera um único ofício à concessionária e as consultas a órgãos em paralelo; o contraditório sobre o parecer sai com o parecer anexo assim que ele é assinado, com controle do prazo e critério escrito para dilação; quando a manifestação chega, a câmara recebe o quadro do que foi contestado, e a reanálise trata só disso.",
-   "atividades": [
-    "t2",
-    "t3",
-    "t10",
-    "t11"
-   ],
-   "ganho_esperado": "A requisição aparece em 4 casos (33%), com execução de até 52 du numa ocorrência; a notificação sobre o parecer, em 42% dos casos, com metade das saídas voltando ao parecer técnico, que se repete em 5 casos; a dilação de prazo, em 2 casos. Reduz o trabalho das rodadas de parecer técnico (mediana de 3,0–7,9 h por ocorrência nos casos nativos) e parte da espera antes delas (mediana de 9,5 du nos casos nativos, máximo de 234 du); no crítico do piloto, os pedidos em série ocuparam 7 du de execução. Redução a medir.",
-   "impacto": "médio",
-   "esforco": "baixo",
-   "prerequisitos": "Lista padrão de documentos por tipo de instalação; norma interna sobre quando o parecer vai a contraditório e sobre dilação; contato institucional com o INEA para consultas de abrangência de licença.",
-   "riscos": "Pedido amplo demais gerar pedidos de prorrogação da concessionária; contraditório reduzido demais gerar nulidade (validar com a Procuradoria).",
-   "fatos_usados": [
-    "coorte.t2.casos",
-    "coorte.t2.pct_casos",
-    "coorte.t2.execucao.max",
-    "coorte.t10.pct_casos",
-    "coorte.transicao.t10.t3.pct",
-    "coorte.t3.casos_com_laco",
-    "coorte.t11.casos",
-    "coorte.t3.horas_piso.mediana",
-    "coorte.t3.horas_teto.mediana",
-    "coorte.t3.espera_antes.mediana",
-    "coorte.t3.espera_antes.max",
-    "critico.t2.1.execucao"
-   ]
-  },
-  {
-   "titulo": "Minuta de parecer jurídico e de relatório do relator montadas a partir dos autos",
-   "categoria": "IA",
-   "descricao": "Linha do tempo automática dos atos, checklist de contraditório e prazos, notificações anteriores sobre a mesma pendência e minuta do parecer jurídico e da parte descritiva do relatório do relator, prontas na chegada do processo à unidade.",
-   "atividades": [
-    "t4",
-    "t7"
-   ],
-   "ganho_esperado": "Trabalho: parte da mediana de 4,0–11,3 h por ocorrência do parecer jurídico e de 7–18,4 h da relatoria, nos casos nativos. Reduz espera só na medida em que a fila da Procuradoria for de carga (mediana de 36,5 du antes do parecer nos casos nativos).",
-   "impacto": "médio",
-   "esforco": "médio",
-   "prerequisitos": "Acesso ao texto integral dos autos no SEI (há peças restritas); base de deliberações e pareceres indexada; modelos validados pela Procuradoria e pelos gabinetes.",
-   "riscos": "Confiança excessiva na minuta; erro de enquadramento não detectado. A revisão do procurador e do relator é obrigatória.",
-   "fatos_usados": [
-    "coorte.t4.horas_piso.mediana",
-    "coorte.t4.horas_teto.mediana",
-    "coorte.t7.horas_piso.mediana",
-    "coorte.t7.horas_teto.mediana",
-    "coorte.t4.espera_antes.mediana"
-   ]
-  },
-  {
-   "titulo": "Acompanhamento automático das determinações e das comprovações periódicas",
-   "categoria": "IA",
-   "descricao": "Extrair das deliberações as determinações e os prazos, gerar os ofícios de cumprimento e acompanhar as comprovações com alerta de atraso e painel por instalação e concessionária.",
-   "atividades": [
-    "t8",
-    "t9"
-   ],
-   "ganho_esperado": "Trabalho: parte da mediana de 1,1–1,8 h por ocorrência dos ofícios e de 0,5–1,7 h do registro, nos casos nativos. O registro se repete em 3 casos e 21% das saídas dele voltam aos ofícios: o controle das obrigações recorrentes é o ganho real (efeito a medir).",
-   "impacto": "médio",
-   "esforco": "médio",
-   "prerequisitos": "Deliberações em texto estruturável; registro das comprovações recebidas por peticionamento no próprio processo.",
-   "riscos": "Volume de alertas sem equipe para tratá-los; obrigações recorrentes sem data de término definida.",
-   "fatos_usados": [
-    "coorte.t8.horas_piso.mediana",
-    "coorte.t8.horas_teto.mediana",
-    "coorte.t9.horas_piso.mediana",
-    "coorte.t9.horas_teto.mediana",
-    "coorte.t9.casos_com_laco",
-    "coorte.transicao.t9.t8.pct"
-   ]
   }
  ],
  "indicadores_sugeridos": [
-  "Lead time da vistoria à deliberação (du), mediana e percentil 90",
-  "Processos sem nenhuma unidade com eles abertos e sem deliberação ou termo de encerramento, e há quantos dias úteis",
-  "Idade do estoque: processos sem ato há mais de 20 du, por unidade",
-  "Dias úteis entre o parecer técnico e a remessa à Procuradoria e entre o parecer jurídico e a distribuição",
-  "Dias úteis entre o decurso das razões finais e a sessão",
-  "Rodadas de parecer técnico por processo (contraditório sobre o parecer e reanálise)",
-  "Pedidos de dilação de prazo e dias úteis adicionais concedidos",
-  "Taxa de devolução do relator à Procuradoria e às câmaras técnicas",
-  "Percentual de processos de fiscalização com deliberação",
-  "Reincidência: instalações com mais de uma notificação sobre a mesma pendência",
-  "Comprovações periódicas recebidas no prazo (%)"
+  "Dias úteis entre a remessa à Procuradoria e a assinatura do parecer, com a data no corpo do parecer",
+  "Processos de fiscalização sem nenhuma unidade com eles abertos e sem ato final, e há quantos dias úteis",
+  "Dias úteis entre o fim do prazo dado à concessionária e o início do parecer técnico",
+  "Dias úteis entre a assinatura do parecer e a ciência à concessionária",
+  "Data de recebimento de cada resposta da concessionária (para medir a espera de terceiros)",
+  "Relatórios de fiscalização com divergência entre corpo e checklist ou com texto de outro caso, por lote",
+  "Ofícios de lote sem resposta dentro do prazo concedido",
+  "Processos sobrestados e acompanhamento das providências"
  ],
  "perguntas_validacao": [
-  "Em que hipóteses o parecer técnico vai a contraditório da concessionária antes do parecer jurídico, e por que isso ocorre só em parte dos processos?",
-  "Há critério para deferir pedidos de dilação de prazo?",
-  "Os dias com a Secretaria antes da remessa à Procuradoria correspondem a alguma conferência ou são só fila?",
-  "Por que a Secretaria concluiu o processo crítico depois do Parecer 86 sem remetê-lo à Procuradoria, e a nova vistoria na mesma estação (TN 019/2024) influiu nisso?",
-  "No processo que ficou sem nenhuma unidade com ele aberto antes da distribuição por mais de 600 du, o que se aguardava?",
-  "Depois do ofício de razões finais, o gabinete conclui o processo até a pauta? Quem controla os processos prontos para julgamento?",
-  "Com que frequência ocorrem as reuniões internas de sorteio?",
-  "Por que os dois casos-piloto, abertos com um ano de diferença, foram julgados na mesma sessão de 27/05/2026: houve mutirão de pauta?",
-  "Os processos que terminam, no período observado, na distribuição ao relator estão aguardando pauta, sobrestados ou sem responsável?",
-  "As vistorias são programadas ou motivadas por demanda? Existe planejamento por risco?",
-  "Das 662 fiscalizações de 2025, quantas geram termo de notificação e processo sancionatório?",
-  "A câmara técnica pode remeter o processo direto à Procuradoria, sem passar pela Secretaria?",
-  "Por que a pendência do CBMERJ se repete em várias notificações: a agência tem canal institucional com o CBMERJ para destravar laudos?"
+  "Nos 203 du com a Procuradoria, houve diligência, fila de carga ou parecer pronto aguardando assinatura (a data no corpo do Parecer 759 é 25/06/2026 e a assinatura é 28/08/2026)?",
+  "O que o processo aguardava entre a última remessa de relatórios (30/01/2025) e o Parecer CASAN 250/2025 (08/07/2025): prazo dado à concessionária, análise ou nada? Quem era o dono do processo nesse intervalo?",
+  "Dos 306 du sem unidade, quanto é intervalo programado do ciclo anual e quanto é processo parado?",
+  "Onde se vê a data de cada resposta da concessionária (processos anexados sem peça própria) e o que ela respondeu a cada lote?",
+  "Como os trechos de outro caso (Pomerode, CEDAE, Bloco 04) entraram nos relatórios, quem confere o texto antes da assinatura e os relatórios foram corrigidos? A peça SEI 89901514, com outro número de processo (SEI-480002/001547/2024), foi juntada por engano?",
+  "A peça SEI 68285969, juntada como Deliberação, é a compilação do Diário Oficial de 2021: qual é o ato que fundamenta o ciclo de fiscalização e deve constar do processo?",
+  "Os 55 du com a Secretaria antes da ciência do parecer técnico correspondem a alguma conferência ou são só fila?",
+  "Por que o processo passou pela CARES em 20/05/2024 sem peça?",
+  "A contestação sobre o alcance da fiscalização é frequente? Há posição institucional ou modelo de resposta?",
+  "Qual é o critério de sobrestamento (28/08/2026), quem acompanha as providências depois e o que dispara a retomada?",
+  "As horas estimadas (inclusive o piso acima do teto no parecer técnico) conferem com a experiência dos servidores? Calibrar antes de qualquer estimativa de ganho."
  ],
  "validado_contra": {
-  "fatos_sha": "bad89f987c20909b",
-  "data": "2026-10-30 22:29"
+  "fatos_sha": "4a6b7823ce862213",
+  "data": "2026-11-04 15:03"
  }
 }

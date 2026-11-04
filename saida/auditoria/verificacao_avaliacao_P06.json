@@ -1,0 +1,544 @@
+{
+  "afirmacoes": [
+    {
+      "bloco": "sintese",
+      "afirmacao": "Coorte tem um único processo, nativo do SEI (SEI-480002/001314/2024)",
+      "veredito": "correta",
+      "fonte": "coorte.casos; coorte.trilha.nativa",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Fiscalizações programadas de 2024 nas unidades da Águas do Rio – Bloco 1",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json processo.fontes; peça 120665498",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Um só caminho na coorte",
+      "veredito": "correta",
+      "fonte": "coorte.n_caminhos",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Sem auditoria de classificador",
+      "veredito": "correta",
+      "fonte": "saida/auditoria/ (só existe auditoria_automatica.json, de trilha, fichas e modelos)",
+      "nota": "Afirmação verdadeira por ausência; a única auditoria do P06 não é de classificador."
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "297,7–480,3 h de trabalho estimado",
+      "veredito": "correta",
+      "fonte": "critico.horas_piso; critico.horas_teto",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Lead time de 636 du",
+      "veredito": "correta",
+      "fonte": "critico.lead",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "552 du de espera entre atividades e 84 du de execução",
+      "veredito": "correta",
+      "fonte": "critico.espera_total; critico.execucao_total",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "306 du sem nenhuma unidade com o processo aberto",
+      "veredito": "correta",
+      "fonte": "critico.posse.SEM UNIDADE",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "203 du com a Procuradoria antes do Parecer 759/2025",
+      "veredito": "correta",
+      "fonte": "critico.posse.PROC; critico.t5.2.espera_antes.PROC",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Parecer 759/2025 assinado em 28/08/2026",
+      "veredito": "correta",
+      "fonte": "critico.t7.1.inicio; peça 120665498 (assinatura em 28/08/2026)",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Data no corpo do parecer é 25/06/2026",
+      "veredito": "correta",
+      "fonte": "peça 120665498 (\"Rio de Janeiro, 25 de junho de 2026\")",
+      "nota": "Escrita por extenso no texto da peça."
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "Ciência do parecer no mesmo dia em que o processo foi sobrestado",
+      "veredito": "correta",
+      "fonte": "dados/coleta/andamentos_original.csv (2026-08-28 12:26, SCEXEC, \"Sobrestamento. Ofício - NA 2606\")",
+      "nota": ""
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "A concessionária contestou o alcance da fiscalização",
+      "veredito": "correta",
+      "fonte": "peças 117907053 e 120665498 (questionamento da concessionária)",
+      "nota": "O texto das peças diz \"questionamento\"; o termo \"contestação\" vem do modelo (t6, g2)."
+    },
+    {
+      "bloco": "sintese",
+      "afirmacao": "O processo terminou sobrestado, sem encerramento",
+      "veredito": "correta",
+      "fonte": "casos_P06.json encerrado=false; andamento de sobrestamento de 28/08/2026",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Lead de 636 du é a mediana de um caso nativo",
+      "veredito": "correta",
+      "fonte": "coorte.caso.lead.mediana",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Lead mediano dos nativos e de toda a carteira também é 636 du; carteira tem um processo",
+      "veredito": "correta",
+      "fonte": "carteira.lead_mediano_nativos; carteira.lead_mediano_todos; carteira.processos",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "552 du de espera e 84 du de execução",
+      "veredito": "correta",
+      "fonte": "critico.espera_total; critico.execucao_total",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Eficiência do ciclo de 7,8–12,6% segundo as fichas",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json casos[0].pce_pct",
+      "nota": "Conferido com a ficha. Atenção: 84/636 = 13,2% fica fora dessa faixa; a base de cálculo da faixa não está nos fatos e deve ser declarada."
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Espera dominante em 89% do tempo",
+      "veredito": "imprecisa",
+      "fonte": "fichas_P06.json casos[0].pct_tempo_espera_dominante = 89,0; fatos critico.espera_total e critico.lead",
+      "nota": "A ficha dá 89%, mas os fatos dão 552/636 = 86,8%. Sugestão: \"espera de 86,8% do lead (552 de 636 du)\", ou nomear a base do 89%."
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "6 passagens entre unidades",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json casos[0].passagens = 6",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "1 retorno a unidade já visitada",
+      "veredito": "correta",
+      "fonte": "coorte.caso.retornos.mediana; fichas casos[0].retornos = 1",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "306 du sem unidade não se separam de processo parado",
+      "veredito": "correta",
+      "fonte": "critico.posse.SEM UNIDADE; definicao posse em fatos_P06.json",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "203 du com a Procuradoria",
+      "veredito": "correta",
+      "fonte": "critico.posse.PROC",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "70 du com a CASAN e 57 du com a Secretaria",
+      "veredito": "correta",
+      "fonte": "critico.posse.CASAN; critico.posse.SCEXEC",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "CARES teve o processo por 0 du (passagem de 20/05/2024 sem peça)",
+      "veredito": "correta",
+      "fonte": "critico.posse.CARES; dados/coleta/andamentos_original.csv (CARES recebido e concluído em 2024-05-20, sem peça)",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Espera confirmada de terceiros é de 0 du",
+      "veredito": "correta",
+      "fonte": "critico.terceiros",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Tempo indeterminado é de 180 du",
+      "veredito": "correta",
+      "fonte": "critico.indeterminado",
+      "nota": ""
+    },
+    {
+      "bloco": "leitura_metricas",
+      "afirmacao": "Respostas da concessionária entram como processos anexados, sem peça própria",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t3.observacoes",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "A Procuradoria é a maior posse por unidade do caso",
+      "veredito": "correta",
+      "fonte": "critico.posse.PROC",
+      "nota": "Maior entre as unidades; SEM UNIDADE (306 du) não é unidade."
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Espera de 205 du antes da ciência é a maior espera antes de uma atividade",
+      "veredito": "correta",
+      "fonte": "critico.t5.2.espera_antes",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Vem depois de uma sequência de esperas sem dono (antes do parecer técnico, antes da ciência e antes da resposta à contestação)",
+      "veredito": "imprecisa",
+      "fonte": "critico.t4.1.espera_antes.SEM UNIDADE; critico.t5.1.espera_antes.SCEXEC; critico.t6.1.espera_antes.SEM UNIDADE",
+      "nota": "A espera antes da ciência (55 du) é com a SCEXEC, que tem dono. Sem dono são os 106 du (parecer técnico) e os 24 du (resposta à contestação). Corrigir para \"esperas sem unidade ... e uma espera com a Secretaria antes da ciência\"."
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Espera antes da ciência do parecer jurídico é de 205 du",
+      "veredito": "correta",
+      "fonte": "critico.t5.2.espera_antes",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Dessas, 203 du com a Procuradoria e 2 du com a Secretaria",
+      "veredito": "correta",
+      "fonte": "critico.t5.2.espera_antes.PROC; critico.t5.2.espera_antes.SCEXEC",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Antes do parecer jurídico o fato registra 0 du",
+      "veredito": "correta",
+      "fonte": "critico.t7.1.espera_antes",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Data no corpo do parecer (25/06/2026) difere da assinatura (28/08/2026)",
+      "veredito": "correta",
+      "fonte": "peça 120665498; critico.t7.1.inicio",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Segunda maior espera é de 106 du sem nenhuma unidade",
+      "veredito": "correta",
+      "fonte": "critico.t4.1.espera_antes.SEM UNIDADE",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "Esse intervalo vai da última remessa (30/01/2025) ao Parecer CASAN 250/2025 (08/07/2025)",
+      "veredito": "correta",
+      "fonte": "critico.t3.7.inicio; critico.t4.1.inicio; peça 104033188 (Parecer 250, 08/07/2025)",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "55 du com a Secretaria antes da ciência do parecer técnico",
+      "veredito": "correta",
+      "fonte": "critico.t5.1.espera_antes.SCEXEC",
+      "nota": ""
+    },
+    {
+      "bloco": "gargalo",
+      "afirmacao": "\"Em seguida vêm ... 24 du sem unidade antes da resposta à contestação\" (ordem das esperas)",
+      "veredito": "imprecisa",
+      "fonte": "critico.t2.7.espera_antes.SEM UNIDADE; critico.t2.8.espera_antes.SEM UNIDADE; critico.t6.1.espera_antes.SEM UNIDADE",
+      "nota": "Pela ordem de tamanho, 28 du e 27 du sem unidade (antes de duas vistorias) vêm antes dos 24 du. Corrigir a sequência ou dizer que a lista é só das quatro esperas do desperdício."
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Com um único caso não há dispersão entre processos",
+      "veredito": "correta",
+      "fonte": "coorte.casos = 1",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Caminho é um só (n_caminhos = 1) e há laço",
+      "veredito": "correta",
+      "fonte": "coorte.n_caminhos; coorte.t2.casos_com_laco = 1; coorte.t3.casos_com_laco = 1",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "6 passagens do ofício de lote de volta à vistoria, 86% das saídas",
+      "veredito": "correta",
+      "fonte": "coorte.transicao.t3.t2 = 6; coorte.transicao.t3.t2.pct = 86 (6 de 7 saídas)",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Agendamento volta à vistoria em metade das saídas",
+      "veredito": "correta",
+      "fonte": "saida/fase2/casos_P06.json (ocorrências 6→t3 e 11→t2, 1 de 2)",
+      "nota": "Valor correto, mas o fato citado (coorte.transicao.t2.t1.pct = 25%) é o sentido inverso. Falta um id para t1→t2."
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Ciência se repete duas vezes",
+      "veredito": "correta",
+      "fonte": "coorte.t5.espera_antes.n = 2; casos_P06 ocorrências 19 e 21",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Oito ocorrências de vistoria: espera antes com mediana de 10,5 du",
+      "veredito": "correta",
+      "fonte": "coorte.t2.espera_antes.mediana = 10,5; coorte.t2.espera_antes.n = 8",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Terceiro quartil da espera antes da vistoria de 21,8 du",
+      "veredito": "correta",
+      "fonte": "coorte.t2.espera_antes.q3 = 21,8",
+      "nota": "Conferido: quartil 75% da amostra (1,2,2,2,19,20,27,28) = 21,75."
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Espera antes da vistoria, máximo de 28 du",
+      "veredito": "correta",
+      "fonte": "coorte.t2.espera_antes.max = 28",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Execução na vistoria tem mediana de 4,5 du e máximo de 35 du",
+      "veredito": "correta",
+      "fonte": "coorte.t2.execucao.mediana = 4,5; coorte.t2.execucao.max = 35",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Horas estimadas da vistoria: mediana de 30,5 h no piso e máximo de 66 h",
+      "veredito": "correta",
+      "fonte": "coorte.t2.horas_piso.mediana = 30,5; coorte.t2.horas_piso.max = 66",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Sete remessas: espera antes com mediana de 6 du e máximo de 11 du",
+      "veredito": "correta",
+      "fonte": "coorte.t3.espera_antes.mediana = 6; coorte.t3.espera_antes.max = 11; n = 7",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Execução do ofício de lote com mediana de 0 du e máximo de 1 du",
+      "veredito": "correta",
+      "fonte": "coorte.t3.execucao.mediana = 0; coorte.t3.execucao.max = 1",
+      "nota": ""
+    },
+    {
+      "bloco": "variabilidade",
+      "afirmacao": "Relatórios com trechos de outro caso e divergências entre corpo e checklist (ex.: SEI 74334571 e 79900134)",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t2.observacoes; peças listadas são relatórios de fiscalização",
+      "nota": "O tipo das peças e a observação estão confirmados. A divergência de cada peça não foi reconferida uma a uma."
+    },
+    {
+      "bloco": "desperdicios/Espera",
+      "afirmacao": "Quatro esperas: 203 du com a Procuradoria, 106 du sem unidade, 55 du com a Secretaria e 24 du sem unidade",
+      "veredito": "correta",
+      "fonte": "critico.t5.2.espera_antes.PROC; critico.t4.1.espera_antes.SEM UNIDADE; critico.t5.1.espera_antes.SCEXEC; critico.t6.1.espera_antes.SEM UNIDADE",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Espera",
+      "afirmacao": "Prazo dado à concessionária de 30 dias nos ofícios de lote",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t3.sinais_perda = \"prazo de 30 (trinta) dias\"",
+      "nota": "Prazo do ofício de lote confirmado na ficha. A peça 72838107 citada na ficha é relatório, não ofício."
+    },
+    {
+      "bloco": "desperdicios/Estoque",
+      "afirmacao": "306 du sem unidade, quase metade do lead de 636 du",
+      "veredito": "correta",
+      "fonte": "critico.posse.SEM UNIDADE; critico.lead",
+      "nota": "306/636 = 48%."
+    },
+    {
+      "bloco": "desperdicios/Estoque",
+      "afirmacao": "Processo terminou sobrestado, sem ato final",
+      "veredito": "correta",
+      "fonte": "casos_P06 encerrado=false; andamento de sobrestamento de 28/08/2026",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Estoque",
+      "afirmacao": "28 du antes de uma vistoria e 27 du antes de outra",
+      "veredito": "correta",
+      "fonte": "critico.t2.7.espera_antes.SEM UNIDADE = 28; critico.t2.8.espera_antes.SEM UNIDADE = 27",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Estoque",
+      "afirmacao": "106 du sem unidade antes do parecer técnico",
+      "veredito": "correta",
+      "fonte": "critico.t4.1.espera_antes.SEM UNIDADE",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Defeitos",
+      "afirmacao": "Trechos de outro caso no texto-padrão: Pomerode, CEDAE e Bloco 04",
+      "veredito": "correta",
+      "fonte": "peças 72851141, 86826664 (Pomerode); 79575319 (CEDAE); 82895573, 79573103 (Bloco 04)",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Defeitos",
+      "afirmacao": "Divergências corpo×checklist nas 11 peças listadas",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t2.observacoes; peças listadas são relatórios de fiscalização",
+      "nota": "Tipo de peça confirmado; divergência de cada uma não reconferida."
+    },
+    {
+      "bloco": "desperdicios/Defeitos",
+      "afirmacao": "Peça SEI 89901514 indica o processo SEI-480002/001547/2024",
+      "veredito": "correta",
+      "fonte": "peça 89901514 (texto contém SEI-480002/001547/2024)",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Defeitos",
+      "afirmacao": "Peça SEI 68285969 juntada como Deliberação é compilação do Diário Oficial com a Deliberação 4.216/2021",
+      "veredito": "correta",
+      "fonte": "peça 68285969 (cabeçalho \"Deliberação\"; corpo com DO de 2021 e \"DELIBERAÇÃO AGENERSA Nº 4216 DE 28 DE ABRIL DE 2021\")",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Defeitos",
+      "afirmacao": "Ficha registra sinais de pedido de complementação, prazo concedido e reiteração na vistoria",
+      "veredito": "correta",
+      "fonte": "coorte.t2.perda.pedido_complementacao; coorte.t2.perda.prazo_concedido; coorte.t2.perda.reiteracao",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Transporte",
+      "afirmacao": "6 passagens entre unidades",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json casos[0].passagens = 6",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Transporte",
+      "afirmacao": "Secretaria ficou 57 du com o processo",
+      "veredito": "correta",
+      "fonte": "critico.posse.SCEXEC",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Transporte",
+      "afirmacao": "55 du antes de dar ciência do parecer técnico",
+      "veredito": "correta",
+      "fonte": "critico.t5.1.espera_antes.SCEXEC",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Transporte",
+      "afirmacao": "Despacho de 0,6–0,8 h por ocorrência nos casos nativos",
+      "veredito": "correta",
+      "fonte": "coorte.t5.horas_piso.mediana = 0,6; coorte.t5.horas_teto.mediana = 0,8",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Transporte",
+      "afirmacao": "Passagem pela CARES em 20/05/2024, sem peça, com 0 du de posse",
+      "veredito": "correta",
+      "fonte": "critico.posse.CARES = 0; dados/coleta/andamentos_original.csv",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Movimentacao",
+      "afirmacao": "12 ofícios no caso nativo",
+      "veredito": "correta",
+      "fonte": "coorte.caso.oficios.mediana = 12",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Movimentacao",
+      "afirmacao": "Espera de terceiros de 0 du apesar de 12 ofícios",
+      "veredito": "correta",
+      "fonte": "critico.terceiros; coorte.caso.oficios.mediana",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Movimentacao",
+      "afirmacao": "Resposta da concessionária foi a base do parecer técnico",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t4.descritivo (\"consolida as respostas\")",
+      "nota": "Interpretação da ficha; a ficha diz que o parecer consolida as respostas."
+    },
+    {
+      "bloco": "desperdicios/Superprocessamento",
+      "afirmacao": "272 laudas de relatórios em 8 ocorrências de vistoria",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t2.laudas = 272; coorte.t2.espera_antes.n = 8",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Superprocessamento",
+      "afirmacao": "Mediana de 30,5–49,2 h por ocorrência",
+      "veredito": "correta",
+      "fonte": "coorte.t2.horas_piso.mediana = 30,5; coorte.t2.horas_teto.mediana = 49,2",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Superprocessamento",
+      "afirmacao": "Ciência mobiliza peça de 4 laudas no total",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t5.laudas = 4",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Talento",
+      "afirmacao": "Ofícios de lote com gerente: mediana de 0,8–1,1 h, em 7 ocorrências",
+      "veredito": "correta",
+      "fonte": "coorte.t3.horas_piso.mediana = 0,8; coorte.t3.horas_teto.mediana = 1,1; coorte.t3.espera_antes.n = 7",
+      "nota": ""
+    },
+    {
+      "bloco": "desperdicios/Talento",
+      "afirmacao": "Assinados por gerentes (7 assinaturas na ficha)",
+      "veredito": "correta",
+      "fonte": "fichas_P06.json atividades.t3.cargos = \"Gerente (7)\"",
+      "nota": "Leitura de cargos como contagem de assinaturas é inferência da ficha; confirmar."
+    }
+  ],
+  "resumo": {
+    "total": 76,
+    "correta": 73,
+    "imprecisa": 3,
+    "alucinacao": 0,
+    "contradita": 0,
+    "alucinacao_em_numero_que_sustenta_conclusao": 0
+  }
+}

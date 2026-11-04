@@ -24,6 +24,7 @@ import pandas as pd
 import requests
 
 from comum import DADOS, DESCRICAO_ORGAO, ORGAO, SAIDA, documentos
+from fichas_atividades import limpar_pessoais
 
 REL = DADOS / "relator"
 CACHE = DADOS / "fichas"

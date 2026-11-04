@@ -466,3 +466,19 @@ def test_priorizacao_custo_incremental_e_payback():
     assert iso == pytest.approx(HORAS_PLATAFORMA + HORAS_CAPACIDADE["classificação e triagem"] + inc)
     assert payback_anos(100, 60, 10) == 2.0
     assert payback_anos(100, 10, 10) is None  # retorno não cobre o custo anual: nunca se paga
+
+
+def test_fichas_trabalho_limpa_dados_pessoais_antes_de_gravar():
+    """Falha achada no estudo de caso SEI-480002/001314/2024: fichas_trabalho.py chamava limpar_pessoais sem importá-la
+    e quebrava na gravação (NameError) depois de todas as fichas prontas."""
+    import fichas_trabalho
+    assert fichas_trabalho.limpar_pessoais({"x": "e-mail fulano@exemplo.com"}) == limpar_pessoais({"x": "e-mail fulano@exemplo.com"})
+
+
+def test_priorizacao_grafico_sem_volume_medido_nao_quebra(tmp_path, monkeypatch):
+    """Falha achada no estudo de caso SEI-480002/001314/2024: sem volume medido em nenhum tipo, grafico() fazia max() de
+    lista vazia. Agora avisa e não gera o gráfico."""
+    import priorizacao_automacao as pa
+    monkeypatch.setattr(pa, "OUT", tmp_path)
+    pa.grafico(pd.DataFrame({"retorno_ano_esperado": [None], "codigo": ["P06"]}))
+    assert not (tmp_path / "matriz_automacao.png").exists()

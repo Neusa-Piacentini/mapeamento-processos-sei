@@ -313,6 +313,10 @@ def grafico(df: pd.DataFrame) -> None:
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
     d = df.dropna(subset=["retorno_ano_esperado"])
+    if d.empty:  # nenhum tipo com volume medido (órgão novo, estudo de caso): não há custo × retorno a desenhar
+        print("aviso: nenhum tipo com retorno calculado (volume não medido); gráfico não gerado")
+        (OUT / "matriz_automacao.png").unlink(missing_ok=True)
+        return
     cores = {"piloto": "#1b6e3a", "candidato a piloto": "#4f9d69", "próxima onda": "#c48a1b",
              "não priorizar agora": "#8a8a8a", "reavaliar com dados": "#b0b0b0"}
     fig, ax = plt.subplots(figsize=(9, 6), dpi=150)

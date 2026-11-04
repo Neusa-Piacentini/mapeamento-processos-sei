@@ -127,3 +127,13 @@ exatamente o que precisa ser revisto.
 
 Avaliações atualizadas, revalidadas e carimbadas; nenhuma conclusão de gargalo mudou (a espera de terceiros
 diminuiu, reforçando que a maior parte do tempo é interna).
+
+## Estudo de caso SEI-480002/001314/2024 (04/11/2026)
+
+| Falha | Mitigação | Onde |
+|---|---|---|
+| `fichas_trabalho.py` chamava `limpar_pessoais` sem importar e quebrava ao gravar (NameError) | Import de `fichas_atividades.limpar_pessoais` | `test_fichas_trabalho_limpa_dados_pessoais_antes_de_gravar` |
+| Coorte da fase 2 exigia 5 casos e deixava o estudo de caso único sem `casos_<cod>.json` (fase 3 sem entrada) | `MIN_CASOS_COORTE` no perfil (padrão 5); `procedimento.py` continua marcando "estudo de caso" abaixo de 5 | `coorte_fase2.py`, `perfis/rj_agenersa_caso_001314.py` |
+| Atribuição de peças a atividades exigia LLM mesmo para o caso-piloto, que já tem vínculos auditados | `classificar_atividades.py --gabarito-piloto` rotula pelos vínculos | `classificar_atividades.py` |
+| Gráfico da priorização quebrava (max de lista vazia) quando nenhum tipo tinha volume medido | Sem retorno calculado, avisa e não gera o gráfico | `test_priorizacao_grafico_sem_volume_medido_nao_quebra` |
+| Trilha rodada antes das fichas datava as peças só pela juntada; ao rodar de novo com as fichas, terceiros e indeterminado mudaram (0 → 138 du e 180 → 41 du) | Rodar a cadeia inteira pelo `pipeline.py` depois das fichas; avaliação corrigida, revalidada e carimbada | `pipeline.py` (portão `validar_avaliacoes --exigir-carimbo`) |

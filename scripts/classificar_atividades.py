@@ -167,12 +167,28 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--avaliar", action="store_true", help="só os casos do piloto, contra os vínculos auditados")
     ap.add_argument("--workers", type=int, default=4)
+    ap.add_argument("--gabarito-piloto", action="store_true",
+                    help="sem LLM: casos do piloto rotulados pelos vínculos auditados (estudo de caso sem coorte)")
     args = ap.parse_args()
     coorte = pd.read_csv(SAIDA / "coorte_fase2.csv")
     coorte = coorte[[(DIR / f"modelo_{c}.json").exists() for c in coorte.processo_principal]]
-    if args.avaliar:
+    if args.avaliar or args.gabarito_piloto:
         coorte = coorte[coorte.no_piloto]
     OUT.mkdir(parents=True, exist_ok=True)
+    if args.gabarito_piloto:
+        docs, fichas, rel = carregar_contexto()
+        for cod, g in coorte.groupby("processo_principal"):
+            gab, out = gabarito(cod), []
+            for numero in sorted(g.numero):
+                for p in montar(cod, numero, docs, fichas, rel)[1]:
+                    if p["propria"]:
+                        ativ = gab.get(p["ref"], FORA) if p["cand"] else "fora_da_raia"
+                        out.append(dict(codigo=cod, processo=numero, ref=p["ref"], unidade=p["unidade"], tipo=p["tipo"],
+                                        atividade=ativ, confianca="alta", motivo="vínculo auditado do piloto"))
+            t = pd.DataFrame(out).sort_values(["processo", "ref"])
+            t.to_csv(OUT / f"atribuicoes_{cod}.csv", index=False, encoding="utf-8-sig")
+            print(cod, t.processo.nunique(), "processos (gabarito);", t.atividade.value_counts().to_dict())
+        return
     CACHE.mkdir(parents=True, exist_ok=True)
     docs, fichas, rel = carregar_contexto()
     cliente = anthropic.Anthropic()
