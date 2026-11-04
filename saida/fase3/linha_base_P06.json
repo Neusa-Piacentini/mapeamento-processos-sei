@@ -33,11 +33,11 @@
   },
   "terceiros_du": {
    "n": 1,
-   "media": 0.0,
-   "mediana": 0.0,
-   "q1": 0.0,
-   "q3": 0.0,
-   "max": 0.0
+   "media": 138.0,
+   "mediana": 138.0,
+   "q1": 138.0,
+   "q3": 138.0,
+   "max": 138.0
   },
   "sem_unidade_du": {
    "n": 1,
@@ -154,7 +154,7 @@
   },
   "horas_ano_fte": 1816.0
  },
- "carimbo": "5845718566d2a917ec94fb1aa787b16591572f22b6f90ab433fa5888ccd13014",
+ "carimbo": "d80a3624fd68a3edc50a078178a485957243c562153fce283ae35c0c77048e35",
  "ressalvas": [
   "Horas por peça são estimativa (hipótese até a calibração com servidores).",
   "Volume anual é piso: só processos que chegaram a deliberação.",

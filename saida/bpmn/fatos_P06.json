@@ -1311,7 +1311,7 @@
    "id": "critico.terceiros",
    "caso": "SEI-480002/001314/2024",
    "descricao": "Espera de resposta de terceiros (confirmada)",
-   "valor": 0.0,
+   "valor": 138.0,
    "unidade": "du",
    "definicao": "dias úteis de ofício/notificação até a resposta (carta, petição em processo relacionado, anexo recebido pelo protocolo), limitados ao prazo dado no ofício + 5 du (sem prazo: 60 du); intervalos unidos"
   },
@@ -1319,7 +1319,7 @@
    "id": "critico.indeterminado",
    "caso": "SEI-480002/001314/2024",
    "descricao": "Ofício até peça externa sem data real",
-   "valor": 182.0,
+   "valor": 41.0,
    "unidade": "du",
    "definicao": "dias úteis além do prazo dado ou até peça sem data real: não separável de processo parado"
   },
@@ -1663,7 +1663,7 @@
    "id": "coorte.caso.terceiros.mediana",
    "caso": null,
    "descricao": "Espera de resposta de terceiros por caso nativo (confirmada) — mediana",
-   "valor": 0.0,
+   "valor": 138.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1671,7 +1671,7 @@
    "id": "coorte.caso.terceiros.q1",
    "caso": null,
    "descricao": "Espera de resposta de terceiros por caso nativo (confirmada) — q1",
-   "valor": 0.0,
+   "valor": 138.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1679,7 +1679,7 @@
    "id": "coorte.caso.terceiros.q3",
    "caso": null,
    "descricao": "Espera de resposta de terceiros por caso nativo (confirmada) — q3",
-   "valor": 0.0,
+   "valor": 138.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1687,7 +1687,7 @@
    "id": "coorte.caso.terceiros.max",
    "caso": null,
    "descricao": "Espera de resposta de terceiros por caso nativo (confirmada) — max",
-   "valor": 0.0,
+   "valor": 138.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1703,7 +1703,7 @@
    "id": "coorte.caso.indeterminado.mediana",
    "caso": null,
    "descricao": "Ofício até peça externa sem data real, por caso nativo — mediana",
-   "valor": 182.0,
+   "valor": 41.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1711,7 +1711,7 @@
    "id": "coorte.caso.indeterminado.q1",
    "caso": null,
    "descricao": "Ofício até peça externa sem data real, por caso nativo — q1",
-   "valor": 182.0,
+   "valor": 41.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1719,7 +1719,7 @@
    "id": "coorte.caso.indeterminado.q3",
    "caso": null,
    "descricao": "Ofício até peça externa sem data real, por caso nativo — q3",
-   "valor": 182.0,
+   "valor": 41.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },
@@ -1727,7 +1727,7 @@
    "id": "coorte.caso.indeterminado.max",
    "caso": null,
    "descricao": "Ofício até peça externa sem data real, por caso nativo — max",
-   "valor": 182.0,
+   "valor": 41.0,
    "unidade": "du",
    "definicao": "distribuição na coorte da fase 2 (processos do código com atividade atribuída a cada peça); estatística = mediana, q1, q3, max ou n (número de observações)"
   },

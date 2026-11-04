@@ -3,9 +3,9 @@ P06,SEI-480002/001314/2024,SEI-480002/001314/2024:104033188,AGENERSA/CASAN,Parec
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:104117825,AGENERSA/CASAN,Despacho de Encaminhamento de Processo,t4,gabarito,vínculo do piloto (saida/bpmn/vinculos)
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:114548072,AGENERSA/SCEXEC,Manifestação 55,t5,gabarito,vínculo do piloto (saida/bpmn/vinculos)
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:114551426,AGENERSA/SCEXEC,E-mail,t5,gabarito,vínculo do piloto (saida/bpmn/vinculos)
-P06,SEI-480002/001314/2024,SEI-480002/001314/2024:117500524,AGENERSA/SCEXEC,Despacho de Encaminhamento de Processo,t6,gabarito,vínculo do piloto (saida/bpmn/vinculos)
+P06,SEI-480002/001314/2024,SEI-480002/001314/2024:117500524,AGENERSA/SCEXEC,Despacho de Encaminhamento de Processo,fora_da_raia,gabarito,peça de trâmite fora da raia da atividade vinculada
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:117801870,AGENERSA/CASAN,Despacho de Encaminhamento de Processo,t6,gabarito,vínculo do piloto (saida/bpmn/vinculos)
-P06,SEI-480002/001314/2024,SEI-480002/001314/2024:117907053,AGENERSA/SCEXEC,Despacho de Encaminhamento de Processo,t7,gabarito,vínculo do piloto (saida/bpmn/vinculos)
+P06,SEI-480002/001314/2024,SEI-480002/001314/2024:117907053,AGENERSA/SCEXEC,Despacho de Encaminhamento de Processo,fora_da_raia,gabarito,peça de trâmite fora da raia da atividade vinculada
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:120665498,AGENERSA/PROC,Parecer 759,t7,gabarito,vínculo do piloto (saida/bpmn/vinculos)
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:140207175,AGENERSA/SCEXEC,Ofício - NA 2606,t8,gabarito,vínculo do piloto (saida/bpmn/vinculos)
 P06,SEI-480002/001314/2024,SEI-480002/001314/2024:140220431,AGENERSA/SCEXEC,E-mail,t8,gabarito,vínculo do piloto (saida/bpmn/vinculos)

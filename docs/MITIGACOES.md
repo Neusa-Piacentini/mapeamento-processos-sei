@@ -127,3 +127,13 @@ exatamente o que precisa ser revisto.
 
 Avaliações atualizadas, revalidadas e carimbadas; nenhuma conclusão de gargalo mudou (a espera de terceiros
 diminuiu, reforçando que a maior parte do tempo é interna).
+
+## Replicação em um processo (caso SEI-480002/001314/2024)
+
+| Falha | Mitigação | Onde |
+|---|---|---|
+| `fichas_trabalho.py` usava `limpar_pessoais` sem importar (quebrava ao gravar) | Import de `fichas_atividades` antes de gravar | `scripts/fichas_trabalho.py` |
+| Processo escolhido pelo aluno, em andamento, não passava nos critérios do piloto | `PILOTO_DESIGNADO` no perfil, papel "designado" no `piloto.csv` | `scripts/selecionar_piloto.py` |
+| Coorte mínima fixa em 5 impedia a fase 2/3 com um caso | `MIN_CASOS_COORTE` do perfil; `procedimento.py` mantém `estudo_de_caso` abaixo de 5 | `scripts/coorte_fase2.py` |
+| Matriz sem nenhum retorno medido quebrava o gráfico | Gráfico pulado com aviso | `scripts/priorizacao_automacao.py` |
+| Trâmite da Secretaria vinculado a tarefa de outra raia entrava no tempo da atividade | Atribuição pelo gabarito aplica a regra de raia do classificador (`fora_da_raia`) | `ferramentas_caso/atribuicoes_do_piloto.py` |

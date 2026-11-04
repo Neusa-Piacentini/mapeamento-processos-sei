@@ -46,17 +46,17 @@
   },
   "terceiros": {
    "n": 1,
-   "mediana": 0.0,
-   "q1": 0.0,
-   "q3": 0.0,
-   "max": 0.0
+   "mediana": 138.0,
+   "q1": 138.0,
+   "q3": 138.0,
+   "max": 138.0
   },
   "indeterminado": {
    "n": 1,
-   "mediana": 182.0,
-   "q1": 182.0,
-   "q3": 182.0,
-   "max": 182.0
+   "mediana": 41.0,
+   "q1": 41.0,
+   "q3": 41.0,
+   "max": 41.0
   },
   "oficios": {
    "n": 1,
@@ -660,11 +660,6 @@
    ],
    "competencias": [
     {
-     "item": "gestao_processual (basico)",
-     "casos": 1,
-     "pct": 100
-    },
-    {
      "item": "juridico_regulatoria (especialista)",
      "casos": 1,
      "pct": 100
@@ -678,7 +673,7 @@
     }
    ],
    "fichas_por_modelo": {
-    "anthropic/claude-haiku-5.5": 2
+    "anthropic/claude-haiku-5.5": 1
    },
    "ausente_em": 0
   },
@@ -724,11 +719,6 @@
    ],
    "insumos": [
     {
-     "item": "Leis nº 11.445/2007 e nº 14.026/2020, citadas pela CASAN",
-     "casos": 1,
-     "pct": 100
-    },
-    {
      "item": "competências legais da AGENERSA",
      "casos": 1,
      "pct": 100
@@ -740,11 +730,6 @@
     }
    ],
    "competencias": [
-    {
-     "item": "gestao_processual (basico)",
-     "casos": 1,
-     "pct": 100
-    },
     {
      "item": "juridico_regulatoria (especialista)",
      "casos": 1,
@@ -759,7 +744,7 @@
     }
    ],
    "fichas_por_modelo": {
-    "anthropic/claude-haiku-5.5": 2
+    "anthropic/claude-haiku-5.5": 1
    },
    "ausente_em": 0
   },
@@ -813,6 +798,6 @@
   }
  },
  "fichas_por_modelo": {
-  "anthropic/claude-haiku-5.5": 59
+  "anthropic/claude-haiku-5.5": 57
  }
 }
